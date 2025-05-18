@@ -59,11 +59,11 @@ body {
 
 .nav-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    gap: 2rem;
     max-width: 1200px;
+    width: 100%;
 }
 
 .nav-tabs {
@@ -124,7 +124,12 @@ body {
     animation: pulse-glow 2s infinite;
 }
 
-/* 语言切换按钮样式 */
+/* 语言切换按钮样式 - 导航栏右侧 */
+.language-switcher-container {
+    display: flex;
+    align-items: center;
+}
+
 #lang-switch {
     background: none;
     border: none;
@@ -134,11 +139,27 @@ body {
     transition: var(--transition);
     padding: 0.8rem 1.2rem;
     font-family: inherit;
+    position: relative;
+}
+
+#lang-switch::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--metal-primary));
+    transition: width 0.4s ease;
 }
 
 #lang-switch:hover {
     color: var(--metal-light);
     transform: translateY(-2px);
+}
+
+#lang-switch:hover::before {
+    width: 100%;
 }
 
 .header {
@@ -604,15 +625,19 @@ body {
     0% {
         opacity: 0.3;
     }
+
     100% {
         opacity: 0.7;
     }
 }
 
 @keyframes pulse-glow {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 0.8;
     }
+
     50% {
         opacity: 0.3;
     }
@@ -622,6 +647,7 @@ body {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -679,6 +705,11 @@ body {
     .install-instructions ol li {
         margin-bottom: 1rem;
         padding-left: 2rem;
+    }
+
+    /* 移动端语言切换按钮调整 */
+    .language-switcher-container {
+        margin-top: 1rem;
     }
 }
 

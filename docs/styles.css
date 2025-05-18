@@ -1,21 +1,23 @@
 :root {
-    --primary-blue: #5dade2;
-    --dark-blue: #53a5db;
-    --light-pink: #f8bbd0;
-    --accent-pink: #f48fb1;
-    --dark-pink: #ef437c;
-    --light-bg: #f5f5f5;
-    --text-dark: #333;
-    --text-light: #fff;
+    --primary-dark: #1a1a1a;
+    --secondary-dark: #2a0a3a;
+    --accent-dark: #8b0000;
+    --metal-accent: #cd7f32;
+    --dark-gold: #b8860b;
+    --text-light: #e0e0e0;
+    --text-lighter: #f5f5dc;
+    --shadow-dark: rgba(0, 0, 0, 0.7);
+    --shadow-light: rgba(255, 255, 255, 0.1);
 }
 
 body {
-    font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
+    font-family: 'Cinzel', 'Microsoft YaHei', serif;
     line-height: 1.6;
-    color: var(--text-dark);
+    color: var(--text-light);
     margin: 0;
     padding: 0;
-    background-color: var(--light-bg);
+    background-color: var(--primary-dark);
+    background-image: url('https://www.transparenttextures.com/patterns/black-paper.png');
 }
 
 /* 分页容器 */
@@ -24,6 +26,8 @@ body {
     padding: 2rem;
     animation: fadeIn 0.5s ease;
     min-height: 70vh;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .page-container.active {
@@ -34,7 +38,6 @@ body {
     from {
         opacity: 0;
     }
-
     to {
         opacity: 1;
     }
@@ -42,12 +45,13 @@ body {
 
 /* 导航栏 */
 .navbar {
-    background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+    background: linear-gradient(135deg, var(--secondary-dark), #1a0a2a);
     padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px var(--shadow-dark);
+    border-bottom: 1px solid var(--metal-accent);
 }
 
 .nav-tabs {
@@ -64,31 +68,35 @@ body {
 }
 
 .nav-link {
-    color: var(--text-light);
+    color: var(--metal-accent);
     text-decoration: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.5rem;
     border-radius: 20px;
     transition: all 0.3s ease;
     font-weight: bold;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+    border: 1px solid var(--metal-accent);
+    text-shadow: 1px 1px 2px var(--shadow-dark);
 }
 
 .nav-link:hover,
 .nav-link.active {
-    background: linear-gradient(135deg, var(--accent-pink), var(--dark-pink));
+    background: linear-gradient(135deg, var(--accent-dark), #5c0000);
     transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
+    box-shadow: 0 4px 8px var(--shadow-dark);
+    color: var(--text-lighter);
+    border-color: var(--accent-dark);
 }
 
 /* 页眉 */
 .header {
-    background: linear-gradient(135deg, var(--primary-blue), var(--light-pink));
-    color: var(--text-light);
+    background: linear-gradient(135deg, var(--secondary-dark), var(--primary-dark));
+    color: var(--metal-accent);
     text-align: center;
-    padding: 3rem 0;
+    padding: 4rem 0;
     margin-bottom: 2rem;
     position: relative;
     overflow: hidden;
+    border-bottom: 3px solid var(--metal-accent);
 }
 
 .header::before {
@@ -98,8 +106,8 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('https://www.transparenttextures.com/patterns/cubes.png');
-    opacity: 0.1;
+    background: url('https://www.transparenttextures.com/patterns/dark-wood.png');
+    opacity: 0.3;
 }
 
 .header-content {
@@ -111,44 +119,53 @@ body {
 }
 
 .header h1 {
-    font-size: 2.5rem;
+    font-family: 'UnifrakturMaguntia', serif;
+    font-size: 3.5rem;
     margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 4px var(--shadow-dark), 0 0 10px var(--accent-dark);
+    letter-spacing: 2px;
 }
 
 .header p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     max-width: 800px;
     margin: 0 auto;
+    color: var(--text-lighter);
+    text-shadow: 1px 1px 2px var(--shadow-dark);
 }
 
 /* 卡片样式 */
 .card {
-    background-color: white;
+    background-color: rgba(26, 26, 26, 0.8);
     border-radius: 10px;
     padding: 1.5rem;
     margin-bottom: 2rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    border-top: 4px solid var(--accent-pink);
+    box-shadow: 0 5px 15px var(--shadow-dark);
+    border: 1px solid var(--metal-accent);
+    border-top: 4px solid var(--metal-accent);
 }
 
 .card h2 {
-    color: var(--dark-blue);
+    color: var(--metal-accent);
     margin-top: 0;
-    border-bottom: 2px solid var(--light-pink);
+    border-bottom: 2px solid var(--accent-dark);
     padding-bottom: 0.5rem;
+    text-shadow: 1px 1px 2px var(--shadow-dark);
+    font-family: 'UnifrakturMaguntia', serif;
+    letter-spacing: 1px;
 }
 
 /* 新版简介样式 */
 .intro-card {
-    background: linear-gradient(135deg, var(--primary-blue), var(--dark-pink));
+    background: linear-gradient(135deg, var(--secondary-dark), #1a0a2a);
     border-radius: 15px;
     padding: 2.5rem;
     margin-bottom: 3rem;
-    color: white;
+    color: var(--text-lighter);
     position: relative;
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 20px var(--shadow-dark);
+    border: 1px solid var(--metal-accent);
 }
 
 .intro-card::before {
@@ -168,12 +185,14 @@ body {
 }
 
 .intro-card h2 {
-    font-size: 2.2rem;
+    font-family: 'UnifrakturMaguntia', serif;
+    font-size: 2.5rem;
     margin-top: 0;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--metal-accent);
+    text-shadow: 2px 2px 4px var(--shadow-dark), 0 0 10px var(--accent-dark);
+    border-bottom: 2px solid var(--metal-accent);
     padding-bottom: 0.8rem;
+    letter-spacing: 1px;
 }
 
 .intro-features {
@@ -184,41 +203,86 @@ body {
 }
 
 .feature-item {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(5px);
     padding: 1.5rem;
     border-radius: 10px;
-    border-left: 4px solid var(--light-pink);
+    border-left: 4px solid var(--metal-accent);
+    border: 1px solid rgba(205, 127, 50, 0.3);
 }
 
 .feature-item h3 {
     margin-top: 0;
-    color: var(--light-pink);
+    color: var(--metal-accent);
+    text-shadow: 1px 1px 2px var(--shadow-dark);
+}
+
+/* 特色玩法网格 */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.feature-card {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--metal-accent);
+    border: 1px solid rgba(205, 127, 50, 0.3);
+}
+
+.feature-card h3 {
+    color: var(--metal-accent);
+    margin-top: 0;
+    text-shadow: 1px 1px 2px var(--shadow-dark);
+}
+
+.feature-list {
+    padding-left: 1.5rem;
+    list-style-type: none;
+}
+
+.feature-list li {
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.feature-list li::before {
+    content: "•";
+    color: var(--metal-accent);
+    position: absolute;
+    left: 0;
+    font-size: 1.5rem;
+    line-height: 1;
 }
 
 /* 机制盒子 */
 .mechanic-box {
-    background: linear-gradient(to right, #f5f5f5, white);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 8px;
     padding: 1.5rem;
     margin: 1.5rem 0;
-    border-left: 4px solid var(--dark-pink);
+    border-left: 4px solid var(--metal-accent);
     position: relative;
+    border: 1px solid rgba(205, 127, 50, 0.3);
 }
 
 .mechanic-title {
-    color: var(--dark-pink);
+    color: var(--metal-accent);
     font-weight: bold;
     margin-bottom: 0.8rem;
     display: flex;
     align-items: center;
+    text-shadow: 1px 1px 2px var(--shadow-dark);
 }
 
 .mechanic-title::before {
-    content: "•";
-    color: var(--dark-pink);
+    content: "⚔️";
+    color: var(--metal-accent);
     margin-right: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 /* 图片展示区 */
@@ -232,12 +296,14 @@ body {
 .gallery-item {
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--shadow-dark);
     transition: transform 0.3s ease;
+    border: 1px solid var(--metal-accent);
 }
 
 .gallery-item:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 16px var(--shadow-dark);
 }
 
 .gallery-item img {
@@ -249,47 +315,113 @@ body {
 /* 下载按钮 */
 .download-btn {
     display: inline-block;
-    background: linear-gradient(135deg, var(--dark-pink), var(--accent-pink));
-    color: white;
+    background: linear-gradient(135deg, var(--metal-accent), var(--dark-gold));
+    color: var(--text-dark);
     padding: 1rem 2rem;
     text-decoration: none;
     border-radius: 30px;
     font-weight: bold;
     transition: all 0.3s ease;
     margin: 0.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px var(--shadow-dark);
     text-align: center;
+    border: none;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.3);
 }
 
 .download-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 12px var(--shadow-dark);
+    background: linear-gradient(135deg, var(--dark-gold), var(--metal-accent));
+    color: var(--text-lighter);
 }
 
 .download-btn.blue {
-    background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+    background: linear-gradient(135deg, var(--secondary-dark), #3a1a5a);
+    color: var(--text-lighter);
+}
+
+.download-btn.blue:hover {
+    background: linear-gradient(135deg, #3a1a5a, var(--secondary-dark));
 }
 
 /* 下载卡片 */
 .download-card {
-    background: white;
+    background: rgba(26, 26, 26, 0.8);
     border-radius: 10px;
     padding: 2rem;
     margin: 2rem auto;
     max-width: 800px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px var(--shadow-dark);
     text-align: center;
-    border-top: 4px solid var(--accent-pink);
+    border-top: 4px solid var(--metal-accent);
+    border: 1px solid var(--metal-accent);
+}
+
+.version-info {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: var(--text-lighter);
+}
+
+.download-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.install-instructions {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+    border: 1px solid rgba(205, 127, 50, 0.3);
+}
+
+.install-instructions h3 {
+    margin-top: 0;
+    color: var(--metal-accent);
+    text-shadow: 1px 1px 2px var(--shadow-dark);
+}
+
+.install-instructions ol {
+    text-align: left;
+    padding-left: 1.5rem;
+    list-style-type: none;
+}
+
+.install-instructions li {
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.install-instructions li::before {
+    content: "•";
+    color: var(--metal-accent);
+    position: absolute;
+    left: 0;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.notice-box {
+    background-color: rgba(139, 0, 0, 0.2);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-dark);
 }
 
 /* 页脚 */
 .footer {
-    background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
-    color: var(--text-light);
+    background: linear-gradient(135deg, var(--secondary-dark), var(--primary-dark));
+    color: var(--metal-accent);
     text-align: center;
     padding: 2rem 0;
     margin-top: 2rem;
     position: relative;
+    border-top: 3px solid var(--metal-accent);
 }
 
 .footer::before {
@@ -299,7 +431,7 @@ body {
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(135deg, var(--accent-pink), var(--dark-pink));
+    background: linear-gradient(135deg, var(--metal-accent), var(--dark-gold));
 }
 
 .footer-links {
@@ -310,14 +442,15 @@ body {
 }
 
 .footer-link {
-    color: var(--light-pink);
+    color: var(--metal-accent);
     text-decoration: none;
     margin: 0 1rem;
     transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px var(--shadow-dark);
 }
 
 .footer-link:hover {
-    color: white;
+    color: var(--text-lighter);
     text-decoration: underline;
 }
 
@@ -327,7 +460,7 @@ body {
     gap: 2rem;
 }
 
-/* ================== 改进后的侧边栏样式 ================== */
+/* 侧边栏样式 */
 .mechanic-sidebar {
     width: 300px;
     position: sticky;
@@ -336,31 +469,27 @@ body {
 }
 
 .sidebar-card {
-    background: white;
+    background: rgba(26, 26, 26, 0.8);
     border-radius: 12px;
     padding: 1.5rem;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-    border: none;
-    background: linear-gradient(135deg, #ffffff, #f9f9f9);
+    box-shadow: 0 10px 20px var(--shadow-dark);
+    border: 1px solid var(--metal-accent);
 }
 
 .sidebar-title {
-    color: var(--dark-pink);
+    color: var(--metal-accent);
     margin-top: 0;
     padding-bottom: 0.8rem;
     font-size: 1.3rem;
     position: relative;
     display: flex;
     align-items: center;
-    border-bottom: 2px solid rgba(239, 66, 124, 0.2);
+    border-bottom: 2px solid rgba(205, 127, 50, 0.3);
+    text-shadow: 1px 1px 2px var(--shadow-dark);
 }
 
 .sidebar-title::before {
-    content: "";
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ef437c"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>') no-repeat center;
+    content: "🗡️";
     margin-right: 10px;
 }
 
@@ -381,11 +510,11 @@ body {
     padding: 0.8rem 1.2rem;
     background: transparent;
     border-radius: 8px;
-    color: var(--text-dark);
+    color: var(--text-light);
     text-decoration: none;
     transition: all 0.3s ease;
     font-size: 1rem;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(205, 127, 50, 0.2);
 }
 
 .sidebar-link::before {
@@ -393,33 +522,33 @@ body {
     display: inline-block;
     width: 8px;
     height: 8px;
-    background-color: var(--primary-blue);
+    background-color: var(--metal-accent);
     border-radius: 50%;
     margin-right: 12px;
     transition: all 0.3s ease;
 }
 
 .sidebar-link:hover {
-    background: rgba(93, 173, 226, 0.1);
+    background: rgba(139, 0, 0, 0.2);
     transform: translateX(5px);
-    border-color: rgba(93, 173, 226, 0.2);
+    border-color: var(--metal-accent);
 }
 
 .sidebar-link:hover::before {
-    background-color: var(--dark-pink);
+    background-color: var(--text-lighter);
     transform: scale(1.3);
 }
 
 .sidebar-link.active {
-    background: linear-gradient(135deg, rgba(93, 173, 226, 0.15), rgba(239, 66, 124, 0.1));
-    color: var(--dark-pink);
+    background: rgba(139, 0, 0, 0.3);
+    color: var(--text-lighter);
     font-weight: 600;
-    border-color: rgba(239, 66, 124, 0.2);
-    box-shadow: 0 4px 12px rgba(239, 66, 124, 0.1);
+    border-color: var(--metal-accent);
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
 }
 
 .sidebar-link.active::before {
-    background-color: var(--dark-pink);
+    background-color: var(--text-lighter);
     transform: scale(1.3);
 }
 
@@ -447,7 +576,7 @@ body {
     }
 
     .header h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 
     .gallery {
@@ -460,6 +589,16 @@ body {
     }
 
     .footer-link {
+        margin: 0.5rem 0;
+    }
+    
+    .download-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .download-btn {
+        width: 100%;
         margin: 0.5rem 0;
     }
 }

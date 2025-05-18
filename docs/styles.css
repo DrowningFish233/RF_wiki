@@ -57,35 +57,13 @@ body {
     margin-top: 60px;
 }
 
-.navbar-container {
+.nav-container {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1rem;
     gap: 2rem;
     max-width: 1200px;
-}
-
-.nav-link {
-    padding: 0.8rem 1.2rem;
-    position: relative;
-}
-
-
-.navbar-brand {
-    display: flex;
-    align-items: center;
-    font-family: 'UnifrakturMaguntia', cursive;
-    font-size: 1.8rem;
-    color: var(--text-primary);
-    text-decoration: none;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8);
-}
-
-.brand-icon {
-    color: var(--metal-light);
-    margin-right: 0.5rem;
-    filter: drop-shadow(0 0 3px rgba(194, 143, 61, 0.7));
 }
 
 .nav-tabs {
@@ -106,6 +84,7 @@ body {
     color: var(--text-secondary);
     text-decoration: none;
     transition: var(--transition);
+    display: inline-block;
 }
 
 .nav-link::before {
@@ -145,18 +124,21 @@ body {
     animation: pulse-glow 2s infinite;
 }
 
-.theme-toggle {
+/* 语言切换按钮样式 */
+#lang-switch {
     background: none;
     border: none;
-    color: var(--text-secondary);
-    font-size: 1.5rem;
     cursor: pointer;
+    font-weight: 600;
+    color: var(--text-secondary);
     transition: var(--transition);
+    padding: 0.8rem 1.2rem;
+    font-family: inherit;
 }
 
-.theme-toggle:hover {
+#lang-switch:hover {
     color: var(--metal-light);
-    transform: rotate(30deg);
+    transform: translateY(-2px);
 }
 
 .header {
@@ -622,19 +604,15 @@ body {
     0% {
         opacity: 0.3;
     }
-
     100% {
         opacity: 0.7;
     }
 }
 
 @keyframes pulse-glow {
-
-    0%,
-    100% {
+    0%, 100% {
         opacity: 0.8;
     }
-
     50% {
         opacity: 0.3;
     }
@@ -644,7 +622,6 @@ body {
     from {
         opacity: 0;
     }
-
     to {
         opacity: 1;
     }
@@ -662,7 +639,7 @@ body {
 }
 
 @media (max-width: 768px) {
-    .navbar-container {
+    .nav-container {
         flex-direction: column;
         align-items: center;
         gap: 1rem;
@@ -697,10 +674,6 @@ body {
     .download-buttons {
         flex-direction: column;
         gap: 1rem;
-    }
-
-    .download-section {
-        padding: 2rem 1.5rem;
     }
 
     .install-instructions ol li {

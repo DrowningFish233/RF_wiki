@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN" class="dark-theme">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,20 +8,29 @@
     <link rel="icon" href="/jofd_wiki/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/jofd_wiki/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/jofd_wiki/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=UnifrakturMaguntia&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <!-- 导航栏 - 改为方框设计 -->
     <nav class="navbar">
         <div class="nav-container">
             <ul class="nav-tabs">
-                <li class="nav-tab"><a href="#home" class="nav-link active" onclick="showPage('home')" data-key="home">首页</a></li>
-                <li class="nav-tab"><a href="#features" class="nav-link" onclick="showPage('features')" data-key="features">特色玩法</a></li>
-                <li class="nav-tab"><a href="#mechanic" class="nav-link" onclick="showPage('mechanic')" data-key="mechanic">机制介绍</a></li>
-                <li class="nav-tab"><a href="#download" class="nav-link" onclick="showPage('download')" data-key="download">下载</a></li>
-                <li class="nav-tab"><a href="https://github.com/DrowningFish233/Journey-of-Forging-Dreams" class="nav-link">GitHub</a></li>
-                <li class="nav-tab"><button id="lang-switch" class="nav-link" onclick="toggleLanguage()">EN/中</button></li>
+                <li class="nav-tab"><a href="#home" class="nav-link active" onclick="showPage('home')"
+                        data-key="home">首页</a></li>
+                <li class="nav-tab"><a href="#features" class="nav-link" onclick="showPage('features')"
+                        data-key="features">特色玩法</a></li>
+                <li class="nav-tab"><a href="#mechanic" class="nav-link" onclick="showPage('mechanic')"
+                        data-key="mechanic">机制介绍</a></li>
+                <li class="nav-tab"><a href="#download" class="nav-link" onclick="showPage('download')"
+                        data-key="download">下载</a></li>
+                <li class="nav-tab"><a href="https://github.com/DrowningFish233/Journey-of-Forging-Dreams"
+                        class="nav-link">GitHub</a></li>
             </ul>
+            <div class="language-switcher-container">
+                <button id="lang-switch">EN/中文</button>
+            </div>
         </div>
     </nav>
 
@@ -135,17 +145,23 @@
 
                     <div class="mechanic-box" id="rational-extend">
                         <div class="mechanic-title" data-key="rational-extend-title">理智值扩展</div>
-                        <p data-key="rational-extend-desc1">当玩家的理智值达到了-45时，若此时受到了可能会导致理智值降低的效果，将扣除的理智值1:1转换为对应等级的沉沦值。</p>
+                        <p data-key="rational-extend-desc1">当玩家的理智值达到了-45时，若此时受到了可能会导致理智值降低的效果，将扣除的理智值1:1转换为对应等级的沉沦值。
+                        </p>
                         <p data-key="rational-extend-desc2">沉沦值将直接影响玩家的受击倍率，最高玩家会受到5倍的攻击伤害！</p>
                         <p data-key="rational-extend-desc3">当玩家拥有沉沦值并影响受击倍率时，玩家每次被攻击将会扣除5%沉沦值。</p>
                     </div>
 
                     <div class="mechanic-box" id="setting-explain">
                         <div class="mechanic-title" data-key="setting-title">设定解释</div>
-                        <p><strong data-key="setting-term1">侵蚀：</strong><span data-key="setting-term1-desc">玩家将进入某种"特殊形态"，持续获得某些增益，代价是也会获得debuff。</span></p>
-                        <p><strong data-key="setting-term2">罪孽：</strong><span data-key="setting-term2-desc">共有七种，分别对应七宗罪之中的傲慢、嫉妒、懒惰、暴怒、贪婪、暴食、色欲。</span></p>
-                        <p><strong data-key="setting-term3">沉沦：</strong><span data-key="setting-term3-desc">一种特殊的debuff，会随时间减少并扣除玩家的理智值，不会随玩家死亡而完全消失，玩家死亡只会降低80%的沉沦值。</span></p>
-                        <p><strong data-key="setting-term4">硬币：</strong><span data-key="setting-term4-desc">硬币掷出正反面的概率受[理智值]影响，其概率公式为：50%+[理智值]*1%</span></p>
+                        <p><strong data-key="setting-term1">侵蚀：</strong><span
+                                data-key="setting-term1-desc">玩家将进入某种"特殊形态"，持续获得某些增益，代价是也会获得debuff。</span></p>
+                        <p><strong data-key="setting-term2">罪孽：</strong><span
+                                data-key="setting-term2-desc">共有七种，分别对应七宗罪之中的傲慢、嫉妒、懒惰、暴怒、贪婪、暴食、色欲。</span></p>
+                        <p><strong data-key="setting-term3">沉沦：</strong><span
+                                data-key="setting-term3-desc">一种特殊的debuff，会随时间减少并扣除玩家的理智值，不会随玩家死亡而完全消失，玩家死亡只会降低80%的沉沦值。</span>
+                        </p>
+                        <p><strong data-key="setting-term4">硬币：</strong><span
+                                data-key="setting-term4-desc">硬币掷出正反面的概率受[理智值]影响，其概率公式为：50%+[理智值]*1%</span></p>
                     </div>
                 </div>
             </div>
@@ -159,7 +175,8 @@
             <p class="version-info" data-key="version-info">当前最新版本：暂未发布 | Minecraft版本 1.21.1 </p>
 
             <div class="download-buttons">
-                <a href="https://github.com/DrowningFish233/Journey-of-Forging-Dreams/releases" class="download-btn" data-key="github-download">
+                <a href="https://github.com/DrowningFish233/Journey-of-Forging-Dreams/releases" class="download-btn"
+                    data-key="github-download">
                     GitHub下载
                 </a>
                 <a href="https://www.mcmod.cn/modpack/907.html" class="download-btn blue" data-key="mcmod-page">
@@ -180,7 +197,8 @@
         <div class="card">
             <h2 data-key="notice-title">注意事项</h2>
             <div class="notice-box">
-                <p><strong data-key="notice-important">重要声明：</strong><span data-key="notice-desc">本整合包不会以任何方式进行营利！所有内容均为免费提供。</span></p>
+                <p><strong data-key="notice-important">重要声明：</strong><span
+                        data-key="notice-desc">本整合包不会以任何方式进行营利！所有内容均为免费提供。</span></p>
                 <p data-key="notice-help">如在安装或游戏中遇到任何问题，请访问GitHub页面提交issue或加入我们的QQ讨论群。</p>
             </div>
         </div>
@@ -190,8 +208,10 @@
     <footer class="footer">
         <p data-key="footer-text">锻梦之旅整合包 - Journey of Forging Dreams Modpack</p>
         <div class="footer-links">
-            <a href="https://github.com/DrowningFish233/Journey-of-Forging-Dreams" class="footer-link" data-key="footer-link1">GitHub仓库</a>
-            <a href="https://github.com/DrowningFish233/Journey-of-Forging-Dreams/wiki" class="footer-link" data-key="footer-link2">项目Wiki</a>
+            <a href="https://github.com/DrowningFish233/Journey-of-Forging-Dreams" class="footer-link"
+                data-key="footer-link1">GitHub仓库</a>
+            <a href="https://github.com/DrowningFish233/Journey-of-Forging-Dreams/wiki" class="footer-link"
+                data-key="footer-link2">项目Wiki</a>
             <a href="https://www.mcmod.cn/modpack/907.html" class="footer-link" data-key="footer-link3">MC百科页面</a>
         </div>
     </footer>
@@ -422,7 +442,7 @@
         }
 
         // 初始化语言
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             const savedLang = localStorage.getItem('wikiLanguage');
             if (savedLang) {
                 currentLang = savedLang;
@@ -431,4 +451,5 @@
         });
     </script>
 </body>
+
 </html>

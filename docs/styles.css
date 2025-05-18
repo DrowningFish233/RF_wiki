@@ -64,12 +64,16 @@ body {
     padding: 1rem;
     max-width: 1200px;
     width: 100%;
+    position: relative;
 }
 
 .nav-tabs {
     display: flex;
     list-style: none;
     gap: 1.5rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .nav-tab {
@@ -126,8 +130,7 @@ body {
 
 /* 语言切换按钮样式 - 导航栏右侧 */
 .language-switcher-container {
-    display: flex;
-    align-items: center;
+    margin-left: auto;
 }
 
 #lang-switch {
@@ -672,6 +675,9 @@ body {
     }
 
     .nav-tabs {
+        position: static;
+        transform: none;
+        left: auto;
         flex-wrap: wrap;
         justify-content: center;
     }
@@ -709,7 +715,8 @@ body {
 
     /* 移动端语言切换按钮调整 */
     .language-switcher-container {
-        margin-top: 1rem;
+        margin: 1rem auto 0;
+        order: 1;
     }
 }
 

@@ -1,17 +1,16 @@
 :root {
     --primary-dark: #1a1a1a;
-    --secondary-dark: #2a0a3a;
+    --secondary-dark: #121212;
     --accent-dark: #8b0000;
     --metal-accent: #cd7f32;
-    --dark-gold: #b8860b;
     --text-light: #e0e0e0;
-    --text-lighter: #f5f5dc;
-    --shadow-dark: rgba(0, 0, 0, 0.7);
+    --text-lighter: #f5f5f5;
+    --shadow-dark: rgba(0, 0, 0, 0.5);
     --shadow-light: rgba(255, 255, 255, 0.1);
 }
 
 body {
-    font-family: 'Cinzel', 'Microsoft YaHei', serif;
+    font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
     line-height: 1.6;
     color: var(--text-light);
     margin: 0;
@@ -44,21 +43,14 @@ body {
     }
 }
 
-/* 导航栏 - 方框设计 */
+/* 导航栏 - 保持蓝色渐变背景，仅按钮改为方框 */
 .navbar {
-    background: linear-gradient(135deg, var(--secondary-dark), #1a0a2a);
-    padding: 0;
+    background: linear-gradient(135deg, #5dade2, #53a5db);
+    padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 10px var(--shadow-dark);
-    border-bottom: 1px solid var(--metal-accent);
-}
-
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
 }
 
 .nav-tabs {
@@ -71,43 +63,38 @@ body {
 }
 
 .nav-tab {
-    margin: 0;
+    margin: 0 1rem;
 }
 
 .nav-link {
-    color: var(--metal-accent);
+    color: var(--text-light);
     text-decoration: none;
-    padding: 1rem 1.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0;
+    /* 改为方框 */
     transition: all 0.3s ease;
     font-weight: bold;
-    border: 1px solid var(--metal-accent);
-    border-radius: 0;
-    text-shadow: 1px 1px 2px var(--shadow-dark);
-    margin: 0 -1px;
-    position: relative;
-    background: rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .nav-link:hover,
 .nav-link.active {
-    background: linear-gradient(135deg, var(--accent-dark), #5c0000);
+    background: linear-gradient(135deg, #f48fb1, #ef437c);
     transform: translateY(-3px);
     box-shadow: 0 4px 8px var(--shadow-dark);
-    color: var(--text-lighter);
-    border-color: var(--accent-dark);
-    z-index: 1;
+    border-color: #f48fb1;
 }
 
 /* 页眉 */
 .header {
-    background: linear-gradient(135deg, var(--secondary-dark), var(--primary-dark));
-    color: var(--metal-accent);
+    background: linear-gradient(135deg, #5dade2, #f8bbd0);
+    color: var(--text-light);
     text-align: center;
-    padding: 4rem 0;
+    padding: 3rem 0;
     margin-bottom: 2rem;
     position: relative;
     overflow: hidden;
-    border-bottom: 3px solid var(--metal-accent);
 }
 
 .header::before {
@@ -117,8 +104,8 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('https://www.transparenttextures.com/patterns/dark-wood.png');
-    opacity: 0.3;
+    background: url('https://www.transparenttextures.com/patterns/cubes.png');
+    opacity: 0.1;
 }
 
 .header-content {
@@ -130,29 +117,24 @@ body {
 }
 
 .header h1 {
-    font-family: 'UnifrakturMaguntia', serif;
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 4px var(--shadow-dark), 0 0 10px var(--accent-dark);
-    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px var(--shadow-dark);
 }
 
 .header p {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     max-width: 800px;
     margin: 0 auto;
-    color: var(--text-lighter);
-    text-shadow: 1px 1px 2px var(--shadow-dark);
 }
 
-/* 卡片样式 */
+/* 卡片样式 - 暗黑风格 */
 .card {
-    background-color: rgba(26, 26, 26, 0.8);
-    border-radius: 0;
+    background-color: var(--secondary-dark);
+    border-radius: 10px;
     padding: 1.5rem;
     margin-bottom: 2rem;
     box-shadow: 0 5px 15px var(--shadow-dark);
-    border: 1px solid var(--metal-accent);
     border-top: 4px solid var(--metal-accent);
 }
 
@@ -161,15 +143,12 @@ body {
     margin-top: 0;
     border-bottom: 2px solid var(--accent-dark);
     padding-bottom: 0.5rem;
-    text-shadow: 1px 1px 2px var(--shadow-dark);
-    font-family: 'UnifrakturMaguntia', serif;
-    letter-spacing: 1px;
 }
 
 /* 新版简介样式 */
 .intro-card {
     background: linear-gradient(135deg, var(--secondary-dark), #1a0a2a);
-    border-radius: 0;
+    border-radius: 15px;
     padding: 2.5rem;
     margin-bottom: 3rem;
     color: var(--text-lighter);
@@ -196,14 +175,12 @@ body {
 }
 
 .intro-card h2 {
-    font-family: 'UnifrakturMaguntia', serif;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     margin-top: 0;
     color: var(--metal-accent);
-    text-shadow: 2px 2px 4px var(--shadow-dark), 0 0 10px var(--accent-dark);
-    border-bottom: 2px solid var(--metal-accent);
+    text-shadow: 2px 2px 4px var(--shadow-dark);
+    border-bottom: 2px solid rgba(205, 127, 50, 0.3);
     padding-bottom: 0.8rem;
-    letter-spacing: 1px;
 }
 
 .intro-features {
@@ -217,67 +194,23 @@ body {
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(5px);
     padding: 1.5rem;
-    border-radius: 0;
+    border-radius: 10px;
     border-left: 4px solid var(--metal-accent);
-    border: 1px solid rgba(205, 127, 50, 0.3);
 }
 
 .feature-item h3 {
     margin-top: 0;
     color: var(--metal-accent);
-    text-shadow: 1px 1px 2px var(--shadow-dark);
-}
-
-/* 特色玩法网格 */
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-
-.feature-card {
-    background: rgba(0, 0, 0, 0.3);
-    padding: 1.5rem;
-    border-radius: 0;
-    border-left: 4px solid var(--metal-accent);
-    border: 1px solid rgba(205, 127, 50, 0.3);
-}
-
-.feature-card h3 {
-    color: var(--metal-accent);
-    margin-top: 0;
-    text-shadow: 1px 1px 2px var(--shadow-dark);
-}
-
-.feature-list {
-    padding-left: 1.5rem;
-    list-style-type: none;
-}
-
-.feature-list li {
-    margin-bottom: 0.8rem;
-    position: relative;
-    padding-left: 1.5rem;
-}
-
-.feature-list li::before {
-    content: "•";
-    color: var(--metal-accent);
-    position: absolute;
-    left: 0;
-    font-size: 1.5rem;
-    line-height: 1;
 }
 
 /* 机制盒子 */
 .mechanic-box {
     background: rgba(0, 0, 0, 0.3);
-    border-radius: 0;
+    border-radius: 8px;
     padding: 1.5rem;
     margin: 1.5rem 0;
     border-left: 4px solid var(--metal-accent);
     position: relative;
-    border: 1px solid rgba(205, 127, 50, 0.3);
 }
 
 .mechanic-title {
@@ -286,14 +219,13 @@ body {
     margin-bottom: 0.8rem;
     display: flex;
     align-items: center;
-    text-shadow: 1px 1px 2px var(--shadow-dark);
 }
 
 .mechanic-title::before {
-    content: "⚔️";
+    content: "•";
     color: var(--metal-accent);
     margin-right: 0.5rem;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 /* 图片展示区 */
@@ -305,7 +237,7 @@ body {
 }
 
 .gallery-item {
-    border-radius: 0;
+    border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px var(--shadow-dark);
     transition: transform 0.3s ease;
@@ -326,47 +258,44 @@ body {
 /* 下载按钮 */
 .download-btn {
     display: inline-block;
-    background: linear-gradient(135deg, var(--metal-accent), var(--dark-gold));
+    background: linear-gradient(135deg, var(--metal-accent), #b8860b);
     color: var(--text-dark);
     padding: 1rem 2rem;
     text-decoration: none;
-    border-radius: 0;
+    border-radius: 30px;
     font-weight: bold;
     transition: all 0.3s ease;
     margin: 0.5rem;
     box-shadow: 0 4px 8px var(--shadow-dark);
     text-align: center;
-    border: none;
-    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.3);
 }
 
 .download-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 12px var(--shadow-dark);
-    background: linear-gradient(135deg, var(--dark-gold), var(--metal-accent));
+    background: linear-gradient(135deg, #b8860b, var(--metal-accent));
     color: var(--text-lighter);
 }
 
 .download-btn.blue {
-    background: linear-gradient(135deg, var(--secondary-dark), #3a1a5a);
+    background: linear-gradient(135deg, #53a5db, #5dade2);
     color: var(--text-lighter);
 }
 
 .download-btn.blue:hover {
-    background: linear-gradient(135deg, #3a1a5a, var(--secondary-dark));
+    background: linear-gradient(135deg, #5dade2, #53a5db);
 }
 
 /* 下载卡片 */
 .download-card {
-    background: rgba(26, 26, 26, 0.8);
-    border-radius: 0;
+    background: var(--secondary-dark);
+    border-radius: 10px;
     padding: 2rem;
     margin: 2rem auto;
     max-width: 800px;
     box-shadow: 0 8px 16px var(--shadow-dark);
     text-align: center;
     border-top: 4px solid var(--metal-accent);
-    border: 1px solid var(--metal-accent);
 }
 
 .version-info {
@@ -385,15 +314,14 @@ body {
 .install-instructions {
     background-color: rgba(0, 0, 0, 0.3);
     padding: 1.5rem;
-    border-radius: 0;
+    border-radius: 8px;
     margin-top: 2rem;
-    border: 1px solid rgba(205, 127, 50, 0.3);
+    border-left: 4px solid var(--metal-accent);
 }
 
 .install-instructions h3 {
     margin-top: 0;
     color: var(--metal-accent);
-    text-shadow: 1px 1px 2px var(--shadow-dark);
 }
 
 .install-instructions ol {
@@ -420,19 +348,18 @@ body {
 .notice-box {
     background-color: rgba(139, 0, 0, 0.2);
     padding: 1.5rem;
-    border-radius: 0;
+    border-radius: 8px;
     border-left: 4px solid var(--accent-dark);
 }
 
 /* 页脚 */
 .footer {
-    background: linear-gradient(135deg, var(--secondary-dark), var(--primary-dark));
-    color: var(--metal-accent);
+    background: linear-gradient(135deg, #53a5db, #5dade2);
+    color: var(--text-light);
     text-align: center;
     padding: 2rem 0;
     margin-top: 2rem;
     position: relative;
-    border-top: 3px solid var(--metal-accent);
 }
 
 .footer::before {
@@ -442,7 +369,7 @@ body {
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(135deg, var(--metal-accent), var(--dark-gold));
+    background: linear-gradient(135deg, #f48fb1, #ef437c);
 }
 
 .footer-links {
@@ -453,11 +380,10 @@ body {
 }
 
 .footer-link {
-    color: var(--metal-accent);
+    color: var(--text-light);
     text-decoration: none;
     margin: 0 1rem;
     transition: all 0.3s ease;
-    text-shadow: 1px 1px 2px var(--shadow-dark);
 }
 
 .footer-link:hover {
@@ -480,8 +406,8 @@ body {
 }
 
 .sidebar-card {
-    background: rgba(26, 26, 26, 0.8);
-    border-radius: 0;
+    background: var(--secondary-dark);
+    border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 10px 20px var(--shadow-dark);
     border: 1px solid var(--metal-accent);
@@ -496,7 +422,6 @@ body {
     display: flex;
     align-items: center;
     border-bottom: 2px solid rgba(205, 127, 50, 0.3);
-    text-shadow: 1px 1px 2px var(--shadow-dark);
 }
 
 .sidebar-title::before {
@@ -520,7 +445,7 @@ body {
     align-items: center;
     padding: 0.8rem 1.2rem;
     background: transparent;
-    border-radius: 0;
+    border-radius: 8px;
     color: var(--text-light);
     text-decoration: none;
     transition: all 0.3s ease;
@@ -587,7 +512,7 @@ body {
     }
 
     .header h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     .gallery {

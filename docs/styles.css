@@ -38,20 +38,27 @@ body {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
 }
 
-/* 导航栏 */
+/* 导航栏 - 方框设计 */
 .navbar {
     background: linear-gradient(135deg, var(--secondary-dark), #1a0a2a);
-    padding: 1rem 0;
+    padding: 0;
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 10px var(--shadow-dark);
     border-bottom: 1px solid var(--metal-accent);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
 .nav-tabs {
@@ -64,18 +71,21 @@ body {
 }
 
 .nav-tab {
-    margin: 0 1rem;
+    margin: 0;
 }
 
 .nav-link {
     color: var(--metal-accent);
     text-decoration: none;
-    padding: 0.5rem 1.5rem;
-    border-radius: 20px;
+    padding: 1rem 1.5rem;
     transition: all 0.3s ease;
     font-weight: bold;
     border: 1px solid var(--metal-accent);
+    border-radius: 0;
     text-shadow: 1px 1px 2px var(--shadow-dark);
+    margin: 0 -1px;
+    position: relative;
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .nav-link:hover,
@@ -85,6 +95,7 @@ body {
     box-shadow: 0 4px 8px var(--shadow-dark);
     color: var(--text-lighter);
     border-color: var(--accent-dark);
+    z-index: 1;
 }
 
 /* 页眉 */
@@ -137,7 +148,7 @@ body {
 /* 卡片样式 */
 .card {
     background-color: rgba(26, 26, 26, 0.8);
-    border-radius: 10px;
+    border-radius: 0;
     padding: 1.5rem;
     margin-bottom: 2rem;
     box-shadow: 0 5px 15px var(--shadow-dark);
@@ -158,7 +169,7 @@ body {
 /* 新版简介样式 */
 .intro-card {
     background: linear-gradient(135deg, var(--secondary-dark), #1a0a2a);
-    border-radius: 15px;
+    border-radius: 0;
     padding: 2.5rem;
     margin-bottom: 3rem;
     color: var(--text-lighter);
@@ -206,7 +217,7 @@ body {
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(5px);
     padding: 1.5rem;
-    border-radius: 10px;
+    border-radius: 0;
     border-left: 4px solid var(--metal-accent);
     border: 1px solid rgba(205, 127, 50, 0.3);
 }
@@ -227,7 +238,7 @@ body {
 .feature-card {
     background: rgba(0, 0, 0, 0.3);
     padding: 1.5rem;
-    border-radius: 8px;
+    border-radius: 0;
     border-left: 4px solid var(--metal-accent);
     border: 1px solid rgba(205, 127, 50, 0.3);
 }
@@ -261,7 +272,7 @@ body {
 /* 机制盒子 */
 .mechanic-box {
     background: rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
+    border-radius: 0;
     padding: 1.5rem;
     margin: 1.5rem 0;
     border-left: 4px solid var(--metal-accent);
@@ -294,7 +305,7 @@ body {
 }
 
 .gallery-item {
-    border-radius: 8px;
+    border-radius: 0;
     overflow: hidden;
     box-shadow: 0 4px 8px var(--shadow-dark);
     transition: transform 0.3s ease;
@@ -319,7 +330,7 @@ body {
     color: var(--text-dark);
     padding: 1rem 2rem;
     text-decoration: none;
-    border-radius: 30px;
+    border-radius: 0;
     font-weight: bold;
     transition: all 0.3s ease;
     margin: 0.5rem;
@@ -348,7 +359,7 @@ body {
 /* 下载卡片 */
 .download-card {
     background: rgba(26, 26, 26, 0.8);
-    border-radius: 10px;
+    border-radius: 0;
     padding: 2rem;
     margin: 2rem auto;
     max-width: 800px;
@@ -374,7 +385,7 @@ body {
 .install-instructions {
     background-color: rgba(0, 0, 0, 0.3);
     padding: 1.5rem;
-    border-radius: 8px;
+    border-radius: 0;
     margin-top: 2rem;
     border: 1px solid rgba(205, 127, 50, 0.3);
 }
@@ -409,7 +420,7 @@ body {
 .notice-box {
     background-color: rgba(139, 0, 0, 0.2);
     padding: 1.5rem;
-    border-radius: 8px;
+    border-radius: 0;
     border-left: 4px solid var(--accent-dark);
 }
 
@@ -470,7 +481,7 @@ body {
 
 .sidebar-card {
     background: rgba(26, 26, 26, 0.8);
-    border-radius: 12px;
+    border-radius: 0;
     padding: 1.5rem;
     box-shadow: 0 10px 20px var(--shadow-dark);
     border: 1px solid var(--metal-accent);
@@ -509,7 +520,7 @@ body {
     align-items: center;
     padding: 0.8rem 1.2rem;
     background: transparent;
-    border-radius: 8px;
+    border-radius: 0;
     color: var(--text-light);
     text-decoration: none;
     transition: all 0.3s ease;
@@ -591,12 +602,12 @@ body {
     .footer-link {
         margin: 0.5rem 0;
     }
-    
+
     .download-buttons {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .download-btn {
         width: 100%;
         margin: 0.5rem 0;

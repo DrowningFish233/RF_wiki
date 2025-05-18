@@ -5,22 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>锻梦之旅 - 整合包Wiki</title>
-    <link rel="icon" href="/jofd.github.io/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="/jofd.github.io/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/jofd.github.io/styles.css">
+    <link rel="icon" href="/jofd_wiki/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/jofd_wiki/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/jofd_wiki/styles.css">
 </head>
 
 <body>
     <!-- 导航栏 -->
     <nav class="navbar">
-        <ul class="nav-tabs">
-            <li class="nav-tab"><a href="#home" class="nav-link active" onclick="showPage('home')">首页</a></li>
-            <li class="nav-tab"><a href="#features" class="nav-link" onclick="showPage('features')">特色玩法</a></li>
-            <li class="nav-tab"><a href="#mechanic" class="nav-link" onclick="showPage('mechanic')">机制介绍</a></li>
-            <li class="nav-tab"><a href="#download" class="nav-link" onclick="showPage('download')">下载</a></li>
-            <li class="nav-tab"><a href="https://github.com/DrowningFish233/Journey-of-Forging-Dreams"
-                    class="nav-link">GitHub</a></li>
-        </ul>
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <span class="brand-icon">⚔️</span>
+                <span class="brand-text">锻梦之旅</span>
+            </div>
+            <ul class="nav-tabs">
+                <li class="nav-tab"><a href="#home" class="nav-link active" onclick="showPage('home')">首页</a></li>
+                <li class="nav-tab"><a href="#features" class="nav-link" onclick="showPage('features')">特色玩法</a></li>
+                <li class="nav-tab"><a href="#mechanic" class="nav-link" onclick="showPage('mechanic')">机制介绍</a></li>
+                <li class="nav-tab"><a href="#download" class="nav-link" onclick="showPage('download')">下载</a></li>
+                <li class="nav-tab"><a href="https://github.com/DrowningFish233/Journey-of-Forging-Dreams"
+                        class="nav-link">GitHub</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+        </div>
     </nav>
 
     <!-- 页眉 -->
@@ -41,15 +48,18 @@
 
                 <div class="intro-features">
                     <div class="feature-item">
-                        <h3>⚔️ 自定义装备</h3>
+                        <div class="feature-icon">⚔️</div>
+                        <h3>自定义装备</h3>
                         <p>完全自定义你的护甲、武器和饰品，打造独一无二的战斗风格。</p>
                     </div>
                     <div class="feature-item">
-                        <h3>🧪 深度魔改</h3>
+                        <div class="feature-icon">🧪</div>
+                        <h3>深度魔改</h3>
                         <p>基于Kubejs进行的高度魔改，创造全新的游戏体验。</p>
                     </div>
                     <div class="feature-item">
-                        <h3>🧠 独特机制</h3>
+                        <div class="feature-icon">🧠</div>
+                        <h3>独特机制</h3>
                         <p>自定义的理智值系统和七宗罪侵蚀机制。</p>
                     </div>
                 </div>
@@ -77,22 +87,19 @@
         <div class="card">
             <h2>特色玩法</h2>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-                <div
-                    style="background: linear-gradient(135deg, #e1f5fe, #e3f2fd); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--dark-blue);">
-                    <h3 style="color: var(--dark-blue);">自定义装备系统</h3>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>自定义装备系统</h3>
                     <p>深度自定义你的护甲、武器和饰品，打造独一无二的装备组合。</p>
                 </div>
 
-                <div
-                    style="background: linear-gradient(135deg, #fce4ec, #f8bbd0); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--dark-pink);">
-                    <h3 style="color: var(--dark-pink);">高度魔改的锻梦之旅</h3>
+                <div class="feature-card">
+                    <h3>高度魔改的锻梦之旅</h3>
                     <p>许多内容都是基于Kubejs进行的高度魔改！</p>
                 </div>
 
-                <div
-                    style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9); padding: 1.5rem; border-radius: 8px; border-left: 4px solid #2e7d32;">
-                    <h3 style="color: #2e7d32;">类匠魂玩法</h3>
+                <div class="feature-card">
+                    <h3>类匠魂玩法</h3>
                     <p>借鉴匠魂的优秀机制，提供丰富的制作和锻造系统。</p>
                 </div>
             </div>
@@ -100,11 +107,11 @@
 
         <div class="card">
             <h2>更多特色</h2>
-            <ul style="padding-left: 1.5rem;">
-                <li style="margin-bottom: 0.8rem;">独特的理智值系统，影响游戏多方面机制</li>
-                <li style="margin-bottom: 0.8rem;">七宗罪侵蚀系统，带来不同游戏体验</li>
-                <li style="margin-bottom: 0.8rem;">丰富的自定义内容，打造独特游戏体验</li>
-                <li style="margin-bottom: 0.8rem;">尽量保证平衡性，确保玩家游戏体验</li>
+            <ul class="feature-list">
+                <li>独特的理智值系统，影响游戏多方面机制</li>
+                <li>七宗罪侵蚀系统，带来不同游戏体验</li>
+                <li>丰富的自定义内容，打造独特游戏体验</li>
+                <li>尽量保证平衡性，确保玩家游戏体验</li>
             </ul>
         </div>
     </div>
@@ -157,34 +164,31 @@
     <!-- 下载页 -->
     <div id="download" class="page-container">
         <div class="download-card">
-            <h2 style="color: var(--dark-pink);">下载整合包</h2>
-            <p style="font-size: 1.1rem; margin-bottom: 2rem;">当前最新版本：暂未发布 | Minecraft版本 1.21.1 </p>
+            <h2>下载整合包</h2>
+            <p class="version-info">当前最新版本：暂未发布 | Minecraft版本 1.21.1 </p>
 
-            <div style="display: flex; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;">
-                <a href="https://github.com/DrowningFish233/Journey-of-Forging-Dreams/releases" class="download-btn"
-                    style="padding: 1.2rem 2.5rem; font-size: 1.2rem;">
+            <div class="download-buttons">
+                <a href="https://github.com/DrowningFish233/Journey-of-Forging-Dreams/releases" class="download-btn">
                     GitHub下载
                 </a>
-                <a href="https://www.mcmod.cn/modpack/907.html" class="download-btn blue"
-                    style="padding: 1.2rem 2.5rem; font-size: 1.2rem;">
+                <a href="https://www.mcmod.cn/modpack/907.html" class="download-btn blue">
                     MC百科页面
                 </a>
             </div>
 
-            <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-top: 2rem;">
-                <h3 style="margin-top: 0; color: var(--dark-blue);">安装说明</h3>
-                <ol style="text-align: left; padding-left: 1.5rem;">
-                    <li style="margin-bottom: 0.8rem;">确保已安装Java 21或更高版本</li>
-                    <li style="margin-bottom: 0.8rem;">请确保下载的版本为最新</li>
-                    <li style="margin-bottom: 0.8rem;">启动游戏并开始锻梦之旅！</li>
+            <div class="install-instructions">
+                <h3>安装说明</h3>
+                <ol>
+                    <li>确保已安装Java 21或更高版本</li>
+                    <li>请确保下载的版本为最新</li>
+                    <li>启动游戏并开始锻梦之旅！</li>
                 </ol>
             </div>
         </div>
 
         <div class="card">
             <h2>注意事项</h2>
-            <div
-                style="background-color: #fff8e1; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #ffa000;">
+            <div class="notice-box">
                 <p><strong>重要声明：</strong>本整合包不会以任何方式进行营利！所有内容均为免费提供。</p>
                 <p>如在安装或游戏中遇到任何问题，请访问GitHub页面提交issue或加入我们的QQ讨论群。</p>
             </div>
@@ -258,6 +262,20 @@
                         }, 300);
                     }
                 }
+            }
+        });
+
+        // 主题切换功能
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        }
+
+        // 初始化主题
+        document.addEventListener('DOMContentLoaded', function () {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
             }
         });
     </script>

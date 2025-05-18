@@ -70,9 +70,13 @@ body {
 
 .navbar-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    /* 导航栏居中 */
     align-items: center;
-    padding: 0.5rem 1rem;
+    padding: 1rem 2rem;
+    /* 增加内边距 */
+    gap: 2rem;
+    /* 增加导航项间距 */
 }
 
 .navbar-brand {
@@ -94,10 +98,12 @@ body {
 .nav-tabs {
     display: flex;
     list-style: none;
+    gap: 1.5rem;
+    /* 增加导航项间距 */
 }
 
 .nav-tab {
-    margin: 0 0.3rem;
+    margin: 0 0.5rem;
 }
 
 .nav-link {
@@ -228,7 +234,8 @@ body {
 /* 分页容器 */
 .page-container {
     display: none;
-    padding: 2rem 0;
+    padding: 2rem 3rem;
+    /* 增加左右留白 */
     animation: fadeIn 0.5s ease;
 }
 
@@ -435,7 +442,9 @@ body {
 .feature-list li {
     position: relative;
     padding-left: 1.5rem;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1.2rem;
+    /* 增加列表项间距 */
+    line-height: 1.6;
 }
 
 .feature-list li::before {
@@ -588,6 +597,67 @@ body {
             #4a6b8a);
 }
 
+/* 安装说明 */
+.install-instructions {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(22, 19, 26, 0.7);
+    border-left: 3px solid var(--metal-primary);
+}
+
+.install-instructions h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--metal-light);
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.install-instructions h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--metal-primary),
+            transparent);
+}
+
+.install-instructions ol {
+    list-style-type: none;
+    counter-reset: instruction-counter;
+    padding-left: 1.5rem;
+}
+
+.install-instructions ol li {
+    counter-increment: instruction-counter;
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+}
+
+.install-instructions ol li::before {
+    content: counter(instruction-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    background: var(--metal-primary);
+    color: var(--text-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
 /* 页脚 */
 .footer {
     background: linear-gradient(to bottom,
@@ -666,10 +736,11 @@ body {
 @media (max-width: 768px) {
     .navbar-container {
         flex-direction: column;
+        align-items: center;
+        gap: 1rem;
     }
 
     .nav-tabs {
-        margin-top: 1rem;
         flex-wrap: wrap;
         justify-content: center;
     }
@@ -693,6 +764,20 @@ body {
 
     .footer-link {
         margin: 0.5rem 0;
+    }
+
+    .download-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .download-section {
+        padding: 2rem 1.5rem;
+    }
+
+    .install-instructions ol li {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
     }
 }
 

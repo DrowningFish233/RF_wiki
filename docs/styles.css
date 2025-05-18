@@ -3,12 +3,14 @@
     --secondary-dark: #121212;
     --accent-dark: #8b0000;
     --metal-accent: #cd7f32;
+    --dark-blue: #1a237e;
     --text-light: #e0e0e0;
     --text-lighter: #f5f5f5;
     --shadow-dark: rgba(0, 0, 0, 0.5);
     --shadow-light: rgba(255, 255, 255, 0.1);
 }
 
+/* 基础样式 */
 body {
     font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
     line-height: 1.6;
@@ -43,14 +45,14 @@ body {
     }
 }
 
-/* 导航栏 - 保持蓝色渐变背景，仅按钮改为方框 */
+/* 导航栏 - 保留蓝色渐变但改为暗黑风格 */
 .navbar {
-    background: linear-gradient(135deg, #5dade2, #53a5db);
+    background: linear-gradient(135deg, #1a237e, #0d47a1);
     padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 2px 10px var(--shadow-dark);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .nav-tabs {
@@ -66,32 +68,54 @@ body {
     margin: 0 1rem;
 }
 
+/* 导航按钮 - 添加轻微圆角和动态效果 */
 .nav-link {
     color: var(--text-light);
     text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0;
-    /* 改为方框 */
-    transition: all 0.3s ease;
+    padding: 0.5rem 1.5rem;
+    border-radius: 6px;
+    /* 轻微圆角 */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     font-weight: bold;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+    background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
 }
 
-.nav-link:hover,
-.nav-link.active {
-    background: linear-gradient(135deg, #f48fb1, #ef437c);
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.5s ease;
+}
+
+.nav-link:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 8px var(--shadow-dark);
-    border-color: #f48fb1;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #8b0000, #ad1457);
 }
 
-/* 页眉 */
+.nav-link:hover::before {
+    left: 100%;
+}
+
+.nav-link.active {
+    background: linear-gradient(135deg, #8b0000, #ad1457);
+    box-shadow: 0 4px 8px rgba(139, 0, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+/* 页眉暗黑风格 */
 .header {
-    background: linear-gradient(135deg, #5dade2, #f8bbd0);
+    background: linear-gradient(135deg, #1a237e, #6a1b9a);
     color: var(--text-light);
     text-align: center;
-    padding: 3rem 0;
+    padding: 4rem 0;
     margin-bottom: 2rem;
     position: relative;
     overflow: hidden;
@@ -104,7 +128,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('https://www.transparenttextures.com/patterns/cubes.png');
+    background: url('https://www.transparenttextures.com/patterns/diagmonds.png');
     opacity: 0.1;
 }
 
@@ -117,25 +141,43 @@ body {
 }
 
 .header h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 4px var(--shadow-dark);
+    text-shadow: 2px 2px 4px var(--shadow-dark), 0 0 10px rgba(205, 127, 50, 0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px rgba(205, 127, 50, 0.5);
+    }
+
+    to {
+        text-shadow: 0 0 15px rgba(205, 127, 50, 0.8);
+    }
 }
 
 .header p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     max-width: 800px;
     margin: 0 auto;
+    color: var(--metal-accent);
 }
 
-/* 卡片样式 - 暗黑风格 */
+/* 卡片暗黑风格 */
 .card {
-    background-color: var(--secondary-dark);
-    border-radius: 10px;
+    background-color: rgba(30, 30, 30, 0.8);
+    border-radius: 8px;
     padding: 1.5rem;
     margin-bottom: 2rem;
-    box-shadow: 0 5px 15px var(--shadow-dark);
-    border-top: 4px solid var(--metal-accent);
+    box-shadow: 0 8px 16px var(--shadow-dark);
+    border-top: 3px solid var(--metal-accent);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
 }
 
 .card h2 {
@@ -143,12 +185,13 @@ body {
     margin-top: 0;
     border-bottom: 2px solid var(--accent-dark);
     padding-bottom: 0.5rem;
+    font-size: 1.8rem;
 }
 
-/* 新版简介样式 */
+/* 简介卡片暗黑风格 */
 .intro-card {
-    background: linear-gradient(135deg, var(--secondary-dark), #1a0a2a);
-    border-radius: 15px;
+    background: linear-gradient(135deg, #2a0a3a, #1a0a2a);
+    border-radius: 10px;
     padding: 2.5rem;
     margin-bottom: 3rem;
     color: var(--text-lighter);
@@ -156,6 +199,12 @@ body {
     overflow: hidden;
     box-shadow: 0 10px 20px var(--shadow-dark);
     border: 1px solid var(--metal-accent);
+    transition: all 0.3s ease;
+}
+
+.intro-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
 }
 
 .intro-card::before {
@@ -165,13 +214,8 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('https://www.transparenttextures.com/patterns/diagmonds.png');
+    background: url('https://www.transparenttextures.com/patterns/dark-wood.png');
     opacity: 0.1;
-}
-
-.intro-content {
-    position: relative;
-    z-index: 1;
 }
 
 .intro-card h2 {
@@ -183,24 +227,32 @@ body {
     padding-bottom: 0.8rem;
 }
 
-.intro-features {
+/* 特色网格布局 */
+.features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
 }
 
-.feature-item {
+.feature-card {
     background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(5px);
     padding: 1.5rem;
-    border-radius: 10px;
+    border-radius: 8px;
     border-left: 4px solid var(--metal-accent);
+    transition: all 0.3s ease;
 }
 
-.feature-item h3 {
-    margin-top: 0;
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.feature-card h3 {
     color: var(--metal-accent);
+    margin-top: 0;
+    font-size: 1.3rem;
 }
 
 /* 机制盒子 */
@@ -210,7 +262,12 @@ body {
     padding: 1.5rem;
     margin: 1.5rem 0;
     border-left: 4px solid var(--metal-accent);
-    position: relative;
+    transition: all 0.3s ease;
+}
+
+.mechanic-box:hover {
+    transform: translateX(5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .mechanic-title {
@@ -219,13 +276,12 @@ body {
     margin-bottom: 0.8rem;
     display: flex;
     align-items: center;
+    font-size: 1.2rem;
 }
 
 .mechanic-title::before {
-    content: "•";
-    color: var(--metal-accent);
+    content: "⚔️";
     margin-right: 0.5rem;
-    font-size: 1.5rem;
 }
 
 /* 图片展示区 */
@@ -240,19 +296,41 @@ body {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px var(--shadow-dark);
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
     border: 1px solid var(--metal-accent);
+    position: relative;
+}
+
+.gallery-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .gallery-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px var(--shadow-dark);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.gallery-item:hover::before {
+    opacity: 1;
 }
 
 .gallery-item img {
     width: 100%;
     height: auto;
     display: block;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
 }
 
 /* 下载按钮 */
@@ -262,99 +340,45 @@ body {
     color: var(--text-dark);
     padding: 1rem 2rem;
     text-decoration: none;
-    border-radius: 30px;
+    border-radius: 6px;
     font-weight: bold;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     margin: 0.5rem;
     box-shadow: 0 4px 8px var(--shadow-dark);
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.download-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.5s ease;
 }
 
 .download-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px var(--shadow-dark);
-    background: linear-gradient(135deg, #b8860b, var(--metal-accent));
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
     color: var(--text-lighter);
+}
+
+.download-btn:hover::before {
+    left: 100%;
 }
 
 .download-btn.blue {
-    background: linear-gradient(135deg, #53a5db, #5dade2);
+    background: linear-gradient(135deg, #1a237e, #0d47a1);
     color: var(--text-lighter);
-}
-
-.download-btn.blue:hover {
-    background: linear-gradient(135deg, #5dade2, #53a5db);
-}
-
-/* 下载卡片 */
-.download-card {
-    background: var(--secondary-dark);
-    border-radius: 10px;
-    padding: 2rem;
-    margin: 2rem auto;
-    max-width: 800px;
-    box-shadow: 0 8px 16px var(--shadow-dark);
-    text-align: center;
-    border-top: 4px solid var(--metal-accent);
-}
-
-.version-info {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-    color: var(--text-lighter);
-}
-
-.download-buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-}
-
-.install-instructions {
-    background-color: rgba(0, 0, 0, 0.3);
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin-top: 2rem;
-    border-left: 4px solid var(--metal-accent);
-}
-
-.install-instructions h3 {
-    margin-top: 0;
-    color: var(--metal-accent);
-}
-
-.install-instructions ol {
-    text-align: left;
-    padding-left: 1.5rem;
-    list-style-type: none;
-}
-
-.install-instructions li {
-    margin-bottom: 0.8rem;
-    position: relative;
-    padding-left: 1.5rem;
-}
-
-.install-instructions li::before {
-    content: "•";
-    color: var(--metal-accent);
-    position: absolute;
-    left: 0;
-    font-size: 1.5rem;
-    line-height: 1;
-}
-
-.notice-box {
-    background-color: rgba(139, 0, 0, 0.2);
-    padding: 1.5rem;
-    border-radius: 8px;
-    border-left: 4px solid var(--accent-dark);
 }
 
 /* 页脚 */
 .footer {
-    background: linear-gradient(135deg, #53a5db, #5dade2);
+    background: linear-gradient(135deg, #1a237e, #0d47a1);
     color: var(--text-light);
     text-align: center;
     padding: 2rem 0;
@@ -369,7 +393,7 @@ body {
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(135deg, #f48fb1, #ef437c);
+    background: linear-gradient(135deg, var(--metal-accent), #b8860b);
 }
 
 .footer-links {
@@ -380,64 +404,39 @@ body {
 }
 
 .footer-link {
-    color: var(--text-light);
+    color: var(--metal-accent);
     text-decoration: none;
     margin: 0 1rem;
     transition: all 0.3s ease;
+    position: relative;
+}
+
+.footer-link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--metal-accent);
+    transition: width 0.3s ease;
 }
 
 .footer-link:hover {
     color: var(--text-lighter);
-    text-decoration: underline;
 }
 
-/* 机制页面布局 */
-.mechanic-container {
-    display: flex;
-    gap: 2rem;
+.footer-link:hover::after {
+    width: 100%;
 }
 
-/* 侧边栏样式 */
-.mechanic-sidebar {
-    width: 300px;
-    position: sticky;
-    top: 120px;
-    height: fit-content;
-}
-
+/* 侧边栏 */
 .sidebar-card {
-    background: var(--secondary-dark);
-    border-radius: 12px;
+    background: rgba(30, 30, 30, 0.8);
+    border-radius: 8px;
     padding: 1.5rem;
-    box-shadow: 0 10px 20px var(--shadow-dark);
+    box-shadow: 0 8px 16px var(--shadow-dark);
     border: 1px solid var(--metal-accent);
-}
-
-.sidebar-title {
-    color: var(--metal-accent);
-    margin-top: 0;
-    padding-bottom: 0.8rem;
-    font-size: 1.3rem;
-    position: relative;
-    display: flex;
-    align-items: center;
-    border-bottom: 2px solid rgba(205, 127, 50, 0.3);
-}
-
-.sidebar-title::before {
-    content: "🗡️";
-    margin-right: 10px;
-}
-
-.sidebar-nav {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.sidebar-nav li {
-    margin-bottom: 0.75rem;
-    position: relative;
 }
 
 .sidebar-link {
@@ -445,34 +444,19 @@ body {
     align-items: center;
     padding: 0.8rem 1.2rem;
     background: transparent;
-    border-radius: 8px;
+    border-radius: 6px;
     color: var(--text-light);
     text-decoration: none;
     transition: all 0.3s ease;
     font-size: 1rem;
     border: 1px solid rgba(205, 127, 50, 0.2);
-}
-
-.sidebar-link::before {
-    content: "";
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background-color: var(--metal-accent);
-    border-radius: 50%;
-    margin-right: 12px;
-    transition: all 0.3s ease;
+    margin-bottom: 0.5rem;
 }
 
 .sidebar-link:hover {
-    background: rgba(139, 0, 0, 0.2);
+    background: rgba(139, 0, 0, 0.3);
     transform: translateX(5px);
     border-color: var(--metal-accent);
-}
-
-.sidebar-link:hover::before {
-    background-color: var(--text-lighter);
-    transform: scale(1.3);
 }
 
 .sidebar-link.active {
@@ -481,11 +465,6 @@ body {
     font-weight: 600;
     border-color: var(--metal-accent);
     box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
-}
-
-.sidebar-link.active::before {
-    background-color: var(--text-lighter);
-    transform: scale(1.3);
 }
 
 /* 响应式设计 */

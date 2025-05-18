@@ -59,21 +59,17 @@ body {
 
 .nav-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 1rem;
+    gap: 2rem;
     max-width: 1200px;
-    width: 100%;
-    position: relative;
 }
 
 .nav-tabs {
     display: flex;
     list-style: none;
     gap: 1.5rem;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 .nav-tab {
@@ -128,11 +124,7 @@ body {
     animation: pulse-glow 2s infinite;
 }
 
-/* 语言切换按钮样式 - 导航栏右侧 */
-.language-switcher-container {
-    margin-left: auto;
-}
-
+/* 语言切换按钮样式 */
 #lang-switch {
     background: none;
     border: none;
@@ -142,27 +134,11 @@ body {
     transition: var(--transition);
     padding: 0.8rem 1.2rem;
     font-family: inherit;
-    position: relative;
-}
-
-#lang-switch::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--metal-primary));
-    transition: width 0.4s ease;
 }
 
 #lang-switch:hover {
     color: var(--metal-light);
     transform: translateY(-2px);
-}
-
-#lang-switch:hover::before {
-    width: 100%;
 }
 
 .header {
@@ -675,9 +651,6 @@ body {
     }
 
     .nav-tabs {
-        position: static;
-        transform: none;
-        left: auto;
         flex-wrap: wrap;
         justify-content: center;
     }
@@ -712,12 +685,6 @@ body {
         margin-bottom: 1rem;
         padding-left: 2rem;
     }
-
-    /* 移动端语言切换按钮调整 */
-    .language-switcher-container {
-        margin: 1rem auto 0;
-        order: 1;
-    }
 }
 
 body.light-mode {
@@ -736,31 +703,4 @@ body.light-mode {
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
     --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-/* 语言切换按钮样式 */
-.lang-switch-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-    color: var(--text-secondary);
-    transition: var(--transition);
-    padding: 0.5rem;
-    position: absolute;
-    right: 1rem;
-}
-
-.lang-switch-btn:hover {
-    color: var(--metal-light);
-    transform: rotate(15deg) scale(1.2);
-}
-
-/* 移动端适配 */
-@media (max-width: 768px) {
-    .lang-switch-btn {
-        position: static;
-        order: 1;
-        margin-top: 0.5rem;
-    }
 }

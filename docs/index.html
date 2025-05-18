@@ -13,26 +13,31 @@
 </head>
 
 <body>
-    <!-- 导航栏 - 已添加语言切换按钮 -->
+    <!-- 导航栏 - 改为方框设计 -->
     <nav class="navbar">
         <div class="nav-container">
             <ul class="nav-tabs">
-                <li class="nav-tab"><a href="#home" class="nav-link active" onclick="showPage('home')">首页</a></li>
-                <li class="nav-tab"><a href="#features" class="nav-link" onclick="showPage('features')">特色玩法</a></li>
-                <li class="nav-tab"><a href="#mechanic" class="nav-link" onclick="showPage('mechanic')">机制介绍</a></li>
-                <li class="nav-tab"><a href="#download" class="nav-link" onclick="showPage('download')">下载</a></li>
+                <li class="nav-tab"><a href="#home" class="nav-link active" onclick="showPage('home')"
+                        data-key="home">首页</a></li>
+                <li class="nav-tab"><a href="#features" class="nav-link" onclick="showPage('features')"
+                        data-key="features">特色玩法</a></li>
+                <li class="nav-tab"><a href="#mechanic" class="nav-link" onclick="showPage('mechanic')"
+                        data-key="mechanic">机制介绍</a></li>
+                <li class="nav-tab"><a href="#download" class="nav-link" onclick="showPage('download')"
+                        data-key="download">下载</a></li>
                 <li class="nav-tab"><a href="https://github.com/DrowningFish233/Journey-of-Forging-Dreams"
                         class="nav-link">GitHub</a></li>
+                <li class="nav-tab"><button id="lang-switch" class="nav-link" onclick="toggleLanguage()">EN/中</button>
+                </li>
             </ul>
-            <button id="lang-switch" class="lang-switch-btn">🌐</button>
         </div>
     </nav>
 
     <!-- 页眉 -->
     <header class="header">
         <div class="header-content">
-            <h1>锻梦之旅</h1>
-            <p>以寂静装备为核心的高度魔改的冒险整合包！</p>
+            <h1 data-key="title">锻梦之旅</h1>
+            <p data-key="subtitle">以寂静装备为核心的高度魔改的冒险整合包！</p>
         </div>
     </header>
 
@@ -41,34 +46,34 @@
         <!-- 新版简介卡片 -->
         <div class="intro-card">
             <div class="intro-content">
-                <h2>锻梦之旅</h2>
-                <p>一个以寂静装备为核心的高度魔改冒险整合包，融合泰拉瑞亚和边狱巴士元素，致力于给玩家带来高度魔改的自定义游戏体验。</p>
+                <h2 data-key="intro-title">锻梦之旅</h2>
+                <p data-key="intro-desc">一个以寂静装备为核心的高度魔改冒险整合包，融合泰拉瑞亚和边狱巴士元素，致力于给玩家带来高度魔改的自定义游戏体验。</p>
 
                 <div class="intro-features">
                     <div class="feature-item">
-                        <h3>⚔️ 自定义装备</h3>
-                        <p>完全自定义你的护甲、武器和饰品，打造独一无二的战斗风格。</p>
+                        <h3>⚔️ <span data-key="feature1-title">自定义装备</span></h3>
+                        <p data-key="feature1-desc">完全自定义你的护甲、武器和饰品，打造独一无二的战斗风格。</p>
                     </div>
                     <div class="feature-item">
-                        <h3>🧪 深度魔改</h3>
-                        <p>基于Kubejs进行的高度魔改，创造全新的游戏体验。</p>
+                        <h3>🧪 <span data-key="feature2-title">深度魔改</span></h3>
+                        <p data-key="feature2-desc">基于Kubejs进行的高度魔改，创造全新的游戏体验。</p>
                     </div>
                     <div class="feature-item">
-                        <h3>🧠 独特机制</h3>
-                        <p>自定义的理智值系统和七宗罪侵蚀机制。</p>
+                        <h3>🧠 <span data-key="feature3-title">独特机制</span></h3>
+                        <p data-key="feature3-desc">自定义的理智值系统和七宗罪侵蚀机制。</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="card">
-            <h2>游戏截图</h2>
+            <h2 data-key="screenshots">游戏截图</h2>
             <div class="gallery">
                 <div class="gallery-item">
-                    <img src="https://github.com/DrowningFish233/jofd_wiki/blob/main/docs/pit1.png" alt="游戏截图">
+                    <img src="https://via.placeholder.com/600x400/5dade2/f8bbd0?text=游戏截图1" alt="游戏截图">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://github.com/DrowningFish233/jofd_wiki/blob/main/docs/pit2.png" alt="游戏截图">
+                    <img src="https://via.placeholder.com/600x400/3498db/f48fb1?text=游戏截图2" alt="游戏截图">
                 </div>
                 <div class="gallery-item">
                     <img src="https://via.placeholder.com/600x400/e91e63/5dade2?text=游戏截图3" alt="游戏截图">
@@ -80,33 +85,33 @@
     <!-- 特色玩法页 -->
     <div id="features" class="page-container">
         <div class="card">
-            <h2>特色玩法</h2>
+            <h2 data-key="features-title">特色玩法</h2>
 
             <div class="features-grid">
                 <div class="feature-card">
-                    <h3>⚔️ 自定义装备系统</h3>
-                    <p>深度自定义你的护甲、武器和饰品，打造独一无二的装备组合。</p>
+                    <h3>⚔️ <span data-key="feature-card1-title">自定义装备系统</span></h3>
+                    <p data-key="feature-card1-desc">深度自定义你的护甲、武器和饰品，打造独一无二的装备组合。</p>
                 </div>
 
                 <div class="feature-card">
-                    <h3>🔥 高度魔改的锻梦之旅</h3>
-                    <p>许多内容都是基于Kubejs进行的高度魔改！</p>
+                    <h3>🔥 <span data-key="feature-card2-title">高度魔改的锻梦之旅</span></h3>
+                    <p data-key="feature-card2-desc">许多内容都是基于Kubejs进行的高度魔改！</p>
                 </div>
 
                 <div class="feature-card">
-                    <h3>⚒️ 类匠魂玩法</h3>
-                    <p>借鉴匠魂的优秀机制，提供丰富的制作和锻造系统。</p>
+                    <h3>⚒️ <span data-key="feature-card3-title">类匠魂玩法</span></h3>
+                    <p data-key="feature-card3-desc">借鉴匠魂的优秀机制，提供丰富的制作和锻造系统。</p>
                 </div>
             </div>
         </div>
 
         <div class="card">
-            <h2>更多特色</h2>
+            <h2 data-key="more-features">更多特色</h2>
             <ul class="feature-list">
-                <li>独特的理智值系统，影响游戏多方面机制</li>
-                <li>七宗罪侵蚀系统，带来不同游戏体验</li>
-                <li>丰富的自定义内容，打造独特游戏体验</li>
-                <li>尽量保证平衡性，确保玩家游戏体验</li>
+                <li data-key="feature-list1">独特的理智值系统，影响游戏多方面机制</li>
+                <li data-key="feature-list2">七宗罪侵蚀系统，带来不同游戏体验</li>
+                <li data-key="feature-list3">丰富的自定义内容，打造独特游戏体验</li>
+                <li data-key="feature-list4">尽量保证平衡性，确保玩家游戏体验</li>
             </ul>
         </div>
     </div>
@@ -117,11 +122,11 @@
             <!-- 侧边导航栏 -->
             <div class="mechanic-sidebar">
                 <div class="sidebar-card">
-                    <h3 class="sidebar-title">机制导航</h3>
+                    <h3 class="sidebar-title" data-key="sidebar-title">机制导航</h3>
                     <ul class="sidebar-nav">
-                        <li><a href="#rational-system" class="sidebar-link">理智系统</a></li>
-                        <li><a href="#rational-extend" class="sidebar-link">理智值扩展</a></li>
-                        <li><a href="#setting-explain" class="sidebar-link">设定解释</a></li>
+                        <li><a href="#rational-system" class="sidebar-link" data-key="sidebar-link1">理智系统</a></li>
+                        <li><a href="#rational-extend" class="sidebar-link" data-key="sidebar-link2">理智值扩展</a></li>
+                        <li><a href="#setting-explain" class="sidebar-link" data-key="sidebar-link3">设定解释</a></li>
                     </ul>
                 </div>
             </div>
@@ -129,27 +134,33 @@
             <!-- 机制内容区域 -->
             <div class="mechanic-content">
                 <div class="card">
-                    <h2>核心机制</h2>
+                    <h2 data-key="core-mechanics">核心机制</h2>
 
                     <div class="mechanic-box" id="rational-system">
-                        <div class="mechanic-title">理智系统</div>
-                        <p>每名玩家拥有理智系统，上限45，下限-45。若玩家死亡则理智值归零。</p>
-                        <p>理智的高低会直接影响玩家攻击倍率。在玩家理智达到最低（-45）时，会随机选取一种罪孽进行"侵蚀"。</p>
+                        <div class="mechanic-title" data-key="rational-title">理智系统</div>
+                        <p data-key="rational-desc1">每名玩家拥有理智系统，上限45，下限-45。若玩家死亡则理智值归零。</p>
+                        <p data-key="rational-desc2">理智的高低会直接影响玩家攻击倍率。在玩家理智达到最低（-45）时，会随机选取一种罪孽进行"侵蚀"。</p>
                     </div>
 
                     <div class="mechanic-box" id="rational-extend">
-                        <div class="mechanic-title">理智值扩展</div>
-                        <p>当玩家的理智值达到了-45时，若此时受到了可能会导致理智值降低的效果，将扣除的理智值1:1转换为对应等级的沉沦值。</p>
-                        <p>沉沦值将直接影响玩家的受击倍率，最高玩家会受到5倍的攻击伤害！</p>
-                        <p>当玩家拥有沉沦值并影响受击倍率时，玩家每次被攻击将会扣除5%沉沦值。</p>
+                        <div class="mechanic-title" data-key="rational-extend-title">理智值扩展</div>
+                        <p data-key="rational-extend-desc1">当玩家的理智值达到了-45时，若此时受到了可能会导致理智值降低的效果，将扣除的理智值1:1转换为对应等级的沉沦值。
+                        </p>
+                        <p data-key="rational-extend-desc2">沉沦值将直接影响玩家的受击倍率，最高玩家会受到5倍的攻击伤害！</p>
+                        <p data-key="rational-extend-desc3">当玩家拥有沉沦值并影响受击倍率时，玩家每次被攻击将会扣除5%沉沦值。</p>
                     </div>
 
                     <div class="mechanic-box" id="setting-explain">
-                        <div class="mechanic-title">设定解释</div>
-                        <p><strong>侵蚀：</strong>玩家将进入某种"特殊形态"，持续获得某些增益，代价是也会获得debuff。</p>
-                        <p><strong>罪孽：</strong>共有七种，分别对应七宗罪之中的傲慢、嫉妒、懒惰、暴怒、贪婪、暴食、色欲。</p>
-                        <p><strong>沉沦：</strong>一种特殊的debuff，会随时间减少并扣除玩家的理智值，不会随玩家死亡而完全消失，玩家死亡只会降低80%的沉沦值。</p>
-                        <p><strong>硬币：</strong>硬币掷出正反面的概率受[理智值]影响，其概率公式为：50%+[理智值]*1%</p>
+                        <div class="mechanic-title" data-key="setting-title">设定解释</div>
+                        <p><strong data-key="setting-term1">侵蚀：</strong><span
+                                data-key="setting-term1-desc">玩家将进入某种"特殊形态"，持续获得某些增益，代价是也会获得debuff。</span></p>
+                        <p><strong data-key="setting-term2">罪孽：</strong><span
+                                data-key="setting-term2-desc">共有七种，分别对应七宗罪之中的傲慢、嫉妒、懒惰、暴怒、贪婪、暴食、色欲。</span></p>
+                        <p><strong data-key="setting-term3">沉沦：</strong><span
+                                data-key="setting-term3-desc">一种特殊的debuff，会随时间减少并扣除玩家的理智值，不会随玩家死亡而完全消失，玩家死亡只会降低80%的沉沦值。</span>
+                        </p>
+                        <p><strong data-key="setting-term4">硬币：</strong><span
+                                data-key="setting-term4-desc">硬币掷出正反面的概率受[理智值]影响，其概率公式为：50%+[理智值]*1%</span></p>
                     </div>
                 </div>
             </div>
@@ -159,44 +170,48 @@
     <!-- 下载页 -->
     <div id="download" class="page-container">
         <div class="download-card">
-            <h2>下载整合包</h2>
-            <p class="version-info">当前最新版本：暂未发布 | Minecraft版本 1.21.1 </p>
+            <h2 data-key="download-title">下载整合包</h2>
+            <p class="version-info" data-key="version-info">当前最新版本：暂未发布 | Minecraft版本 1.21.1 </p>
 
             <div class="download-buttons">
-                <a href="https://github.com/DrowningFish233/Journey-of-Forging-Dreams/releases" class="download-btn">
+                <a href="https://github.com/DrowningFish233/Journey-of-Forging-Dreams/releases" class="download-btn"
+                    data-key="github-download">
                     GitHub下载
                 </a>
-                <a href="https://www.mcmod.cn/modpack/907.html" class="download-btn blue">
+                <a href="https://www.mcmod.cn/modpack/907.html" class="download-btn blue" data-key="mcmod-page">
                     MC百科页面
                 </a>
             </div>
 
             <div class="install-instructions">
-                <h3>安装说明</h3>
+                <h3 data-key="install-title">安装说明</h3>
                 <ol>
-                    <li>确保已安装Java 21或更高版本</li>
-                    <li>请确保下载的版本为最新</li>
-                    <li>启动游戏并开始锻梦之旅！</li>
+                    <li data-key="install-step1">确保已安装Java 21或更高版本</li>
+                    <li data-key="install-step2">请确保下载的版本为最新</li>
+                    <li data-key="install-step3">启动游戏并开始锻梦之旅！</li>
                 </ol>
             </div>
         </div>
 
         <div class="card">
-            <h2>注意事项</h2>
+            <h2 data-key="notice-title">注意事项</h2>
             <div class="notice-box">
-                <p><strong>重要声明：</strong>本整合包不会以任何方式进行营利！所有内容均为免费提供。</p>
-                <p>如在安装或游戏中遇到任何问题，请访问GitHub页面提交issue或加入我们的QQ讨论群。</p>
+                <p><strong data-key="notice-important">重要声明：</strong><span
+                        data-key="notice-desc">本整合包不会以任何方式进行营利！所有内容均为免费提供。</span></p>
+                <p data-key="notice-help">如在安装或游戏中遇到任何问题，请访问GitHub页面提交issue或加入我们的QQ讨论群。</p>
             </div>
         </div>
     </div>
 
     <!-- 页脚 -->
     <footer class="footer">
-        <p>锻梦之旅整合包 - Journey of Forging Dreams Modpack</p>
+        <p data-key="footer-text">锻梦之旅整合包 - Journey of Forging Dreams Modpack</p>
         <div class="footer-links">
-            <a href="https://github.com/DrowningFish233/Journey-of-Forging-Dreams" class="footer-link">GitHub仓库</a>
-            <a href="https://github.com/DrowningFish233/Journey-of-Forging-Dreams/wiki" class="footer-link">项目Wiki</a>
-            <a href="https://www.mcmod.cn/modpack/907.html" class="footer-link">MC百科页面</a>
+            <a href="https://github.com/DrowningFish233/Journey-of-Forging-Dreams" class="footer-link"
+                data-key="footer-link1">GitHub仓库</a>
+            <a href="https://github.com/DrowningFish233/Journey-of-Forging-Dreams/wiki" class="footer-link"
+                data-key="footer-link2">项目Wiki</a>
+            <a href="https://www.mcmod.cn/modpack/907.html" class="footer-link" data-key="footer-link3">MC百科页面</a>
         </div>
     </footer>
 
@@ -217,22 +232,6 @@
             });
             document.querySelector(`.nav-link[href="#${pageId}"]`).classList.add('active');
         }
-
-        // 语言切换功能
-        document.getElementById('lang-switch').addEventListener('click', function () {
-            const currentLang = document.documentElement.lang;
-            if (currentLang === 'zh-CN') {
-                document.documentElement.lang = 'en';
-                this.textContent = '🇨🇳';
-                // 这里可以添加更多英文内容切换逻辑
-                alert('已切换到英文模式');
-            } else {
-                document.documentElement.lang = 'zh-CN';
-                this.textContent = '🌐';
-                // 这里可以添加更多中文内容切换逻辑
-                alert('已切换到中文模式');
-            }
-        });
 
         // 平滑滚动到锚点
         document.querySelectorAll('.sidebar-link').forEach(link => {
@@ -273,6 +272,180 @@
                         }, 300);
                     }
                 }
+            }
+        });
+
+        // 语言切换功能
+        let currentLang = 'zh'; // 默认中文
+
+        // 翻译字典
+        const translations = {
+            'zh': {
+                'home': '首页',
+                'features': '特色玩法',
+                'mechanic': '机制介绍',
+                'download': '下载',
+                'title': '锻梦之旅 - 整合包Wiki',
+                'subtitle': '以寂静装备为核心的高度魔改的冒险整合包！',
+                'intro-title': '锻梦之旅',
+                'intro-desc': '一个以寂静装备为核心的高度魔改冒险整合包，融合泰拉瑞亚和边狱巴士元素，致力于给玩家带来高度魔改的自定义游戏体验。',
+                'feature1-title': '自定义装备',
+                'feature1-desc': '完全自定义你的护甲、武器和饰品，打造独一无二的战斗风格。',
+                'feature2-title': '深度魔改',
+                'feature2-desc': '基于Kubejs进行的高度魔改，创造全新的游戏体验。',
+                'feature3-title': '独特机制',
+                'feature3-desc': '自定义的理智值系统和七宗罪侵蚀机制。',
+                'screenshots': '游戏截图',
+                'features-title': '特色玩法',
+                'feature-card1-title': '自定义装备系统',
+                'feature-card1-desc': '深度自定义你的护甲、武器和饰品，打造独一无二的装备组合。',
+                'feature-card2-title': '高度魔改的锻梦之旅',
+                'feature-card2-desc': '许多内容都是基于Kubejs进行的高度魔改！',
+                'feature-card3-title': '类匠魂玩法',
+                'feature-card3-desc': '借鉴匠魂的优秀机制，提供丰富的制作和锻造系统。',
+                'more-features': '更多特色',
+                'feature-list1': '独特的理智值系统，影响游戏多方面机制',
+                'feature-list2': '七宗罪侵蚀系统，带来不同游戏体验',
+                'feature-list3': '丰富的自定义内容，打造独特游戏体验',
+                'feature-list4': '尽量保证平衡性，确保玩家游戏体验',
+                'sidebar-title': '机制导航',
+                'sidebar-link1': '理智系统',
+                'sidebar-link2': '理智值扩展',
+                'sidebar-link3': '设定解释',
+                'core-mechanics': '核心机制',
+                'rational-title': '理智系统',
+                'rational-desc1': '每名玩家拥有理智系统，上限45，下限-45。若玩家死亡则理智值归零。',
+                'rational-desc2': '理智的高低会直接影响玩家攻击倍率。在玩家理智达到最低（-45）时，会随机选取一种罪孽进行"侵蚀"。',
+                'rational-extend-title': '理智值扩展',
+                'rational-extend-desc1': '当玩家的理智值达到了-45时，若此时受到了可能会导致理智值降低的效果，将扣除的理智值1:1转换为对应等级的沉沦值。',
+                'rational-extend-desc2': '沉沦值将直接影响玩家的受击倍率，最高玩家会受到5倍的攻击伤害！',
+                'rational-extend-desc3': '当玩家拥有沉沦值并影响受击倍率时，玩家每次被攻击将会扣除5%沉沦值。',
+                'setting-title': '设定解释',
+                'setting-term1': '侵蚀：',
+                'setting-term1-desc': '玩家将进入某种"特殊形态"，持续获得某些增益，代价是也会获得debuff。',
+                'setting-term2': '罪孽：',
+                'setting-term2-desc': '共有七种，分别对应七宗罪之中的傲慢、嫉妒、懒惰、暴怒、贪婪、暴食、色欲。',
+                'setting-term3': '沉沦：',
+                'setting-term3-desc': '一种特殊的debuff，会随时间减少并扣除玩家的理智值，不会随玩家死亡而完全消失，玩家死亡只会降低80%的沉沦值。',
+                'setting-term4': '硬币：',
+                'setting-term4-desc': '硬币掷出正反面的概率受[理智值]影响，其概率公式为：50%+[理智值]*1%',
+                'download-title': '下载整合包',
+                'version-info': '当前最新版本：暂未发布 | Minecraft版本 1.21.1 ',
+                'github-download': 'GitHub下载',
+                'mcmod-page': 'MC百科页面',
+                'install-title': '安装说明',
+                'install-step1': '确保已安装Java 21或更高版本',
+                'install-step2': '请确保下载的版本为最新',
+                'install-step3': '启动游戏并开始锻梦之旅！',
+                'notice-title': '注意事项',
+                'notice-important': '重要声明：',
+                'notice-desc': '本整合包不会以任何方式进行营利！所有内容均为免费提供。',
+                'notice-help': '如在安装或游戏中遇到任何问题，请访问GitHub页面提交issue或加入我们的QQ讨论群。',
+                'footer-text': '锻梦之旅整合包 - Journey of Forging Dreams Modpack',
+                'footer-link1': 'GitHub仓库',
+                'footer-link2': '项目Wiki',
+                'footer-link3': 'MC百科页面'
+            },
+            'en': {
+                'home': 'Home',
+                'features': 'Features',
+                'mechanic': 'Mechanics',
+                'download': 'Download',
+                'title': 'Journey of Forging Dreams - Modpack Wiki',
+                'subtitle': 'A highly modified adventure modpack centered on Silent Gear!',
+                'intro-title': 'Journey of Forging Dreams',
+                'intro-desc': 'A highly modified adventure modpack centered on Silent Gear, incorporating elements from Terraria and Limbus Company, dedicated to providing players with a highly customized gaming experience.',
+                'feature1-title': 'Custom Equipment',
+                'feature1-desc': 'Fully customize your armor, weapons, and accessories to create a unique combat style.',
+                'feature2-title': 'Deep Modifications',
+                'feature2-desc': 'Highly modified based on Kubejs, creating a brand new gaming experience.',
+                'feature3-title': 'Unique Mechanics',
+                'feature3-desc': 'Custom sanity system and Seven Deadly Sins corruption mechanics.',
+                'screenshots': 'Screenshots',
+                'features-title': 'Features',
+                'feature-card1-title': 'Custom Equipment System',
+                'feature-card1-desc': 'Fully customize your armor, weapons, and accessories to create unique equipment combinations.',
+                'feature-card2-title': 'Highly Modified Journey',
+                'feature-card2-desc': 'Many contents are highly modified based on Kubejs!',
+                'feature-card3-title': 'Tinkers-like Gameplay',
+                'feature-card3-desc': 'Incorporating the excellent mechanics of Tinkers\' Construct, providing a rich crafting and forging system.',
+                'more-features': 'More Features',
+                'feature-list1': 'Unique sanity system affecting multiple game mechanics',
+                'feature-list2': 'Seven Deadly Sins corruption system providing different gaming experiences',
+                'feature-list3': 'Rich custom content creating unique gaming experiences',
+                'feature-list4': 'Strive to maintain balance to ensure player gaming experience',
+                'sidebar-title': 'Mechanics Navigation',
+                'sidebar-link1': 'Sanity System',
+                'sidebar-link2': 'Sanity Extension',
+                'sidebar-link3': 'Setting Explanation',
+                'core-mechanics': 'Core Mechanics',
+                'rational-title': 'Sanity System',
+                'rational-desc1': 'Each player has a sanity system with a maximum of 45 and a minimum of -45. If the player dies, the sanity value resets to zero.',
+                'rational-desc2': 'The level of sanity directly affects the player\'s attack multiplier. When the player\'s sanity reaches the lowest (-45), a random sin will be selected for "corruption".',
+                'rational-extend-title': 'Sanity Extension',
+                'rational-extend-desc1': 'When the player\'s sanity reaches -45, if they receive an effect that may reduce sanity, the deducted sanity will be converted 1:1 into corresponding levels of despair value.',
+                'rational-extend-desc2': 'Despair value will directly affect the player\'s damage taken multiplier, with the highest being 5 times the normal damage!',
+                'rational-extend-desc3': 'When the player has despair value affecting the damage taken multiplier, each attack will deduct 5% of the despair value.',
+                'setting-title': 'Setting Explanation',
+                'setting-term1': 'Corruption:',
+                'setting-term1-desc': 'The player will enter a "special form", continuously gaining certain buffs at the cost of also receiving debuffs.',
+                'setting-term2': 'Sins:',
+                'setting-term2-desc': 'There are seven types, corresponding to the seven deadly sins: pride, envy, sloth, wrath, greed, gluttony, and lust.',
+                'setting-term3': 'Despair:',
+                'setting-term3-desc': 'A special debuff that decreases over time and deducts the player\'s sanity value. It does not completely disappear when the player dies, only reducing by 80%.',
+                'setting-term4': 'Coins:',
+                'setting-term4-desc': 'The probability of a coin landing heads or tails is affected by [sanity value], with the formula: 50% + [sanity value] * 1%',
+                'download-title': 'Download Modpack',
+                'version-info': 'Current version: Not released yet | Minecraft version 1.21.1',
+                'github-download': 'GitHub Download',
+                'mcmod-page': 'MC百科 Page',
+                'install-title': 'Installation Instructions',
+                'install-step1': 'Ensure Java 21 or higher is installed',
+                'install-step2': 'Make sure to download the latest version',
+                'install-step3': 'Launch the game and start your journey!',
+                'notice-title': 'Notice',
+                'notice-important': 'Important Notice:',
+                'notice-desc': 'This modpack will not be monetized in any way! All content is provided for free.',
+                'notice-help': 'If you encounter any issues during installation or gameplay, please submit an issue on GitHub or join our QQ discussion group.',
+                'footer-text': 'Journey of Forging Dreams Modpack',
+                'footer-link1': 'GitHub Repository',
+                'footer-link2': 'Project Wiki',
+                'footer-link3': 'MC百科 Page'
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            updateLanguage();
+            localStorage.setItem('wikiLanguage', currentLang);
+        }
+
+        function updateLanguage() {
+            // 更新所有带有data-key属性的元素
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[currentLang][key]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.value = translations[currentLang][key];
+                    } else {
+                        el.textContent = translations[currentLang][key];
+                    }
+                }
+            });
+
+            // 更新按钮文本
+            const langSwitch = document.getElementById('lang-switch');
+            if (langSwitch) {
+                langSwitch.textContent = currentLang === 'zh' ? 'EN/中' : '中/EN';
+            }
+        }
+
+        // 初始化语言
+        window.addEventListener('load', function () {
+            const savedLang = localStorage.getItem('wikiLanguage');
+            if (savedLang) {
+                currentLang = savedLang;
+                updateLanguage();
             }
         });
     </script>

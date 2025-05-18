@@ -42,13 +42,19 @@ body {
     padding: 0 1rem;
 }
 
-
 .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
     display: flex;
     justify-content: center;
-    width: 100%;
     background: linear-gradient(to bottom, var(--bg-darker), var(--bg-card) 80%);
     border-bottom: 1px solid var(--metal-primary);
+}
+
+.header {
+    margin-top: 60px;
 }
 
 .navbar-container {
@@ -58,7 +64,6 @@ body {
     padding: 1rem;
     gap: 2rem;
     max-width: 1200px;
-    /* 限制最大宽度避免过度拉伸 */
 }
 
 .nav-link {

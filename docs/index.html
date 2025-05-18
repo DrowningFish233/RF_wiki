@@ -13,7 +13,6 @@
 </head>
 
 <body>
-    <!-- 导航栏 - 改为方框设计 -->
     <nav class="navbar">
         <div class="nav-container">
             <ul class="nav-tabs">
@@ -24,6 +23,8 @@
                 <li class="nav-tab"><a href="https://github.com/DrowningFish233/Journey-of-Forging-Dreams"
                         class="nav-link">GitHub</a></li>
             </ul>
+            <!-- 新增语言切换按钮 -->
+            <button id="lang-switch" class="lang-switch-btn" title="切换语言">🌐</button>
         </div>
     </nav>
 
@@ -256,6 +257,21 @@
                         }, 300);
                     }
                 }
+            }
+        });
+        // 语言切换功能
+        document.getElementById('lang-switch').addEventListener('click', function () {
+            const currentLang = document.documentElement.lang;
+            if (currentLang === 'zh-CN') {
+                document.documentElement.lang = 'en';
+                this.textContent = '🇨🇳';
+                // 这里可以添加更多英文内容切换逻辑
+                console.log('已切换到英文模式');
+            } else {
+                document.documentElement.lang = 'zh-CN';
+                this.textContent = '🌐';
+                // 这里可以添加更多中文内容切换逻辑
+                console.log('已切换到中文模式');
             }
         });
     </script>

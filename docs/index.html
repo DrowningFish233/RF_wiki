@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <!-- 导航栏 - 改为方框设计 -->
+    <!-- 导航栏 -->
     <nav class="navbar">
         <div class="nav-container">
             <ul class="nav-tabs">
@@ -37,7 +37,7 @@
 
     <!-- 首页 -->
     <div id="home" class="page-container active">
-        <!-- 新版简介卡片 -->
+        <!-- 简介卡片 -->
         <div class="intro-card">
             <div class="intro-content">
                 <h2>遐想铸造厂</h2>
@@ -128,94 +128,111 @@
     <!-- 机制介绍页 -->
     <div id="mechanic" class="page-container">
         <div class="mechanic-container">
-            <!-- 侧边导航栏 -->
+            <!-- 可扩展的侧边栏 -->
             <div class="mechanic-sidebar">
                 <div class="sidebar-card">
                     <h3 class="sidebar-title">机制导航</h3>
                     <ul class="sidebar-nav">
-                        <li><a href="#rational-system" class="sidebar-link">理智系统</a></li>
-                        <li><a href="#rational-extend" class="sidebar-link">理智值扩展</a></li>
-                        <li><a href="#setting-explain" class="sidebar-link">设定解释</a></li>
+                        <!-- 基础机制 -->
+                        <li class="sidebar-section">
+                            <div class="sidebar-section-title">基础机制</div>
+                            <ul class="sidebar-subnav">
+                                <li><a href="#rational-system" class="sidebar-link">理智系统</a></li>
+                                <li><a href="#rational-extend" class="sidebar-link">理智值扩展</a></li>
+                                <li><a href="#setting-explain" class="sidebar-link">设定解释</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- 七宗罪系统 -->
+                        <li class="sidebar-section">
+                            <div class="sidebar-section-title">七宗罪系统</div>
+                            <ul class="sidebar-subnav">
+                                <li><a href="#pride" class="sidebar-link">傲慢</a></li>
+                                <li><a href="#envy" class="sidebar-link">嫉妒</a></li>
+                                <li><a href="#sloth" class="sidebar-link">懒惰</a></li>
+                                <li><a href="#wrath" class="sidebar-link">暴怒</a></li>
+                                <li><a href="#greed" class="sidebar-link">贪婪</a></li>
+                                <li><a href="#gluttony" class="sidebar-link">暴食</a></li>
+                                <li><a href="#lust" class="sidebar-link">色欲</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- 装备系统 -->
+                        <li class="sidebar-section">
+                            <div class="sidebar-section-title">装备系统</div>
+                            <ul class="sidebar-subnav">
+                                <li><a href="#weapons" class="sidebar-link">武器</a></li>
+                                <li><a href="#armor" class="sidebar-link">护甲</a></li>
+                                <li><a href="#accessories" class="sidebar-link">饰品</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- 战斗系统 -->
+                        <li class="sidebar-section">
+                            <div class="sidebar-section-title">战斗系统</div>
+                            <ul class="sidebar-subnav">
+                                <li><a href="#combat-basics" class="sidebar-link">基础战斗</a></li>
+                                <li><a href="#special-attacks" class="sidebar-link">特殊攻击</a></li>
+                                <li><a href="#damage-types" class="sidebar-link">伤害类型</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- 制作系统 -->
+                        <li class="sidebar-section">
+                            <div class="sidebar-section-title">制作系统</div>
+                            <ul class="sidebar-subnav">
+                                <li><a href="#crafting-basics" class="sidebar-link">基础制作</a></li>
+                                <li><a href="#advanced-crafting" class="sidebar-link">高级制作</a></li>
+                                <li><a href="#material-tiers" class="sidebar-link">材料等级</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
 
             <!-- 机制内容区域 -->
             <div class="mechanic-content">
-                <div class="card">
-                    <h2>核心机制</h2>
-
-                    <div class="mechanic-box" id="rational-system">
-                        <div class="mechanic-title">理智系统</div>
-                        <p>每名玩家拥有理智系统，上限45，下限-45。若玩家死亡则理智值归零。</p>
-                        <p>理智的高低会直接影响玩家攻击倍率。在玩家理智达到最低（-45）时，会随机选取一种罪孽进行"侵蚀"。</p>
-                    </div>
-
-                    <div class="mechanic-box" id="rational-extend">
-                        <div class="mechanic-title">理智值扩展</div>
-                        <p>当玩家的理智值达到了-45时，若此时受到了可能会导致理智值降低的效果，将扣除的理智值1:1转换为对应等级的沉沦值。</p>
-                        <p>沉沦值将直接影响玩家的受击倍率，最高玩家会受到5倍的攻击伤害！</p>
-                        <p>当玩家拥有沉沦值并影响受击倍率时，玩家每次被攻击将会扣除5%沉沦值。</p>
-                    </div>
-
-                    <div class="mechanic-box" id="setting-explain">
-                        <div class="mechanic-title">设定解释</div>
-                        <p><strong>侵蚀：</strong>玩家将进入某种"特殊形态"，持续获得某些增益，代价是也会获得debuff。</p>
-                        <p><strong>罪孽：</strong>共有七种，分别对应七宗罪之中的傲慢、嫉妒、懒惰、暴怒、贪婪、暴食、色欲。</p>
-                        <p><strong>沉沦：</strong>一种特殊的debuff，会随时间减少并扣除玩家的理智值，不会随玩家死亡而完全消失，玩家死亡只会降低80%的沉沦值。</p>
-                        <p><strong>硬币：</strong>硬币掷出正反面的概率受[理智值]影响，其概率公式为：50%+[理智值]*1%</p>
-                    </div>
+                <div class="card" id="rational-system">
+                    <h2>理智系统</h2>
+                    <p>理智系统是本整合包的核心机制之一，它会随着游戏进程动态变化...</p>
                 </div>
+
+                <div class="card" id="rational-extend">
+                    <h2>理智值扩展</h2>
+                    <p>理智值不仅影响玩家的精神状态，还会影响游戏中的多个方面...</p>
+                </div>
+
+                <div class="card" id="setting-explain">
+                    <h2>设定解释</h2>
+                    <p>整合包的世界观设定和背景故事...</p>
+                </div>
+
+                <!-- 七宗罪系统内容 -->
+                <div class="card" id="pride">
+                    <h2>傲慢</h2>
+                    <p>傲慢之罪的详细机制和效果...</p>
+                </div>
+
+                <div class="card" id="envy">
+                    <h2>嫉妒</h2>
+                    <p>嫉妒之罪的详细机制和效果...</p>
+                </div>
+
+                <!-- 更多内容... -->
             </div>
         </div>
     </div>
 
     <!-- 下载页 -->
     <div id="download" class="page-container">
-        <div class="download-card">
-            <h2>下载整合包</h2>
-            <p class="version-info">当前最新版本：暂未发布 | Minecraft版本 1.21.1 </p>
-
-            <div class="download-buttons">
-                <a href="https://github.com/DrowningFish233/Reverie-Foundry/releases" class="download-btn">
-                    GitHub下载
-                </a>
-                <a href="https://www.mcmod.cn/modpack/907.html" class="download-btn blue">
-                    MC百科页面
-                </a>
-            </div>
-
-            <div class="install-instructions">
-                <h3>安装说明</h3>
-                <ol>
-                    <li>确保已安装Java 21或更高版本</li>
-                    <li>请确保下载的版本为最新</li>
-                    <li>启动游戏并开始！</li>
-                </ol>
-            </div>
-        </div>
-
         <div class="card">
-            <h2>注意事项</h2>
-            <div class="notice-box">
-                <p><strong>重要声明：</strong>本整合包不会以任何方式进行营利！所有内容均为免费提供。</p>
-                <p>如在安装或游戏中遇到任何问题，请访问GitHub页面提交issue或加入我们的QQ讨论群。</p>
-            </div>
+            <h2>下载</h2>
+            <p>整合包下载链接和安装说明...</p>
         </div>
     </div>
 
-    <!-- 页脚 -->
-    <footer class="footer">
-        <p>遐想铸造厂整合包 - Reverie Foundry Modpack</p>
-        <div class="footer-links">
-            <a href="https://github.com/DrowningFish233/Reverie-Foundry" class="footer-link">GitHub仓库</a>
-            <a href="https://github.com/DrowningFish233/Reverie-Foundry/wiki" class="footer-link">项目Wiki</a>
-            <a href="https://www.mcmod.cn/modpack/907.html" class="footer-link">MC百科页面</a>
-        </div>
-    </footer>
-
     <script>
-        // 分页显示函数
+        // 页面切换功能
         function showPage(pageId) {
             // 隐藏所有页面
             document.querySelectorAll('.page-container').forEach(page => {
@@ -225,21 +242,29 @@
             // 显示选中的页面
             document.getElementById(pageId).classList.add('active');
 
-            // 更新导航栏活动状态
+            // 更新导航链接状态
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
             document.querySelector(`.nav-link[href="#${pageId}"]`).classList.add('active');
         }
 
-        // 平滑滚动到锚点
+        // 侧边栏折叠功能
+        document.querySelectorAll('.sidebar-section-title').forEach(title => {
+            title.addEventListener('click', function() {
+                const section = this.parentElement;
+                section.classList.toggle('active');
+            });
+        });
+
+        // 平滑滚动和激活状态
         document.querySelectorAll('.sidebar-link').forEach(link => {
-            link.addEventListener('click', function (e) {
+            link.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
-
-                if (targetElement) {
+                
+                if(targetElement) {
                     // 先确保机制页面是活动的
                     showPage('mechanic');
 
@@ -248,27 +273,38 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
-
-                    // 更新侧边栏活动状态
-                    document.querySelectorAll('.sidebar-link').forEach(link => {
-                        link.classList.remove('active');
-                    });
+                    
+                    // 更新活动状态
+                    document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
                     this.classList.add('active');
                 }
             });
         });
 
         // 页面加载时处理哈希
-        window.addEventListener('load', function () {
-            if (window.location.hash) {
+        window.addEventListener('load', function() {
+            if(window.location.hash) {
                 const hash = window.location.hash;
-                if (hash.startsWith('#mechanic-')) {
+                if(hash.startsWith('#mechanic-')) {
                     showPage('mechanic');
                     const targetElement = document.querySelector(hash);
-                    if (targetElement) {
+                    if(targetElement) {
                         setTimeout(() => {
                             targetElement.scrollIntoView({ behavior: 'smooth' });
                         }, 300);
+                    }
+                }
+            }
+            
+            // 自动展开当前所在的侧边栏部分
+            const currentHash = window.location.hash;
+            if(currentHash) {
+                const activeLink = document.querySelector(`.sidebar-link[href="${currentHash}"]`);
+                if(activeLink) {
+                    activeLink.classList.add('active');
+                    const section = activeLink.closest('.sidebar-section');
+                    if(section) {
+                        section.classList.add('active');
                     }
                 }
             }

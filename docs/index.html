@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>淬梦工坊 - 整合包Wiki</title>
+    <title>遐想铸造厂 - 整合包Wiki</title>
     <link rel="icon" href="/RF_wiki/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/RF_wiki/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/RF_wiki/styles.css">
@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <!-- 导航栏 - 改为方框设计 -->
+    <!-- 导航栏 -->
     <nav class="navbar">
         <div class="nav-container">
             <ul class="nav-tabs">
@@ -30,17 +30,17 @@
     <!-- 页眉 -->
     <header class="header">
         <div class="header-content">
-            <h1>淬梦工坊</h1>
+            <h1>遐想铸造厂</h1>
             <p>以寂静装备为核心的高度魔改的冒险整合包！</p>
         </div>
     </header>
 
     <!-- 首页 -->
     <div id="home" class="page-container active">
-        <!-- 新版简介卡片 -->
+        <!-- 简介卡片 -->
         <div class="intro-card">
             <div class="intro-content">
-                <h2>淬梦工坊</h2>
+                <h2>遐想铸造厂</h2>
                 <p>一个以寂静装备为核心的高度魔改冒险整合包，融合泰拉瑞亚和边狱巴士元素，致力于给玩家带来高度魔改的自定义游戏体验。</p>
 
                 <div class="intro-features">
@@ -128,14 +128,44 @@
     <!-- 机制介绍页 -->
     <div id="mechanic" class="page-container">
         <div class="mechanic-container">
-            <!-- 侧边导航栏 -->
+            <!-- 可扩展的侧边栏 -->
             <div class="mechanic-sidebar">
                 <div class="sidebar-card">
                     <h3 class="sidebar-title">机制导航</h3>
                     <ul class="sidebar-nav">
-                        <li><a href="#rational-system" class="sidebar-link">理智系统</a></li>
-                        <li><a href="#rational-extend" class="sidebar-link">理智值扩展</a></li>
-                        <li><a href="#setting-explain" class="sidebar-link">设定解释</a></li>
+                        <!-- 基础机制 -->
+                        <li class="sidebar-section">
+                            <div class="sidebar-section-title">基础机制</div>
+                            <ul class="sidebar-subnav">
+                                <li><a href="#rational-system" class="sidebar-link">理智系统</a></li>
+                                <li><a href="#rational-extend" class="sidebar-link">理智值扩展</a></li>
+                                <li><a href="#setting-explain" class="sidebar-link">设定解释</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- 七宗罪系统 -->
+                        <li class="sidebar-section">
+                            <div class="sidebar-section-title">七宗罪系统</div>
+                            <ul class="sidebar-subnav">
+                                <li><a href="#pride" class="sidebar-link">傲慢</a></li>
+                                <li><a href="#envy" class="sidebar-link">嫉妒</a></li>
+                                <li><a href="#sloth" class="sidebar-link">懒惰</a></li>
+                                <li><a href="#wrath" class="sidebar-link">暴怒</a></li>
+                                <li><a href="#greed" class="sidebar-link">贪婪</a></li>
+                                <li><a href="#gluttony" class="sidebar-link">暴食</a></li>
+                                <li><a href="#lust" class="sidebar-link">色欲</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- 装备系统 -->
+                        <li class="sidebar-section">
+                            <div class="sidebar-section-title">装备系统</div>
+                            <ul class="sidebar-subnav">
+                                <li><a href="#weapons" class="sidebar-link">武器</a></li>
+                                <li><a href="#armor" class="sidebar-link">护甲</a></li>
+                                <li><a href="#accessories" class="sidebar-link">饰品</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -145,6 +175,7 @@
                 <div class="card">
                     <h2>核心机制</h2>
 
+                    <!-- 基础机制部分 -->
                     <div class="mechanic-box" id="rational-system">
                         <div class="mechanic-title">理智系统</div>
                         <p>每名玩家拥有理智系统，上限45，下限-45。若玩家死亡则理智值归零。</p>
@@ -164,6 +195,44 @@
                         <p><strong>罪孽：</strong>共有七种，分别对应七宗罪之中的傲慢、嫉妒、懒惰、暴怒、贪婪、暴食、色欲。</p>
                         <p><strong>沉沦：</strong>一种特殊的debuff，会随时间减少并扣除玩家的理智值，不会随玩家死亡而完全消失，玩家死亡只会降低80%的沉沦值。</p>
                         <p><strong>硬币：</strong>硬币掷出正反面的概率受[理智值]影响，其概率公式为：50%+[理智值]*1%</p>
+                    </div>
+
+                    <!-- 七宗罪系统部分 -->
+                    <h2 class="mechanic-section-title">七宗罪系统</h2>
+
+                    <div class="mechanic-box" id="pride">
+                        <div class="mechanic-title">傲慢</div>
+                        <p>傲慢侵蚀会使玩家获得攻击力提升，但防御力下降。</p>
+                        <p>具体效果：攻击力+30%，防御力-20%，移动速度-10%。</p>
+                    </div>
+
+                    <div class="mechanic-box" id="envy">
+                        <div class="mechanic-title">嫉妒</div>
+                        <p>嫉妒侵蚀会使玩家获得暴击率提升，但生命恢复速度下降。</p>
+                        <p>具体效果：暴击率+25%，生命恢复速度-50%。</p>
+                    </div>
+
+                    <!-- 其他五宗罪部分可以类似添加 -->
+
+                    <!-- 装备系统部分 -->
+                    <h2 class="mechanic-section-title">装备系统</h2>
+
+                    <div class="mechanic-box" id="weapons">
+                        <div class="mechanic-title">武器</div>
+                        <p>武器系统采用高度自定义设计，每把武器都有独特的属性和成长路径。</p>
+                        <p>武器可以通过击败特定敌人或完成任务来升级和解锁新能力。</p>
+                    </div>
+
+                    <div class="mechanic-box" id="armor">
+                        <div class="mechanic-title">护甲</div>
+                        <p>护甲系统提供多种套装效果，激活套装效果需要理智值维持在特定范围内。</p>
+                        <p>不同护甲对七宗罪侵蚀有不同抗性。</p>
+                    </div>
+
+                    <div class="mechanic-box" id="accessories">
+                        <div class="mechanic-title">饰品</div>
+                        <p>饰品提供各种被动效果，可以组合搭配产生协同效应。</p>
+                        <p>某些稀有饰品可以改变游戏机制，如改变理智值变化速度。</p>
                     </div>
                 </div>
             </div>
@@ -206,7 +275,7 @@
 
     <!-- 页脚 -->
     <footer class="footer">
-        <p>淬梦工坊整合包 - Reverie Foundry Modpack</p>
+        <p>遐想铸造厂整合包 - Reverie Foundry Modpack</p>
         <div class="footer-links">
             <a href="https://github.com/DrowningFish233/Reverie-Foundry" class="footer-link">GitHub仓库</a>
             <a href="https://github.com/DrowningFish233/Reverie-Foundry/wiki" class="footer-link">项目Wiki</a>
@@ -254,6 +323,12 @@
                         link.classList.remove('active');
                     });
                     this.classList.add('active');
+
+                    // 展开所属的侧边栏部分
+                    const section = this.closest('.sidebar-section');
+                    if (section) {
+                        section.classList.add('active');
+                    }
                 }
             });
         });
@@ -272,6 +347,19 @@
                     }
                 }
             }
+
+            // 默认展开第一个侧边栏部分
+            const firstSection = document.querySelector('.sidebar-section');
+            if (firstSection) {
+                firstSection.classList.add('active');
+            }
+        });
+
+        // 侧边栏部分标题点击事件
+        document.querySelectorAll('.sidebar-section-title').forEach(title => {
+            title.addEventListener('click', function () {
+                this.parentElement.classList.toggle('active');
+            });
         });
     </script>
 </body>

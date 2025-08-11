@@ -60,35 +60,14 @@ body {
     margin-top: 60px;
 }
 
-.navbar-container {
+.nav-container {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1rem;
     gap: 2rem;
     max-width: 1200px;
-}
-
-.nav-link {
-    white-space: nowrap;
-    padding: 0.8rem 1.2rem;
-    position: relative;
-}
-
-.navbar-brand {
-    display: flex;
-    align-items: center;
-    font-family: 'UnifrakturMaguntia', cursive;
-    font-size: 1.8rem;
-    color: var(--text-primary);
-    text-decoration: none;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8);
-}
-
-.brand-icon {
-    color: var(--metal-light);
-    margin-right: 0.5rem;
-    filter: drop-shadow(0 0 3px rgba(194, 143, 61, 0.7));
+    width: 100%;
 }
 
 .nav-tabs {
@@ -165,13 +144,17 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 20% 30%, rgba(194, 143, 61, 0.1) 0%, transparent 30%), radial-gradient(circle at 80% 70%, rgba(106, 72, 120, 0.1) 0%, transparent 30%);
+    background: radial-gradient(circle at 20% 30%, rgba(194, 143, 61, 0.1) 0%, transparent 30%), 
+                radial-gradient(circle at 80% 70%, rgba(106, 72, 120, 0.1) 0%, transparent 30%);
     animation: forge-glow 8s infinite alternate;
 }
 
 .header-content {
     position: relative;
     z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .header h1 {
@@ -204,7 +187,9 @@ body {
 /* 页面容器 */
 .page-container {
     display: none;
-    padding: 2rem 3rem;
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
     animation: fadeIn 0.5s ease;
 }
 
@@ -219,7 +204,9 @@ body {
     border-radius: 0;
     padding: 2rem;
     margin-bottom: 2rem;
-    box-shadow: 4px 4px 8px var(--bevel-dark), -2px -2px 4px var(--bevel-light), inset 0 0 15px rgba(10, 8, 12, 0.8);
+    box-shadow: 4px 4px 8px var(--bevel-dark), 
+               -2px -2px 4px var(--bevel-light), 
+               inset 0 0 15px rgba(10, 8, 12, 0.8);
     position: relative;
     overflow: hidden;
     transition: var(--transition);
@@ -237,7 +224,9 @@ body {
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 6px 6px 12px var(--bevel-dark), -4px -4px 8px var(--bevel-light), inset 0 0 25px rgba(10, 8, 12, 0.9);
+    box-shadow: 6px 6px 12px var(--bevel-dark), 
+               -4px -4px 8px var(--bevel-light), 
+               inset 0 0 25px rgba(10, 8, 12, 0.9);
 }
 
 .card h2 {
@@ -275,19 +264,20 @@ body {
     color: var(--metal-light);
     text-shadow: 0 0 8px rgba(194, 143, 61, 0.5);
     border-bottom: 2px solid rgba(194, 143, 61, 0.3);
+    margin-bottom: 1.5rem;
 }
 
 .intro-features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
 }
 
 .feature-item {
-    padding: 1.2rem;
+    padding: 1.5rem;
     background: rgba(22, 19, 26, 0.5);
-    border-left: 3px solid var(--metal-primary);
+    border-left: 2px solid var(--metal-primary);
 }
 
 .feature-item h3 {
@@ -304,12 +294,15 @@ body {
 }
 
 .gallery-item {
-    position: relative;
     overflow: hidden;
-    aspect-ratio: 16/9;
+    position: relative;
+    padding-top: 56.25%; /* 16:9 比例 */
 }
 
 .gallery-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -325,19 +318,13 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
 }
 
 .feature-card {
     padding: 1.5rem;
     background: rgba(22, 19, 26, 0.5);
-    border-left: 3px solid var(--metal-primary);
-    transition: var(--transition);
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-    background: rgba(30, 26, 35, 0.7);
+    border-top: 3px solid var(--metal-primary);
 }
 
 .feature-card h3 {
@@ -358,137 +345,82 @@ body {
 
 .feature-list li::before {
     content: '•';
+    color: var(--metal-primary);
     position: absolute;
     left: 0;
-    color: var(--metal-primary);
 }
 
-/* 机制容器 */
+/* 机制侧边栏 */
 .mechanic-container {
-    display: grid;
-    grid-template-columns: 300px 1fr;
+    display: flex;
     gap: 2rem;
-    align-items: start;
 }
 
-/* 修复后的侧边栏样式 */
 .mechanic-sidebar {
-    position: sticky;
-    top: 120px;
-    height: calc(100vh - 140px);
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    scrollbar-width: thin;
-    scrollbar-color: var(--metal-primary) var(--bg-card);
-}
-
-.mechanic-sidebar::-webkit-scrollbar {
-    width: 6px;
-}
-
-.mechanic-sidebar::-webkit-scrollbar-thumb {
-    background-color: var(--metal-primary);
-    border-radius: 3px;
+    flex: 0 0 250px;
 }
 
 .sidebar-card {
-    background: linear-gradient(145deg, var(--bg-card), var(--bg-card-hover));
-    border-left: 4px solid var(--metal-primary);
+    background: var(--bg-card);
     padding: 1.5rem;
-    box-shadow: var(--shadow-md);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    margin-bottom: 2rem;
 }
 
 .sidebar-title {
     color: var(--metal-light);
     margin-bottom: 1rem;
-    font-size: 1.3rem;
-    position: relative;
-    padding-bottom: 0.5rem;
-}
-
-.sidebar-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 40px;
-    height: 2px;
-    background: linear-gradient(90deg, var(--metal-primary), transparent);
-}
-
-.sidebar-nav {
-    list-style: none;
-    padding: 0;
-    flex-grow: 1;
-    overflow-y: auto;
+    font-size: 1.2rem;
 }
 
 .sidebar-section {
-    margin-bottom: 0.8rem;
+    margin-bottom: 1.5rem;
 }
 
 .sidebar-section-title {
-    color: var(--metal-light);
+    color: var(--metal-primary);
     font-weight: 600;
-    padding: 0.8rem 1rem;
-    cursor: pointer;
-    position: relative;
-    transition: var(--transition);
-    border-left: 3px solid transparent;
-    background: rgba(30, 26, 35, 0.6);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.sidebar-section-title:hover {
-    background: rgba(44, 38, 52, 0.8);
-    border-left: 3px solid var(--metal-primary);
-}
-
-.sidebar-section-title::after {
-    content: '+';
-    font-weight: bold;
-    transition: transform 0.3s ease;
-}
-
-.sidebar-section.active .sidebar-section-title::after {
-    content: '-';
+    margin-bottom: 0.5rem;
 }
 
 .sidebar-subnav {
     list-style: none;
     padding-left: 1rem;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.sidebar-section.active .sidebar-subnav {
-    max-height: 1000px;
 }
 
 .sidebar-link {
     display: block;
-    padding: 0.7rem 1rem;
+    padding: 0.5rem 0;
     color: var(--text-secondary);
     text-decoration: none;
     transition: var(--transition);
-    margin-bottom: 0.3rem;
-    border-left: 2px solid transparent;
 }
 
-.sidebar-link:hover,
-.sidebar-link.active {
+.sidebar-link:hover {
     color: var(--metal-light);
-    border-left: 2px solid var(--metal-primary);
-    background: rgba(194, 143, 61, 0.08);
 }
 
 /* 动画 */
+@keyframes forge-glow {
+    0% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 0.9;
+    }
+}
+
+@keyframes pulse-glow {
+    0% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -498,23 +430,29 @@ body {
     }
 }
 
-@keyframes pulse-glow {
-    0% {
-        opacity: 0.5;
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .nav-tabs {
+        gap: 0.5rem;
     }
-    50% {
-        opacity: 1;
+    
+    .nav-link {
+        padding: 0.5rem 0.8rem;
     }
-    100% {
-        opacity: 0.5;
+    
+    .header h1 {
+        font-size: 2.5rem;
     }
-}
-
-@keyframes forge-glow {
-    0% {
-        opacity: 0.3;
+    
+    .header p {
+        font-size: 1rem;
     }
-    100% {
-        opacity: 0.7;
+    
+    .mechanic-container {
+        flex-direction: column;
+    }
+    
+    .mechanic-sidebar {
+        flex: 1 1 100%;
     }
 }

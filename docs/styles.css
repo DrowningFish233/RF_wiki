@@ -44,7 +44,7 @@ body {
     padding: 0 1rem;
 }
 
-/* 导航栏样式 - 修复居中问题 */
+/* 导航栏样式 */
 .navbar {
     position: fixed;
     top: 0;
@@ -56,10 +56,6 @@ body {
     border-bottom: 1px solid var(--metal-primary);
     display: flex;
     justify-content: center;
-}
-
-.header {
-    margin-top: 60px;
 }
 
 .navbar-container {
@@ -147,11 +143,12 @@ body {
 
 /* 页眉样式 */
 .header {
-    background: linear-gradient(135deg, var(--bg-darker), #1a1420);
+    margin-top: 60px;
     padding: 5rem 0;
     text-align: center;
     position: relative;
     overflow: hidden;
+    background: linear-gradient(135deg, var(--bg-darker), #1a1420);
 }
 
 .header::before {
@@ -161,34 +158,29 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><path d="M30,10 L70,10 L90,30 L90,70 L70,90 L30,90 L10,70 L10,30 Z" stroke="%23c28f3d" stroke-width="0.5" fill="none"/></svg>') center/50px 50px;
-    opacity: 0.05;
+    background: radial-gradient(circle at 50% 30%, rgba(194, 143, 61, 0.1) 0%, transparent 50%);
+    z-index: -1;
 }
 
-.header-content {
-    position: relative;
-    z-index: 1;
-}
-
-.header h1 {
-    font-family: 'UnifrakturMaguntia', cursive;
-    font-size: 3.5rem;
+.header-content h1 {
+    font-size: 3rem;
     margin-bottom: 1rem;
-    color: var(--metal-light);
-    text-shadow: 0 0 10px rgba(194, 143, 61, 0.7);
+    color: var(--metal-primary);
+    font-family: 'UnifrakturMaguntia', cursive;
+    text-shadow: 0 0 10px rgba(194, 143, 61, 0.5);
 }
 
-.header p {
+.header-content p {
     font-size: 1.2rem;
+    color: var(--text-secondary);
     max-width: 800px;
     margin: 0 auto;
-    color: var(--text-secondary);
 }
 
 /* 页面容器 */
 .page-container {
     display: none;
-    padding: 2rem 0;
+    padding: 2rem 1rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -198,42 +190,76 @@ body {
 }
 
 /* 卡片样式 */
-.card {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: var(--shadow-sm);
-}
-
+.card,
 .intro-card {
     background-color: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 4px;
     padding: 2rem;
     margin-bottom: 2rem;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
 }
 
-.intro-features {
+.card:hover,
+.intro-card:hover {
+    background-color: var(--bg-card-hover);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.intro-content h2 {
+    font-size: 2rem;
+    color: var(--metal-primary);
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--metal-dark);
+    padding-bottom: 0.5rem;
+}
+
+.intro-content p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+/* 特性列表 */
+.intro-features,
+.features-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
 }
 
-.feature-item {
+.feature-item,
+.feature-section {
+    background-color: var(--bg-darker);
     padding: 1.5rem;
-    background-color: var(--bg-card-hover);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-left: 3px solid var(--metal-primary);
+    transition: var(--transition);
+}
+
+.feature-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sm);
+}
+
+.feature-item h3,
+.feature-section h3 {
+    color: var(--metal-light);
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.feature-item p {
+    color: var(--text-secondary);
+    font-size: 1rem;
 }
 
 /* 画廊样式 */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1rem;
     margin-top: 1.5rem;
 }
@@ -241,195 +267,51 @@ body {
 .gallery-item {
     overflow: hidden;
     border-radius: 4px;
-    border: 1px solid var(--border-color);
-    transition: var(--transition);
-}
-
-.gallery-item:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-md);
+    position: relative;
 }
 
 .gallery-item img {
     width: 100%;
     height: auto;
-    display: block;
-    transition: transform 0.4s ease;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.05);
-}
-
-/* 机制介绍页样式 */
-.mechanic-container {
-    display: flex;
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.mechanic-sidebar {
-    flex: 0 0 250px;
-}
-
-.sidebar-card {
-    background-color: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 4px;
-    padding: 1.5rem;
-    box-shadow: var(--shadow-sm);
-    position: sticky;
-    top: 100px;
-}
-
-.sidebar-nav {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.sidebar-link {
-    display: block;
-    padding: 0.8rem 1rem;
-    color: var(--text-secondary);
-    text-decoration: none;
-    border-left: 3px solid transparent;
     transition: var(--transition);
-    margin-bottom: 0.5rem;
-}
-
-.sidebar-link:hover {
-    color: var(--metal-light);
-    background-color: rgba(194, 143, 61, 0.1);
-}
-
-.sidebar-link.active {
-    color: var(--metal-light);
-    border-left: 3px solid var(--metal-primary);
-    background-color: rgba(194, 143, 61, 0.1);
-}
-
-.mechanic-content {
-    flex: 1;
-}
-
-.mechanic-section {
-    display: none;
-    animation: fadeIn 0.4s ease-out;
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-}
-
-.mechanic-section.active {
     display: block;
 }
 
-/* 下载页面样式 */
-.download-container {
-    display: flex;
-    justify-content: center;
-}
-
-.download-card {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    padding: 2rem;
-    width: 100%;
-    max-width: 800px;
+.gallery-item img:hover {
+    transform: scale(1.03);
     box-shadow: var(--shadow-sm);
 }
 
-.download-options {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
-}
-
-.download-option {
-    background-color: var(--bg-card-hover);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    padding: 1.5rem;
-    text-align: center;
-}
-
-.download-button {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    background-color: var(--metal-primary);
-    color: var(--text-primary);
-    text-decoration: none;
-    border-radius: 4px;
-    margin-top: 1rem;
-    transition: var(--transition);
-}
-
-.download-button:hover {
-    background-color: var(--metal-light);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
-}
-
-.download-info {
-    background-color: var(--bg-card-hover);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    padding: 1.5rem;
-    margin-top: 2rem;
-}
-
-.download-info ol {
-    padding-left: 1.5rem;
-    margin-top: 1rem;
-}
-
-.download-info li {
-    margin-bottom: 0.5rem;
-}
-
-/* 动画 */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* 图标样式 */
+.fas {
+    margin-right: 0.5rem;
+    color: var(--metal-light);
 }
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-    .mechanic-container {
-        flex-direction: column;
-    }
-
-    .mechanic-sidebar {
-        flex: 0 0 auto;
-        margin-bottom: 1rem;
-    }
-
-    .navbar-container {
-        padding: 0.5rem;
-    }
-
     .nav-tabs {
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 0.5rem;
     }
 
-    .nav-link {
-        padding: 0.5rem 0.8rem;
-        font-size: 0.9rem;
+    .header-content h1 {
+        font-size: 2.5rem;
     }
 
-    .header h1 {
-        font-size: 2.5rem;
+    .intro-features,
+    .features-content {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .card,
+    .intro-card {
+        padding: 1.5rem;
     }
 }

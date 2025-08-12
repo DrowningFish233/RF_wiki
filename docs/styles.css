@@ -48,10 +48,14 @@ body {
 .navbar {
     position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     z-index: 1000;
     background: linear-gradient(to bottom, var(--bg-darker), var(--bg-card) 80%);
     border-bottom: 1px solid var(--metal-primary);
+    display: flex;
+    justify-content: center;
 }
 
 .header {
@@ -71,7 +75,8 @@ body {
     display: flex;
     list-style: none;
     gap: 1.5rem;
-    margin: 0 auto;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-tab {
@@ -130,9 +135,11 @@ body {
     0% {
         opacity: 0.5;
     }
+
     50% {
         opacity: 1;
     }
+
     100% {
         opacity: 0.5;
     }
@@ -235,6 +242,12 @@ body {
     overflow: hidden;
     border-radius: 4px;
     border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
 }
 
 .gallery-item img {
@@ -271,6 +284,8 @@ body {
 
 .sidebar-nav {
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .sidebar-link {
@@ -280,6 +295,7 @@ body {
     text-decoration: none;
     border-left: 3px solid transparent;
     transition: var(--transition);
+    margin-bottom: 0.5rem;
 }
 
 .sidebar-link:hover {
@@ -300,10 +316,80 @@ body {
 .mechanic-section {
     display: none;
     animation: fadeIn 0.4s ease-out;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 2rem;
+    margin-bottom: 2rem;
 }
 
 .mechanic-section.active {
     display: block;
+}
+
+/* 下载页面样式 */
+.download-container {
+    display: flex;
+    justify-content: center;
+}
+
+.download-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: var(--shadow-sm);
+}
+
+.download-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.download-option {
+    background-color: var(--bg-card-hover);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.download-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--metal-primary);
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 1rem;
+    transition: var(--transition);
+}
+
+.download-button:hover {
+    background-color: var(--metal-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.download-info {
+    background-color: var(--bg-card-hover);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.download-info ol {
+    padding-left: 1.5rem;
+    margin-top: 1rem;
+}
+
+.download-info li {
+    margin-bottom: 0.5rem;
 }
 
 /* 动画 */
@@ -312,8 +398,38 @@ body {
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .mechanic-container {
+        flex-direction: column;
+    }
+
+    .mechanic-sidebar {
+        flex: 0 0 auto;
+        margin-bottom: 1rem;
+    }
+
+    .navbar-container {
+        padding: 0.5rem;
+    }
+
+    .nav-tabs {
+        gap: 0.5rem;
+    }
+
+    .nav-link {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .header h1 {
+        font-size: 2.5rem;
     }
 }

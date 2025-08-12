@@ -66,28 +66,28 @@
             <h2>游戏截图</h2>
             <div class="gallery">
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/1192/727/pit1-jpg.jpg" alt="游戏截图">
+                    <img src="https://media.forgecdn.net/attachments/1192/727/pit1-jpg.jpg" alt="游戏截图1">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/1192/729/pit2-jpg.jpg" alt="游戏截图">
+                    <img src="https://media.forgecdn.net/attachments/1192/729/pit2-jpg.jpg" alt="游戏截图2">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/1192/730/pit3-jpg.jpg" alt="游戏截图">
+                    <img src="https://media.forgecdn.net/attachments/1192/730/pit3-jpg.jpg" alt="游戏截图3">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/1192/734/2025-02-13_20-03-jpg.jpg" alt="游戏截图">
+                    <img src="https://media.forgecdn.net/attachments/1192/734/2025-02-13_20-03-jpg.jpg" alt="游戏截图4">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/1192/737/2025-02-13_19-58-png.png" alt="游戏截图">
+                    <img src="https://media.forgecdn.net/attachments/1192/737/2025-02-13_19-58-png.png" alt="游戏截图5">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/1192/738/2025-02-13_20-05-png.png" alt="游戏截图">
+                    <img src="https://media.forgecdn.net/attachments/1192/738/2025-02-13_20-05-png.png" alt="游戏截图6">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/1192/746/2025-02-13_19-56-jpg.jpg" alt="游戏截图">
+                    <img src="https://media.forgecdn.net/attachments/1192/746/2025-02-13_19-56-jpg.jpg" alt="游戏截图7">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/1192/747/2025-02-13_20-07-png.png" alt="游戏截图">
+                    <img src="https://media.forgecdn.net/attachments/1192/747/2025-02-13_20-07-png.png" alt="游戏截图8">
                 </div>
             </div>
         </div>
@@ -148,9 +148,32 @@
 
     <!-- 下载 -->
     <div id="download" class="page-container">
-        <div class="card">
-            <h2>下载</h2>
-            <p>aaa</p>
+        <div class="download-container">
+            <div class="download-card">
+                <h2>下载遐想铸造厂</h2>
+                <div class="download-options">
+                    <div class="download-option">
+                        <h3><i class="fas fa-download"></i> 最新版本</h3>
+                        <p>版本号: v1.0.0</p>
+                        <a href="#" class="download-button">下载整合包</a>
+                    </div>
+                    <div class="download-option">
+                        <h3><i class="fas fa-code-branch"></i> GitHub</h3>
+                        <p>获取源代码和问题追踪</p>
+                        <a href="https://github.com/DrowningFish233/Reverie-Foundry" class="download-button" target="_blank">访问GitHub</a>
+                    </div>
+                </div>
+                <div class="download-info">
+                    <h3><i class="fas fa-info-circle"></i> 安装说明</h3>
+                    <ol>
+                        <li>下载整合包文件</li>
+                        <li>安装最新版CurseForge或MultiMC启动器</li>
+                        <li>导入下载的整合包文件</li>
+                        <li>确保分配至少4GB内存</li>
+                        <li>启动游戏并享受冒险！</li>
+                    </ol>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -167,8 +190,15 @@
             // 更新导航栏活动状态
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
+                if(link.getAttribute('href') === `#${pageId}`) {
+                    link.classList.add('active');
+                }
             });
-            event.target.classList.add('active');
+            
+            // 如果是机制介绍页面，默认显示第一个机制
+            if(pageId === 'mechanic') {
+                showMechanic('sanity-system');
+            }
         }
 
         function showMechanic(sectionId) {
@@ -183,8 +213,10 @@
             // 更新侧边栏活动状态
             document.querySelectorAll('.sidebar-link').forEach(link => {
                 link.classList.remove('active');
+                if(link.getAttribute('href') === `#${sectionId}`) {
+                    link.classList.add('active');
+                }
             });
-            event.target.classList.add('active');
         }
     </script>
 </body>

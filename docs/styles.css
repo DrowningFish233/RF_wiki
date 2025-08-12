@@ -44,14 +44,12 @@ body {
     padding: 0 1rem;
 }
 
-/* 导航栏样式 */
+/* 导航栏样式 - 修复居中问题 */
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-    display: flex;
-    justify-content: center;
     background: linear-gradient(to bottom, var(--bg-darker), var(--bg-card) 80%);
     border-bottom: 1px solid var(--metal-primary);
 }
@@ -63,21 +61,21 @@ body {
 .navbar-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    gap: 2rem;
-    max-width: 1200px;
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
 }
 
 .nav-tabs {
     display: flex;
     list-style: none;
     gap: 1.5rem;
+    margin: 0 auto;
 }
 
 .nav-tab {
-    margin: 0 0.5rem;
+    margin: 0;
 }
 
 .nav-link {
@@ -132,11 +130,9 @@ body {
     0% {
         opacity: 0.5;
     }
-
     50% {
         opacity: 1;
     }
-
     100% {
         opacity: 0.5;
     }
@@ -201,78 +197,36 @@ body {
     border-radius: 4px;
     padding: 2rem;
     margin-bottom: 2rem;
-    box-shadow: var(--shadow-md);
-    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
 }
 
-.card:hover {
-    background-color: var(--bg-card-hover);
-    box-shadow: var(--shadow-lg);
-}
-
-.card h2 {
-    color: var(--metal-light);
-    margin-bottom: 1.5rem;
-    font-size: 1.8rem;
-    border-bottom: 1px solid var(--metal-dark);
-    padding-bottom: 0.5rem;
-}
-
-/* 简介卡片 */
 .intro-card {
     background-color: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 4px;
     padding: 2rem;
     margin-bottom: 2rem;
-}
-
-.intro-content {
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.intro-content h2 {
-    color: var(--metal-light);
-    margin-bottom: 1rem;
-    font-size: 2rem;
-}
-
-.intro-content p {
-    margin-bottom: 2rem;
-    color: var(--text-secondary);
-    font-size: 1.1rem;
+    box-shadow: var(--shadow-sm);
 }
 
 .intro-features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 1.5rem;
     margin-top: 2rem;
 }
 
 .feature-item {
     padding: 1.5rem;
-    background: rgba(30, 26, 36, 0.6);
+    background-color: var(--bg-card-hover);
+    border: 1px solid var(--border-color);
     border-radius: 4px;
-    border-left: 3px solid var(--metal-primary);
-}
-
-.feature-item h3 {
-    color: var(--metal-light);
-    margin-bottom: 0.8rem;
-    font-size: 1.3rem;
-}
-
-.feature-item p {
-    color: var(--text-secondary);
-    font-size: 1rem;
 }
 
 /* 画廊样式 */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1rem;
     margin-top: 1.5rem;
 }
@@ -281,13 +235,6 @@ body {
     overflow: hidden;
     border-radius: 4px;
     border: 1px solid var(--border-color);
-    transition: var(--transition);
-}
-
-.gallery-item:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--metal-primary);
 }
 
 .gallery-item img {
@@ -301,276 +248,72 @@ body {
     transform: scale(1.05);
 }
 
-/* 特色玩法页样式 */
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 1.5rem;
-}
-
-.feature-card {
-    padding: 1.5rem;
-    background: rgba(30, 26, 36, 0.6);
-    border-radius: 4px;
-    border-left: 3px solid var(--metal-primary);
-    transition: var(--transition);
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--metal-light);
-}
-
-.feature-card h3 {
-    color: var(--metal-light);
-    margin-bottom: 0.8rem;
-    font-size: 1.3rem;
-}
-
-.feature-card p {
-    color: var(--text-secondary);
-    font-size: 1rem;
-}
-
-.feature-list {
-    list-style: none;
-    margin-top: 1.5rem;
-}
-
-.feature-list li {
-    padding: 0.8rem 0;
-    border-bottom: 1px dashed rgba(58, 50, 64, 0.5);
-    position: relative;
-    padding-left: 1.5rem;
-}
-
-.feature-list li::before {
-    content: '•';
-    color: var(--metal-primary);
-    position: absolute;
-    left: 0;
-}
-
 /* 机制介绍页样式 */
 .mechanic-container {
     display: flex;
     gap: 2rem;
+    margin-top: 2rem;
 }
 
 .mechanic-sidebar {
-    flex: 0 0 280px;
-    max-height: calc(100vh - 200px);
-    overflow-y: auto;
-    position: sticky;
-    top: 100px;
-    padding-right: 0.5rem;
-}
-
-/* 侧边栏滚动条样式 */
-.mechanic-sidebar {
-    scrollbar-width: thin;
-    scrollbar-color: var(--metal-primary) var(--bg-darker);
-}
-
-.mechanic-sidebar::-webkit-scrollbar {
-    width: 8px;
-}
-
-.mechanic-sidebar::-webkit-scrollbar-track {
-    background: var(--bg-darker);
-    border-radius: 4px;
-}
-
-.mechanic-sidebar::-webkit-scrollbar-thumb {
-    background-color: var(--metal-primary);
-    border-radius: 4px;
-    border: 1px solid var(--metal-dark);
-}
-
-.mechanic-sidebar::-webkit-scrollbar-thumb:hover {
-    background-color: var(--metal-light);
+    flex: 0 0 250px;
 }
 
 .sidebar-card {
-    background: var(--bg-card);
-    padding: 1.5rem;
-    border-radius: 4px;
+    background-color: var(--bg-card);
     border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 1.5rem;
     box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 100px;
 }
 
-.sidebar-card h3 {
-    color: var(--metal-light);
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
-    border-bottom: 1px solid var(--metal-dark);
-    padding-bottom: 0.5rem;
-}
-
-.mechanic-menu {
+.sidebar-nav {
     list-style: none;
 }
 
-.mechanic-menu li {
-    margin-bottom: 0.5rem;
-}
-
-.mechanic-menu a {
+.sidebar-link {
     display: block;
-    padding: 0.7rem 1rem;
+    padding: 0.8rem 1rem;
     color: var(--text-secondary);
     text-decoration: none;
-    border-radius: 4px;
+    border-left: 3px solid transparent;
     transition: var(--transition);
 }
 
-.mechanic-menu a:hover {
-    background: rgba(194, 143, 61, 0.1);
+.sidebar-link:hover {
     color: var(--metal-light);
+    background-color: rgba(194, 143, 61, 0.1);
 }
 
-.mechanic-menu a.active {
-    background: rgba(194, 143, 61, 0.2);
+.sidebar-link.active {
     color: var(--metal-light);
     border-left: 3px solid var(--metal-primary);
+    background-color: rgba(194, 143, 61, 0.1);
 }
 
 .mechanic-content {
     flex: 1;
-    background: var(--bg-card);
-    padding: 2rem;
-    border-radius: 4px;
-    border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-sm);
 }
 
-/* 下载页面样式 */
-.download-content {
-    display: flex;
-    gap: 2rem;
-    margin-bottom: 2rem;
+.mechanic-section {
+    display: none;
+    animation: fadeIn 0.4s ease-out;
 }
 
-.download-info {
-    flex: 1;
-    padding: 1.5rem;
-    background: rgba(30, 26, 36, 0.6);
-    border-radius: 4px;
-    border-left: 3px solid var(--metal-primary);
+.mechanic-section.active {
+    display: block;
 }
 
-.download-options {
-    flex: 2;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
-
-.download-card {
-    background: var(--bg-card);
-    padding: 1.5rem;
-    border-radius: 4px;
-    border: 1px solid var(--border-color);
-    transition: var(--transition);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.download-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--metal-primary);
-}
-
-.download-icon {
-    width: 60px;
-    height: 60px;
-    background: rgba(194, 143, 61, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-    color: var(--metal-light);
-    font-size: 1.5rem;
-    border: 1px solid var(--metal-primary);
-}
-
-.download-card h3 {
-    color: var(--metal-light);
-    margin-bottom: 0.5rem;
-}
-
-.download-card p {
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    flex-grow: 1;
-}
-
-.download-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.8rem 1.5rem;
-    background: var(--metal-primary);
-    color: #000;
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: 600;
-    transition: var(--transition);
-    width: 100%;
-    justify-content: center;
-}
-
-.download-btn.secondary {
-    background: var(--bg-card-hover);
-    color: var(--metal-light);
-    border: 1px solid var(--metal-primary);
-}
-
-.download-btn:hover {
-    background: var(--metal-light);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(194, 143, 61, 0.3);
-}
-
-.download-btn.secondary:hover {
-    background: rgba(194, 143, 61, 0.2);
-}
-
-.download-requirements {
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-color);
-}
-
-.requirements-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 1.5rem;
-}
-
-.requirements-grid h4 {
-    color: var(--metal-light);
-    margin-bottom: 1rem;
-    border-bottom: 1px solid var(--metal-dark);
-    padding-bottom: 0.5rem;
-}
-
-.requirements-grid ul {
-    list-style: none;
-}
-
-.requirements-grid li {
-    padding: 0.5rem 0;
-    border-bottom: 1px dashed rgba(58, 50, 64, 0.5);
-}
-
-.requirements-grid li:last-child {
-    border-bottom: none;
+/* 动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

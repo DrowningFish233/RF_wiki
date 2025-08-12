@@ -87,145 +87,70 @@
                     <img src="https://media.forgecdn.net/attachments/1192/746/2025-02-13_19-56-jpg.jpg" alt="游戏截图">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/1192/747/2025-02-13_20-01-png.png" alt="游戏截图">
+                    <img src="https://media.forgecdn.net/attachments/1192/747/2025-02-13_20-07-png.png" alt="游戏截图">
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 特色玩法页 -->
+    <!-- 特色玩法 -->
     <div id="features" class="page-container">
         <div class="card">
             <h2>特色玩法</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>⚔️ 自定义装备系统</h3>
-                    <p>深度自定义你的护甲、武器和饰品，打造独一无二的装备组合。</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🔥 高度魔改的游玩体验</h3>
-                    <p>许多内容都是基于Kubejs进行的高度魔改！</p>
-                </div>
-                <div class="feature-card">
-                    <h3>⚒️ 类匠魂玩法</h3>
-                    <p>借鉴匠魂的优秀机制，提供丰富的制作和锻造系统。</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>更多特色</h2>
-            <ul class="feature-list">
-                <li>独特的理智值系统，影响游戏多方面机制</li>
-                <li>七宗罪侵蚀系统，带来不同游戏体验</li>
-                <li>丰富的自定义内容，打造独特游戏体验</li>
-                <li>尽量保证平衡性，确保玩家游戏体验</li>
-            </ul>
+            <p>aaa</p>
         </div>
     </div>
 
-    <!-- 机制介绍页 -->
+    <!-- 机制介绍 -->
     <div id="mechanic" class="page-container">
         <div class="mechanic-container">
             <!-- 可扩展的侧边栏 -->
             <div class="mechanic-sidebar">
                 <div class="sidebar-card">
-                    <h3>目录</h3>
-                    <ul class="mechanic-menu">
-                        <li><a href="#sanity" class="active">理智值系统</a></li>
-                        <li><a href="#sins">七宗罪机制</a></li>
-                        <li><a href="#equipment">装备系统</a></li>
-                        <li><a href="#crafting">制作系统</a></li>
-                        <li><a href="#worldgen">世界生成</a></li>
-                        <li><a href="#combat">战斗机制</a></li>
-                        <li><a href="#progression">进度系统</a></li>
+                    <h3>机制导航</h3>
+                    <ul class="sidebar-nav">
+                        <li><a href="#sanity-system" class="sidebar-link active" onclick="showMechanic('sanity-system')">理智值系统</a></li>
+                        <li><a href="#seven-sins" class="sidebar-link" onclick="showMechanic('seven-sins')">七宗罪侵蚀</a></li>
+                        <li><a href="#equipment" class="sidebar-link" onclick="showMechanic('equipment')">装备系统</a></li>
+                        <li><a href="#crafting" class="sidebar-link" onclick="showMechanic('crafting')">锻造机制</a></li>
                     </ul>
                 </div>
             </div>
 
-            <!-- 主内容区 -->
+            <!-- 主内容 -->
             <div class="mechanic-content">
-                <!-- 这里放置机制介绍的具体内容 -->
+                <!-- 理智值系统 -->
+                <div id="sanity-system" class="mechanic-section active">
+                    <h2>理智值系统</h2>
+                    <p>aaa</p>
+                </div>
+
+                <!-- 七宗罪侵蚀 -->
+                <div id="seven-sins" class="mechanic-section">
+                    <h2>七宗罪侵蚀系统</h2>
+                    <p>aaa</p>
+                </div>
+
+                <!-- 装备系统 -->
+                <div id="equipment" class="mechanic-section">
+                    <h2>自定义装备系统</h2>
+                    <p>aaa</p>
+                </div>
+
+                <!-- 锻造机制 -->
+                <div id="crafting" class="mechanic-section">
+                    <h2>锻造与制作系统</h2>
+                    <p>aaa</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- 下载页 -->
+    <!-- 下载 -->
     <div id="download" class="page-container">
         <div class="card">
-            <h2>下载「遐想铸造厂」</h2>
-            <div class="download-content">
-                <div class="download-info">
-                    <h3>当前版本: v0.0.0(暂未发布)</h3>
-                    <p>最后更新: 2025年8月12日</p>
-                    <div class="version-info">
-                        <h4>版本特性:</h4>
-                        <ul>
-                            <li>✓ 完整的自定义装备系统</li>
-                            <li>✓ 理智值和七宗罪机制</li>
-                            <li>✓ 超过100种自定义物品</li>
-                            <li>✓ 优化的游戏平衡性</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="download-options">
-                    <div class="download-card">
-                        <div class="download-icon">
-                            <i class="fab fa-curseforge"></i>
-                        </div>
-                        <h3>CurseForge</h3>
-                        <p>从CurseForge下载整合包</p>
-                        <a href="https://www.curseforge.com" class="download-btn" target="_blank">
-                            <span>前往下载</span>
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-
-                    <div class="download-card">
-                        <div class="download-icon">
-                            <i class="fas fa-book"></i>
-                        </div>
-                        <h3>MC百科文档</h3>
-                        <p>查看详细的整合包介绍和指南</p>
-                        <a href="https://www.mcmod.cn" class="download-btn secondary" target="_blank">
-                            <span>查看文档</span>
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-
-                    <div class="download-card">
-                        <div class="download-icon">
-                            <i class="fab fa-github"></i>
-                        </div>
-                        <h3>GitHub</h3>
-                        <p>访问项目源代码和问题追踪</p>
-                        <a href="https://github.com/DrowningFish233/Reverie-Foundry" class="download-btn"
-                            target="_blank">
-                            <span>访问仓库</span>
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="download-requirements">
-                <h3>系统需求</h3>
-                <div class="requirements-grid">
-                    <div>
-                        <h4>最低配置</h4>
-                        <ul>
-                            <li>内存: 5GB RAM</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>推荐配置</h4>
-                        <ul>
-                            <li>内存: 10GB RAM</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <h2>下载</h2>
+            <p>aaa</p>
         </div>
     </div>
 
@@ -235,15 +160,31 @@
             document.querySelectorAll('.page-container').forEach(page => {
                 page.classList.remove('active');
             });
-
+            
             // 显示选中的页面
             document.getElementById(pageId).classList.add('active');
-
+            
             // 更新导航栏活动状态
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
-            event.currentTarget.classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function showMechanic(sectionId) {
+            // 隐藏所有机制部分
+            document.querySelectorAll('.mechanic-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // 显示选中的部分
+            document.getElementById(sectionId).classList.add('active');
+            
+            // 更新侧边栏活动状态
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
         }
     </script>
 </body>

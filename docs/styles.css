@@ -314,7 +314,7 @@ body {
 
 .page-container.active {
     display: block;
-    animation: fadeIn 0.5s ease-out;
+    animation: fadeIn 0.5s ease-out forwards;
 }
 
 @keyframes fadeIn {
@@ -455,7 +455,7 @@ body {
     right: 0;
     bottom: 0;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(228, 212, 180, 0.8) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(228, 212, 180, 0.8) 0%, transparent 70%;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -533,14 +533,14 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at center, rgba(194, 143, 61, 0.3) 0%, transparent 70%);
+    background: linear-gradient(135deg, rgba(194, 143, 61, 0.3) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
 }
 
 .gallery-item:hover::after {
-    opacity: 1;
+    opacity: 0.5;
 }
 
 /* 机制介绍样式 */
@@ -612,11 +612,13 @@ body {
     margin-bottom: 2rem;
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
+    pointer-events: none;
 }
 
 .mechanic-section.active {
     display: block;
-    animation: fadeIn 0.4s ease-out, section-glow 3s infinite alternate;
+    animation: fadeIn 0.4s ease-out forwards, section-glow 3s infinite alternate;
+    pointer-events: auto;
 }
 
 @keyframes section-glow {
@@ -904,6 +906,37 @@ body {
     color: var(--metal-primary);
 }
 
+/* 新增页脚样式 */
+.footer {
+    background-color: var(--bg-darker);
+    padding: 2rem 1rem;
+    text-align: center;
+    border-top: 1px solid var(--metal-dark);
+    margin-top: 2rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer p {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: var(--metal-light);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer a:hover {
+    color: var(--metal-primary);
+    text-decoration: underline;
+}
+
 /* 响应式设计 */
 @media (max-width: 992px) {
     .mechanic-container {
@@ -957,17 +990,5 @@ body {
 @media (max-width: 480px) {
     .header {
         padding: 3rem 0;
-    }
-    
-    .header-content h1 {
-        font-size: 1.8rem;
-    }
-    
-    .feature-section {
-        padding: 1.2rem;
-    }
-    
-    .gallery {
-        grid-template-columns: 1fr;
     }
 }

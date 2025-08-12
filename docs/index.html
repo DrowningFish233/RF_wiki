@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="zh-CN" class="dark-theme">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>遐想铸造厂 - 整合包Wiki</title>
     <link rel="icon" href="/RF_wiki/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/RF_wiki/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Noto+Serif+SC:wght@400;700&family=UnifrakturMaguntia&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="/RF_wiki/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Noto+Serif+SC:wght@400;700&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <!-- 导航栏 -->
     <nav class="navbar">
-        <div class="navbar-container">
+        <div class="nav-container">
             <ul class="nav-tabs">
-                <li class="nav-tab"><a href="#home" class="nav-link active" onclick="showPage('home')">首页</a></li>
-                <li class="nav-tab"><a href="#features" class="nav-link" onclick="showPage('features')">特色玩法</a></li>
-                <li class="nav-tab"><a href="#mechanic" class="nav-link" onclick="showPage('mechanic')">机制介绍</a></li>
-                <li class="nav-tab"><a href="#download" class="nav-link" onclick="showPage('download')">下载</a></li>
-                <li class="nav-tab"><a href="https://github.com/DrowningFish233/Reverie-Foundry" class="nav-link" target="_blank">GitHub</a></li>
+                <li class="nav-tab"><a href="#home" class="nav-link active" onclick="showPage('home')"><i class="fas fa-home"></i> 首页</a></li>
+                <li class="nav-tab"><a href="#features" class="nav-link" onclick="showPage('features')"><i class="fas fa-star"></i> 特色玩法</a></li>
+                <li class="nav-tab"><a href="#mechanic" class="nav-link" onclick="showPage('mechanic')"><i class="fas fa-cogs"></i> 机制介绍</a></li>
+                <li class="nav-tab"><a href="#download" class="nav-link" onclick="showPage('download')"><i class="fas fa-download"></i> 下载</a></li>
+                <li class="nav-tab"><a href="https://github.com/DrowningFish233/Reverie-Foundry" class="nav-link" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
             </ul>
         </div>
     </nav>
@@ -41,15 +46,15 @@
 
                 <div class="intro-features">
                     <div class="feature-item">
-                        <h3>⚔️ 自定义装备</h3>
+                        <h3><i class="fas fa-sword"></i> 自定义装备</h3>
                         <p>完全自定义你的护甲、武器和饰品，打造独一无二的战斗风格。</p>
                     </div>
                     <div class="feature-item">
-                        <h3>🧪 深度魔改</h3>
+                        <h3><i class="fas fa-flask"></i> 深度魔改</h3>
                         <p>基于Kubejs进行的高度魔改，创造全新的游戏体验。</p>
                     </div>
                     <div class="feature-item">
-                        <h3>🧠 独特机制</h3>
+                        <h3><i class="fas fa-brain"></i> 独特机制</h3>
                         <p>自定义的理智值系统和七宗罪侵蚀机制。</p>
                     </div>
                 </div>
@@ -94,17 +99,17 @@
 
             <div class="features-grid">
                 <div class="feature-card">
-                    <h3>⚔️ 自定义装备系统</h3>
+                    <h3><i class="fas fa-sword"></i> 自定义装备系统</h3>
                     <p>深度自定义你的护甲、武器和饰品，打造独一无二的装备组合。</p>
                 </div>
 
                 <div class="feature-card">
-                    <h3>🔥 高度魔改的游玩体验</h3>
+                    <h3><i class="fas fa-magic"></i> 高度魔改的游玩体验</h3>
                     <p>许多内容都是基于Kubejs进行的高度魔改！</p>
                 </div>
 
                 <div class="feature-card">
-                    <h3>⚒️ 类匠魂玩法</h3>
+                    <h3><i class="fas fa-hammer"></i> 类匠魂玩法</h3>
                     <p>借鉴匠魂的优秀机制，提供丰富的制作和锻造系统。</p>
                 </div>
             </div>
@@ -131,8 +136,8 @@
                     <ul class="sidebar-nav">
                         <!-- 基础机制 -->
                         <li class="sidebar-section">
-                            <div class="sidebar-section-title">基础机制</div>
-                            <ul class="sidebar-subnav">
+                            <div class="sidebar-section-title" onclick="toggleSection(this)">基础机制 <i class="fas fa-chevron-down"></i></div>
+                            <ul class="sidebar-subnav" style="display:none;">
                                 <li><a href="#rational-system" class="sidebar-link" onclick="scrollToSection('rational-system')">理智系统</a></li>
                                 <li><a href="#rational-extend" class="sidebar-link" onclick="scrollToSection('rational-extend')">理智值扩展</a></li>
                                 <li><a href="#setting-explain" class="sidebar-link" onclick="scrollToSection('setting-explain')">设定解释</a></li>
@@ -141,8 +146,8 @@
 
                         <!-- 七宗罪系统 -->
                         <li class="sidebar-section">
-                            <div class="sidebar-section-title">七宗罪系统</div>
-                            <ul class="sidebar-subnav">
+                            <div class="sidebar-section-title" onclick="toggleSection(this)">七宗罪系统 <i class="fas fa-chevron-down"></i></div>
+                            <ul class="sidebar-subnav" style="display:none;">
                                 <li><a href="#pride" class="sidebar-link" onclick="scrollToSection('pride')">傲慢</a></li>
                                 <li><a href="#envy" class="sidebar-link" onclick="scrollToSection('envy')">嫉妒</a></li>
                                 <li><a href="#wrath" class="sidebar-link" onclick="scrollToSection('wrath')">暴怒</a></li>
@@ -160,52 +165,52 @@
             <div class="mechanic-content">
                 <div class="card" id="rational-system">
                     <h2>理智系统</h2>
-                    <p>请等待编辑的占位符</p>
+                    <p><占位符></p>
                 </div>
 
                 <div class="card" id="rational-extend">
                     <h2>理智值扩展</h2>
-                    <p>请等待编辑的占位符</p>
+                    <p><占位符></p>
                 </div>
 
                 <div class="card" id="setting-explain">
                     <h2>设定解释</h2>
-                    <p>请等待编辑的占位符</p>
+                    <p><占位符></p>
                 </div>
 
                 <div class="card" id="pride">
                     <h2>傲慢</h2>
-                    <p>请等待编辑的占位符</p>
+                    <p><占位符></p>
                 </div>
 
                 <div class="card" id="envy">
                     <h2>嫉妒</h2>
-                    <p>请等待编辑的占位符</p>
+                    <p><占位符></p>
                 </div>
 
                 <div class="card" id="wrath">
                     <h2>暴怒</h2>
-                    <p>请等待编辑的占位符</p>
+                    <p><占位符></p>
                 </div>
 
                 <div class="card" id="sloth">
                     <h2>懒惰</h2>
-                    <p>请等待编辑的占位符</p>
+                    <p><占位符></p>
                 </div>
 
                 <div class="card" id="greed">
                     <h2>贪婪</h2>
-                    <p>请等待编辑的占位符</p>
+                    <p><占位符></p>
                 </div>
 
                 <div class="card" id="gluttony">
                     <h2>暴食</h2>
-                    <p>请等待编辑的占位符</p>
+                    <p><占位符></p>
                 </div>
 
                 <div class="card" id="lust">
                     <h2>色欲</h2>
-                    <p>请等待编辑的占位符</p>
+                    <p><占位符></p>
                 </div>
             </div>
         </div>
@@ -217,9 +222,9 @@
             <h2>下载</h2>
             <p>请从以下链接下载整合包：</p>
             <div class="download-options">
-                <a href="#" class="download-button">CurseForge下载</a>
-                <a href="#" class="download-button">Modrinth下载</a>
-                <a href="#" class="download-button">GitHub Releases</a>
+                <a href="#" class="download-button"><i class="fas fa-download"></i> CurseForge下载</a>
+                <a href="#" class="download-button"><i class="fas fa-download"></i> Modrinth下载</a>
+                <a href="#" class="download-button"><i class="fas fa-download"></i> GitHub Releases</a>
             </div>
         </div>
     </div>
@@ -230,10 +235,10 @@
             document.querySelectorAll('.page-container').forEach(page => {
                 page.classList.remove('active');
             });
-            
+
             // 显示选中的页面
             document.getElementById(pageId).classList.add('active');
-            
+
             // 更新导航链接状态
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
@@ -241,10 +246,10 @@
                     link.classList.add('active');
                 }
             });
-            
+
             // 滚动到顶部
             window.scrollTo(0, 0);
-            
+
             // 阻止默认行为
             event.preventDefault();
         }
@@ -256,6 +261,22 @@
             }
             event.preventDefault();
         }
+
+        function toggleSection(element) {
+            const subnav = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            if (subnav.style.display === 'none') {
+                subnav.style.display = 'block';
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            } else {
+                subnav.style.display = 'none';
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            }
+        }
     </script>
 </body>
+
 </html>

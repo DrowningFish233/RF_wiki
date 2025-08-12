@@ -7,23 +7,24 @@
     <title>遐想铸造厂 - 整合包Wiki</title>
     <link rel="icon" href="/RF_wiki/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/RF_wiki/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/RF_wiki/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Noto+Serif+SC:wght@400;700&family=UnifrakturMaguntia&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/RF_wiki/styles.css">
 </head>
 
 <body>
     <!-- 导航栏 -->
     <nav class="navbar">
-        <div class="nav-container">
+        <div class="navbar-container">
             <ul class="nav-tabs">
-                <li class="nav-tab"><a href="#home" class="nav-link active" onclick="showPage('home')"><i class="fas fa-home"></i> 首页</a></li>
-                <li class="nav-tab"><a href="#features" class="nav-link" onclick="showPage('features')"><i class="fas fa-star"></i> 特色玩法</a></li>
-                <li class="nav-tab"><a href="#mechanic" class="nav-link" onclick="showPage('mechanic')"><i class="fas fa-cogs"></i> 机制介绍</a></li>
-                <li class="nav-tab"><a href="#download" class="nav-link" onclick="showPage('download')"><i class="fas fa-download"></i> 下载</a></li>
-                <li class="nav-tab"><a href="https://github.com/DrowningFish233/Reverie-Foundry" class="nav-link" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+                <li class="nav-tab"><a href="#home" class="nav-link active" onclick="showPage('home')">首页</a></li>
+                <li class="nav-tab"><a href="#features" class="nav-link" onclick="showPage('features')">特色玩法</a></li>
+                <li class="nav-tab"><a href="#mechanic" class="nav-link" onclick="showPage('mechanic')">机制介绍</a></li>
+                <li class="nav-tab"><a href="#download" class="nav-link" onclick="showPage('download')">下载</a></li>
+                <li class="nav-tab"><a href="https://github.com/DrowningFish233/Reverie-Foundry" class="nav-link"
+                        target="_blank">GitHub</a></li>
             </ul>
         </div>
     </nav>
@@ -46,15 +47,15 @@
 
                 <div class="intro-features">
                     <div class="feature-item">
-                        <h3><i class="fas fa-sword"></i> 自定义装备</h3>
+                        <h3>⚔️ 自定义装备</h3>
                         <p>完全自定义你的护甲、武器和饰品，打造独一无二的战斗风格。</p>
                     </div>
                     <div class="feature-item">
-                        <h3><i class="fas fa-flask"></i> 深度魔改</h3>
+                        <h3>🧪 深度魔改</h3>
                         <p>基于Kubejs进行的高度魔改，创造全新的游戏体验。</p>
                     </div>
                     <div class="feature-item">
-                        <h3><i class="fas fa-brain"></i> 独特机制</h3>
+                        <h3>🧠 独特机制</h3>
                         <p>自定义的理智值系统和七宗罪侵蚀机制。</p>
                     </div>
                 </div>
@@ -96,20 +97,17 @@
     <div id="features" class="page-container">
         <div class="card">
             <h2>特色玩法</h2>
-
             <div class="features-grid">
                 <div class="feature-card">
-                    <h3><i class="fas fa-sword"></i> 自定义装备系统</h3>
+                    <h3>⚔️ 自定义装备系统</h3>
                     <p>深度自定义你的护甲、武器和饰品，打造独一无二的装备组合。</p>
                 </div>
-
                 <div class="feature-card">
-                    <h3><i class="fas fa-magic"></i> 高度魔改的游玩体验</h3>
+                    <h3>🔥 高度魔改的游玩体验</h3>
                     <p>许多内容都是基于Kubejs进行的高度魔改！</p>
                 </div>
-
                 <div class="feature-card">
-                    <h3><i class="fas fa-hammer"></i> 类匠魂玩法</h3>
+                    <h3>⚒️ 类匠魂玩法</h3>
                     <p>借鉴匠魂的优秀机制，提供丰富的制作和锻造系统。</p>
                 </div>
             </div>
@@ -132,86 +130,22 @@
             <!-- 可扩展的侧边栏 -->
             <div class="mechanic-sidebar">
                 <div class="sidebar-card">
-                    <h3 class="sidebar-title">机制导航</h3>
-                    <ul class="sidebar-nav">
-                        <!-- 基础机制 -->
-                        <li class="sidebar-section">
-                            <div class="sidebar-section-title" onclick="toggleSection(this)">基础机制 <i class="fas fa-chevron-down"></i></div>
-                            <ul class="sidebar-subnav" style="display:none;">
-                                <li><a href="#rational-system" class="sidebar-link" onclick="scrollToSection('rational-system')">理智系统</a></li>
-                                <li><a href="#rational-extend" class="sidebar-link" onclick="scrollToSection('rational-extend')">理智值扩展</a></li>
-                                <li><a href="#setting-explain" class="sidebar-link" onclick="scrollToSection('setting-explain')">设定解释</a></li>
-                            </ul>
-                        </li>
-
-                        <!-- 七宗罪系统 -->
-                        <li class="sidebar-section">
-                            <div class="sidebar-section-title" onclick="toggleSection(this)">七宗罪系统 <i class="fas fa-chevron-down"></i></div>
-                            <ul class="sidebar-subnav" style="display:none;">
-                                <li><a href="#pride" class="sidebar-link" onclick="scrollToSection('pride')">傲慢</a></li>
-                                <li><a href="#envy" class="sidebar-link" onclick="scrollToSection('envy')">嫉妒</a></li>
-                                <li><a href="#wrath" class="sidebar-link" onclick="scrollToSection('wrath')">暴怒</a></li>
-                                <li><a href="#sloth" class="sidebar-link" onclick="scrollToSection('sloth')">懒惰</a></li>
-                                <li><a href="#greed" class="sidebar-link" onclick="scrollToSection('greed')">贪婪</a></li>
-                                <li><a href="#gluttony" class="sidebar-link" onclick="scrollToSection('gluttony')">暴食</a></li>
-                                <li><a href="#lust" class="sidebar-link" onclick="scrollToSection('lust')">色欲</a></li>
-                            </ul>
-                        </li>
+                    <h3>目录</h3>
+                    <ul class="mechanic-menu">
+                        <li><a href="#sanity" class="active">理智值系统</a></li>
+                        <li><a href="#sins">七宗罪机制</a></li>
+                        <li><a href="#equipment">装备系统</a></li>
+                        <li><a href="#crafting">制作系统</a></li>
+                        <li><a href="#worldgen">世界生成</a></li>
+                        <li><a href="#combat">战斗机制</a></li>
+                        <li><a href="#progression">进度系统</a></li>
                     </ul>
                 </div>
             </div>
 
-            <!-- 主要内容 -->
+            <!-- 主内容区 -->
             <div class="mechanic-content">
-                <div class="card" id="rational-system">
-                    <h2>理智系统</h2>
-                    <p><占位符></p>
-                </div>
-
-                <div class="card" id="rational-extend">
-                    <h2>理智值扩展</h2>
-                    <p><占位符></p>
-                </div>
-
-                <div class="card" id="setting-explain">
-                    <h2>设定解释</h2>
-                    <p><占位符></p>
-                </div>
-
-                <div class="card" id="pride">
-                    <h2>傲慢</h2>
-                    <p><占位符></p>
-                </div>
-
-                <div class="card" id="envy">
-                    <h2>嫉妒</h2>
-                    <p><占位符></p>
-                </div>
-
-                <div class="card" id="wrath">
-                    <h2>暴怒</h2>
-                    <p><占位符></p>
-                </div>
-
-                <div class="card" id="sloth">
-                    <h2>懒惰</h2>
-                    <p><占位符></p>
-                </div>
-
-                <div class="card" id="greed">
-                    <h2>贪婪</h2>
-                    <p><占位符></p>
-                </div>
-
-                <div class="card" id="gluttony">
-                    <h2>暴食</h2>
-                    <p><占位符></p>
-                </div>
-
-                <div class="card" id="lust">
-                    <h2>色欲</h2>
-                    <p><占位符></p>
-                </div>
+                <!-- 这里放置机制介绍的具体内容 -->
             </div>
         </div>
     </div>
@@ -219,12 +153,78 @@
     <!-- 下载页 -->
     <div id="download" class="page-container">
         <div class="card">
-            <h2>下载</h2>
-            <p>请从以下链接下载整合包：</p>
-            <div class="download-options">
-                <a href="#" class="download-button"><i class="fas fa-download"></i> CurseForge下载</a>
-                <a href="#" class="download-button"><i class="fas fa-download"></i> Modrinth下载</a>
-                <a href="#" class="download-button"><i class="fas fa-download"></i> GitHub Releases</a>
+            <h2>下载「遐想铸造厂」</h2>
+            <div class="download-content">
+                <div class="download-info">
+                    <h3>当前版本: v0.0.0(暂未发布)</h3>
+                    <p>最后更新: 2025年8月12日</p>
+                    <div class="version-info">
+                        <h4>版本特性:</h4>
+                        <ul>
+                            <li>✓ 完整的自定义装备系统</li>
+                            <li>✓ 理智值和七宗罪机制</li>
+                            <li>✓ 超过100种自定义物品</li>
+                            <li>✓ 优化的游戏平衡性</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="download-options">
+                    <div class="download-card">
+                        <div class="download-icon">
+                            <i class="fab fa-curseforge"></i>
+                        </div>
+                        <h3>CurseForge</h3>
+                        <p>从CurseForge下载整合包</p>
+                        <a href="https://www.curseforge.com" class="download-btn" target="_blank">
+                            <span>前往下载</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+
+                    <div class="download-card">
+                        <div class="download-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3>MC百科文档</h3>
+                        <p>查看详细的整合包介绍和指南</p>
+                        <a href="https://www.mcmod.cn" class="download-btn secondary" target="_blank">
+                            <span>查看文档</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+
+                    <div class="download-card">
+                        <div class="download-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h3>GitHub</h3>
+                        <p>访问项目源代码和问题追踪</p>
+                        <a href="https://github.com/DrowningFish233/Reverie-Foundry" class="download-btn"
+                            target="_blank">
+                            <span>访问仓库</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="download-requirements">
+                <h3>系统需求</h3>
+                <div class="requirements-grid">
+                    <div>
+                        <h4>最低配置</h4>
+                        <ul>
+                            <li>内存: 5GB RAM</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>推荐配置</h4>
+                        <ul>
+                            <li>内存: 10GB RAM</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -239,42 +239,11 @@
             // 显示选中的页面
             document.getElementById(pageId).classList.add('active');
 
-            // 更新导航链接状态
+            // 更新导航栏活动状态
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href') === `#${pageId}`) {
-                    link.classList.add('active');
-                }
             });
-
-            // 滚动到顶部
-            window.scrollTo(0, 0);
-
-            // 阻止默认行为
-            event.preventDefault();
-        }
-
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth' });
-            }
-            event.preventDefault();
-        }
-
-        function toggleSection(element) {
-            const subnav = element.nextElementSibling;
-            const icon = element.querySelector('i');
-            
-            if (subnav.style.display === 'none') {
-                subnav.style.display = 'block';
-                icon.classList.remove('fa-chevron-down');
-                icon.classList.add('fa-chevron-up');
-            } else {
-                subnav.style.display = 'none';
-                icon.classList.remove('fa-chevron-up');
-                icon.classList.add('fa-chevron-down');
-            }
+            event.currentTarget.classList.add('active');
         }
     </script>
 </body>

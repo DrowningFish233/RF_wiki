@@ -6,29 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>遐想铸造厂 - 整合包Wiki</title>
     <link rel="icon" href="/RF_wiki/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/RF_wiki/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/RF_wiki/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Noto+Serif+SC:wght@400;700&family=UnifrakturMaguntia&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=UnifrakturMaguntia&display=swap"
         rel="stylesheet">
 </head>
 
 <body>
-    <!-- 动态熔炉背景 -->
-    <div class="forge-background">
-        <div class="forge-glow"></div>
-    </div>
-
     <!-- 导航栏 -->
     <nav class="navbar">
-        <div class="navbar-container">
+        <div class="nav-container">
             <ul class="nav-tabs">
                 <li class="nav-tab"><a href="#home" class="nav-link active" onclick="showPage('home')">首页</a></li>
                 <li class="nav-tab"><a href="#features" class="nav-link" onclick="showPage('features')">特色玩法</a></li>
                 <li class="nav-tab"><a href="#mechanic" class="nav-link" onclick="showPage('mechanic')">机制介绍</a></li>
                 <li class="nav-tab"><a href="#download" class="nav-link" onclick="showPage('download')">下载</a></li>
-                <li class="nav-tab"><a href="https://github.com/DrowningFish233/Reverie-Foundry" class="nav-link"
-                        target="_blank">GitHub</a></li>
+                <li class="nav-tab"><a href="https://github.com/DrowningFish233/Reverie-Foundry"
+                        class="nav-link">GitHub</a></li>
             </ul>
         </div>
     </nav>
@@ -36,8 +30,7 @@
     <!-- 页眉 -->
     <header class="header">
         <div class="header-content">
-            <h1><span class="metal-text">遐</span><span class="metal-text">想</span><span class="metal-text">铸</span><span
-                    class="metal-text">造</span><span class="metal-text">厂</span></h1>
+            <h1>遐想铸造厂</h1>
             <p>以寂静装备为核心的高度魔改的冒险整合包！</p>
         </div>
     </header>
@@ -45,322 +38,234 @@
     <!-- 首页 -->
     <div id="home" class="page-container active">
         <!-- 简介卡片 -->
-        <div class="intro-card glowing-border">
+        <div class="intro-card">
             <div class="intro-content">
                 <h2>遐想铸造厂</h2>
                 <p>一个以寂静装备为核心的高度魔改冒险整合包，融合泰拉瑞亚和边狱巴士元素，致力于给玩家带来高度魔改的自定义游戏体验。</p>
 
                 <div class="intro-features">
                     <div class="feature-item">
-                        <h3><i class="fas fa-swords"></i> 自定义装备</h3>
+                        <h3>⚔️ 自定义装备</h3>
                         <p>完全自定义你的护甲、武器和饰品，打造独一无二的战斗风格。</p>
                     </div>
                     <div class="feature-item">
-                        <h3><i class="fas fa-wand-magic"></i> 深度魔改</h3>
+                        <h3>🧪 深度魔改</h3>
                         <p>基于Kubejs进行的高度魔改，创造全新的游戏体验。</p>
                     </div>
                     <div class="feature-item">
-                        <h3><i class="fas fa-brain"></i> 独特机制</h3>
-                        <p>自定义的理智值系统和七罪侵蚀机制。</p>
+                        <h3>🧠 独特机制</h3>
+                        <p>自定义的理智值系统和七宗罪侵蚀机制。</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="card glowing-border">
+        <div class="card">
             <h2>游戏截图</h2>
             <div class="gallery">
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/thumbnails/1192/727/310/172/pit1-jpg.jpg"
-                        alt="游戏截图1">
+                    <img src="https://media.forgecdn.net/attachments/1192/727/pit1-jpg.jpg" alt="游戏截图">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/thumbnails/1192/729/310/172/pit2-jpg.jpg"
-                        alt="游戏截图2">
+                    <img src="https://media.forgecdn.net/attachments/1192/729/pit2-jpg.jpg" alt="游戏截图">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/thumbnails/1192/730/310/172/pit3-jpg.jpg"
-                        alt="游戏截图3">
+                    <img src="https://media.forgecdn.net/attachments/1192/730/pit3-jpg.jpg" alt="游戏截图">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/thumbnails/1192/734/310/172/2025-02-13_20-03-jpg.jpg"
-                        alt="游戏截图4">
+                    <img src="https://media.forgecdn.net/attachments/1192/734/2025-02-13_20-03-jpg.jpg" alt="游戏截图">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/thumbnails/1192/737/310/172/2025-02-13_19-58-png.png"
-                        alt="游戏截图5">
+                    <img src="https://media.forgecdn.net/attachments/1192/737/2025-02-13_19-58-png.png" alt="游戏截图">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/thumbnails/1192/738/310/172/2025-02-13_20-05-png.png"
-                        alt="游戏截图6">
+                    <img src="https://media.forgecdn.net/attachments/1192/738/2025-02-13_20-05-png.png" alt="游戏截图">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/thumbnails/1192/747/310/172/2025-02-13_20-01-png.png"
-                        alt="游戏截图7">
+                    <img src="https://media.forgecdn.net/attachments/1192/746/2025-02-13_19-56-jpg.jpg" alt="游戏截图">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/thumbnails/1192/746/310/172/2025-02-13_19-56-jpg.jpg"
-                        alt="游戏截图8">
+                    <img src="https://media.forgecdn.net/attachments/1192/747/2025-02-13_20-01-png.png" alt="游戏截图">
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 特色玩法 -->
+    <!-- 特色玩法页 -->
     <div id="features" class="page-container">
-        <div class="card glowing-border">
+        <div class="card">
             <h2>特色玩法</h2>
-            <div class="features-content">
-                <div class="feature-section">
-                    <div class="feature-icon">
-                        <i class="fas fa-swords fa-2x"></i>
-                    </div>
-                    <div>
-                        <h3>装备自定义系统</h3>
-                        <p>通过独特的锻造系统，玩家可以完全自定义武器、护甲和饰品的属性，打造符合自己战斗风格的装备组合。</p>
-                    </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>⚔️ 自定义装备系统</h3>
+                    <p>深度自定义你的护甲、武器和饰品，打造独一无二的装备组合。</p>
                 </div>
-                <div class="feature-section">
-                    <div class="feature-icon">
-                        <i class="fas fa-wand-magic fa-2x"></i>
-                    </div>
-                    <div>
-                        <h3>深度魔改体验</h3>
-                        <p>整合包通过Kubejs进行了全面魔改，引入了全新的游戏机制和全新物品：</p>
-                        <ul>
-                            <li>超过100个新增合成配方</li>
-                            <li>精心魔改的材料系统</li>
-                            <li>动态整合包难度</li>
-                        </ul>
-                    </div>
+
+                <div class="feature-card">
+                    <h3>🔥 高度魔改的游玩体验</h3>
+                    <p>许多内容都是基于Kubejs进行的高度魔改！</p>
                 </div>
-                <div class="feature-section">
-                    <div class="feature-icon">
-                        <i class="fas fa-brain fa-2x"></i>
-                    </div>
-                    <div>
-                        <h3>理智值管理</h3>
-                        <p>理智值系统会影响游戏玩法，玩家需要在探索和战斗时注意自己的精神状态。理智值降低会触发七罪侵蚀效果，每种罪孽都会带来独特的效果。</p>
-                    </div>
-                </div>
-                <div class="feature-section">
-                    <div class="feature-icon">
-                        <i class="fas fa-dungeon fa-2x"></i>
-                    </div>
-                    <div>
-                        <h3>探险系统</h3>
-                        <p>整合包新增了许多结构与群系供您探索：</p>
-                        <ul>
-                            <li><strong>腐化之地：</strong>获取高级锻造材料</li>
-                            <li><strong>血肉群系：</strong>迷宫维度，隐藏着珍稀饰品</li>
-                            <li><strong>还有更多!</strong> </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="feature-section">
-                    <div class="feature-icon">
-                        <i class="fas fa-tasks fa-2x"></i>
-                    </div>
-                    <div>
-                        <h3>任务系统</h3>
-                        <p>独特视角描写的任务将引导玩家探索游戏内容：</p>
-                        <ul>
-                            <li>主线剧情任务</li>
-                            <li>材料收集系列挑战任务</li>
-                            <li>还有更多!</li>
-                        </ul>
-                    </div>
+
+                <div class="feature-card">
+                    <h3>⚒️ 类匠魂玩法</h3>
+                    <p>借鉴匠魂的优秀机制，提供丰富的制作和锻造系统。</p>
                 </div>
             </div>
         </div>
+
+        <div class="card">
+            <h2>更多特色</h2>
+            <ul class="feature-list">
+                <li>独特的理智值系统，影响游戏多方面机制</li>
+                <li>七宗罪侵蚀系统，带来不同游戏体验</li>
+                <li>丰富的自定义内容，打造独特游戏体验</li>
+                <li>尽量保证平衡性，确保玩家游戏体验</li>
+            </ul>
+        </div>
     </div>
 
-    <!-- 机制介绍 -->
+    <!-- 机制介绍页 -->
     <div id="mechanic" class="page-container">
         <div class="mechanic-container">
             <!-- 可扩展的侧边栏 -->
             <div class="mechanic-sidebar">
-                <div class="sidebar-card glowing-border">
-                    <h3>机制导航</h3>
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">机制导航</h3>
                     <ul class="sidebar-nav">
-                        <li><a href="#sanity-system" class="sidebar-link active"
-                                onclick="showMechanic('sanity-system')">理智值系统</a></li>
-                        <li><a href="#seven-sins" class="sidebar-link" onclick="showMechanic('seven-sins')">七罪侵蚀</a>
+                        <!-- 基础机制 -->
+                        <li class="sidebar-section">
+                            <div class="sidebar-section-title">基础机制</div>
+                            <ul class="sidebar-subnav">
+                                <li><a href="#rational-system" class="sidebar-link">理智系统</a></li>
+                                <li><a href="#rational-extend" class="sidebar-link">理智值扩展</a></li>
+                                <li><a href="#setting-explain" class="sidebar-link">设定解释</a></li>
+                            </ul>
                         </li>
-                        <li><a href="#equipment" class="sidebar-link" onclick="showMechanic('equipment')">装备系统</a></li>
-                        <li><a href="#crafting" class="sidebar-link" onclick="showMechanic('crafting')">锻造机制</a></li>
+
+                        <!-- 七宗罪系统 -->
+                        <li class="sidebar-section">
+                            <div class="sidebar-section-title">七宗罪系统</div>
+                            <ul class="sidebar-subnav">
+                                <li><a href="#pride" class="sidebar-link">傲慢</a></li>
+                                <li><a href="#envy" class="sidebar-link">嫉妒</a></li>
+                                <li><a href="#wrath" class="sidebar-link">愤怒</a></li>
+                                <li><a href="#sloth" class="sidebar-link">懒惰</a></li>
+                                <li><a href="#greed" class="sidebar-link">贪婪</a></li>
+                                <li><a href="#gluttony" class="sidebar-link">暴食</a></li>
+                                <li><a href="#lust" class="sidebar-link">色欲</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- 装备系统 -->
+                        <li class="sidebar-section">
+                            <div class="sidebar-section-title">装备系统</div>
+                            <ul class="sidebar-subnav">
+                                <li><a href="#weapons" class="sidebar-link">武器</a></li>
+                                <li><a href="#armors" class="sidebar-link">护甲</a></li>
+                                <li><a href="#accessories" class="sidebar-link">饰品</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
 
-            <!-- 主内容 -->
+            <!-- 主内容区 -->
             <div class="mechanic-content">
-                <!-- 理智值系统 -->
-                <div id="sanity-system" class="mechanic-section active glowing-border">
-                    <h2>理智值系统</h2>
-                    <p>理智值是衡量角色精神状态的重要指标，会随着游戏中的各种事件而波动。高理智值提供增益效果，而低理智值则会导致罪孽侵蚀与部分负面效果。</p>
-                    <div class="mechanic-details">
-                        <div class="detail-item glowing-border">
-                            <h4>理智值恢复</h4>
-                            <p>当生命值大于95%且饱食度>18时,缓慢恢复理智值。</p>
-                        </div>
-                        <div class="detail-item glowing-border">
-                            <h4>理智值消耗</h4>
-                            <p>当生命值小于40%,缓慢降低理智值；当生命值小于20%,理智值降低速率翻倍。</p>
-                        </div>
-                        <div class="detail-item glowing-border">
-                            <h4>词缀影响</h4>
-                            <p>拥有部分特殊饰品时,玩家的理智值会因为饰品的特殊效果,发挥出更大的作用</p>
-                        </div>
-                    </div>
+                <div class="card">
+                    <h2 id="rational-system">理智系统</h2>
+                    <p>理智系统是本整合包的核心机制之一，它会根据玩家的行为和游戏环境动态变化。</p>
+                    <p>理智值分为三个等级：正常、警告和危险，每个等级都会影响游戏的不同方面。</p>
                 </div>
 
-                <!-- 七罪侵蚀 -->
-                <div id="seven-sins" class="mechanic-section glowing-border">
-                    <h2>七罪侵蚀</h2>
-                    <p>七罪侵蚀是整合包引入的独特机制，每种罪孽都会以不同方式影响玩家的游戏体验。</p>
-                    <div class="mechanic-details">
-                        <div class="detail-item glowing-border">
-                            <h4>暴怒</h4>
-                            <p>占位符</p>
-                        </div>
-                        <div class="detail-item glowing-border">
-                            <h4>色欲</h4>
-                            <p>占位符</p>
-                        </div>
-                        <div class="detail-item glowing-border">
-                            <h4>懒惰</h4>
-                            <p>占位符</p>
-                        </div>
-                        <div class="detail-item glowing-border">
-                            <h4>傲慢</h4>
-                            <p>占位符</p>
-                        </div>
-                        <div class="detail-item glowing-border">
-                            <h4>贪婪</h4>
-                            <p>占位符</p>
-                        </div>
-                        <div class="detail-item glowing-border">
-                            <h4>暴食</h4>
-                            <p>占位符</p>
-                        </div>
-                        <div class="detail-item glowing-border">
-                            <h4>嫉妒</h4>
-                            <p>占位符</p>
-                        </div>
-                    </div>
+                <div class="card">
+                    <h2 id="rational-extend">理智值扩展</h2>
+                    <p>理智值不仅影响视觉效果，还会影响游戏机制，包括但不限于：</p>
+                    <ul class="feature-list">
+                        <li>怪物生成和强度</li>
+                        <li>物品掉落率</li>
+                        <li>特殊事件触发</li>
+                        <li>装备属性变化</li>
+                    </ul>
                 </div>
 
-                <!-- 装备系统 -->
-                <div id="equipment" class="mechanic-section glowing-border">
-                    <h2>自定义装备系统</h2>
-                    <p>通过寂静装备，玩家可以自定义装备的属性和特殊效果。</p>
-                    <div class="mechanic-details">
-                        <div class="detail-item glowing-border">
-                            <h4>材料分配</h4>
-                            <p>使用独特的金属来强化装备的各个方面。每种材料提供不同的属性加成：</p>
-                            <ul>
-                                <li>神圣金锭：镰刀熟练度+15% 神圣法术强度+10%</li>
-                                <li>魂染钢锭：镰刀熟练度+25% 使你额外获得10点的灵魂护盾,灵魂护盾恢复速率+10% 收集到精魂时所触发效果的额外强度+10%</li>
-                                <li>灌注金锭：根据经验等级提高攻击力,每30级提高1点攻击力,上限900级</li>
-                            </ul>
-                        </div>
-                        <div class="detail-item glowing-border">
-                            <h4>特殊效果</h4>
-                            <p>为装备添加独特的被动能力和主动技能：</p>
-                            <ul>
-                                <li>持有凋零合金锭词缀效果时,玩家每20秒会获得一发虎标弹,上限8发,可使用武器技能按键消耗1枚虎标弹来推进自身,并给予自身速度2
-                                    攻击会消耗1发虎标弹,造成大额击退并额外造成20%伤害(独立乘区)</li>
-                                <li>受到致死伤害后，清除所有经验，并使使用者获得相当于[经验等级/10]的伤害吸收效果，持续时间为[经验等级]秒，冷却时间600秒</li>
-                                <li>降低玩家移动速度，受击目标会受到反向击退以靠近玩家</li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="card">
+                    <h2 id="setting-explain">设定解释</h2>
+                    <p>整合包的世界观设定融合了克苏鲁神话元素和黑暗奇幻风格，理智系统正是这一设定的体现。</p>
                 </div>
 
-                <!-- 锻造机制 -->
-                <div id="crafting" class="mechanic-section glowing-border">
-                    <h2>锻造与制作系统</h2>
-                    <p>整合包引入了类匠魂的材料锻造机制，取代了部分原版合成表。</p>
-                    <div class="mechanic-details">
-                        <div class="detail-item glowing-border">
-                            <h4>材料品质</h4>
-                            <p>不同品质的材料会影响最终成品的属性。材料分为多种等级：</p>
-                            <ul>
-                                <li>不同的等级会影响材料锻造出来的数值</li>
-                            </ul>
-                        </div>
-                        <div class="detail-item glowing-border">
-                            <h4>装备词缀</h4>
-                            <p>吸取了泰拉瑞亚的部分机制：</p>
-                            <ul>
-                                <li>武器词缀：每个装备在制造之初都有概率部分独特词缀</li>
-                                <li>词缀重铸：从商人处购买重铸锤,重铸掉你不想要的武器词缀!</li>
-                            </ul>
-                        </div>
-                    </div>
+                <!-- 七宗罪系统内容 -->
+                <div class="card">
+                    <h2 id="pride">傲慢</h2>
+                    <p>傲慢会影响玩家的攻击力和防御力，但会降低与其他玩家的互动效果。</p>
                 </div>
+
+                <div class="card">
+                    <h2 id="envy">嫉妒</h2>
+                    <p>嫉妒会使玩家对稀有物品有更强的渴望，同时影响战利品掉落。</p>
+                </div>
+
+                <!-- 其他七宗罪内容... -->
             </div>
         </div>
     </div>
 
-    <!-- 下载 -->
+    <!-- 下载页 -->
     <div id="download" class="page-container">
-        <div class="download-container">
-            <div class="download-card glowing-border">
-                <h2>下载遐想铸造厂</h2>
-                <div class="download-options">
-                    <div class="download-option glowing-border">
-                        <h3><i class="fas fa-download"></i> 最新版本</h3>
-                        <p>版本号: v0.0.0</p>
-                        <p>发布日期: 暂未发布</p>
-                        <a href="#" class="download-button">下载整合包</a>
-                    </div>
-                    <div class="download-option glowing-border">
-                        <h3><i class="fas fa-code-branch"></i> GitHub</h3>
-                        <p>获取源代码和问题追踪</p>
-                        <a href="https://github.com/DrowningFish233/Reverie-Foundry" class="download-button"
-                            target="_blank">访问GitHub</a>
-                    </div>
-                </div>
-                <div class="download-info">
-                    <h3><i class="fas fa-info-circle"></i> 安装说明</h3>
-                    <ol>
-                        <li>下载整合包文件(.zip格式)</li>
-                        <li>在启动器中导入下载的整合包文件</li>
-                        <li>确保分配至少6GB内存给Minecraft</li>
-                        <li>启动游戏并享受冒险！</li>
-                    </ol>
-                    <div class="system-requirements">
-                        <h4>系统要求</h4>
-                        <p>最低配置: 6GB内存</p>
-                        <p>推荐配置: 10GB内存</p>
-                    </div>
+        <div class="card">
+            <h2>下载整合包</h2>
+            <p>当前最新版本: v1.0.0</p>
 
-                    <!-- 新增的版权声明 -->
-                    <div class="copyright-notice glowing-border">
-                        <h4><i class="fas fa-exclamation-triangle"></i> 版权声明</h4>
-                        <p>本整合包不会进行任何盈利性行为，且只会在以下平台提供：</p>
-                        <ul>
-                            <li>CurseForge - 官方发布平台</li>
-                            <li>GitHub - 源代码和问题追踪</li>
-                            <li>MC百科 - 主要活跃论坛</li>
-                        </ul>
-                        <p>如果你在其他地方发现了倒卖或付费下载等情况，请报告给<a href="https://github.com/DrowningFish233"
-                                target="_blank">鳕鱼</a>！</p>
-                    </div>
+            <div class="download-options">
+                <div class="download-card">
+                    <h3>CurseForge</h3>
+                    <p>从CurseForge平台下载，自动管理依赖</p>
+                    <a href="https://www.curseforge.com/minecraft/modpacks/reverie-foundry" class="download-btn"
+                        target="_blank">
+                        前往CurseForge
+                    </a>
+                </div>
+
+                <div class="download-card">
+                    <h3>CurseForge</h3>
+                    <p>从CurseForge平台下载，自动管理依赖</p>
+                    <a href="https://www.mcmod.cn/modpack/907.html" class="download-btn" target="_blank">
+                        前往MCMOD
+                    </a>
+                </div>
+
+                <div class="download-card">
+                    <h3>GitHub</h3>
+                    <p>从GitHub获取源代码和最新版本</p>
+                    <a href="https://github.com/DrowningFish233/Reverie-Foundry" class="download-btn" target="_blank">
+                        前往GitHub
+                    </a>
+                </div>
+            </div>
+
+            <div class="installation-instructions">
+                <h3>安装说明</h3>
+                <ol class="install-steps">
+                    <li>确保已安装Java 17或更高版本</li>
+                    <li>下载整合包文件</li>
+                    <li>在启动器中导入下载的整合包</li>
+                    <li>启动游戏并享受！</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>更新日志</h2>
+            <div class="changelog">
+                <div class="version-card">
+                    <h3>v1.0.0 - 暂未发布</h3>
+                    <ul class="changelog-list">
+                        <li>敬请期待</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- 新增页脚 -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>© 2023 遐想铸造厂 - 整合包Wiki. 保留所有权利.</p>
-            <p>由鳕鱼制作 | <a href="https://github.com/DrowningFish233/Reverie-Foundry" target="_blank">GitHub</a></p>
-        </div>
-    </footer>
 
     <script>
         function showPage(pageId) {
@@ -372,75 +277,14 @@
             // 显示选中的页面
             document.getElementById(pageId).classList.add('active');
 
-            // 更新导航栏活动状态
+            // 更新导航链接状态
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href') === `#${pageId}`) {
                     link.classList.add('active');
                 }
             });
-
-            // 如果是机制介绍页面，默认显示第一个机制
-            if (pageId === 'mechanic') {
-                showMechanic('sanity-system');
-            }
         }
-
-        function showMechanic(sectionId) {
-            // 隐藏所有机制部分
-            document.querySelectorAll('.mechanic-section').forEach(section => {
-                section.classList.remove('active');
-            });
-
-            // 显示选中的部分
-            document.getElementById(sectionId).classList.add('active');
-
-            // 更新侧边栏活动状态
-            document.querySelectorAll('.sidebar-link').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // 粒子效果
-        function createParticles() {
-            const container = document.querySelector('.forge-background');
-            for (let i = 0; i < 15; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'metal-particle';
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                particle.style.animationDelay = `${Math.random() * 5}s`;
-                container.appendChild(particle);
-            }
-        }
-
-        // 金属卡片悬停效果
-        function setupCardHoverEffects() {
-            const cards = document.querySelectorAll('.card, .intro-card, .detail-item, .download-option, .sidebar-card, .mechanic-section');
-            cards.forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    card.style.setProperty('--glow-x', `${x}px`);
-                    card.style.setProperty('--glow-y', `${y}px`);
-                });
-
-                card.addEventListener('mouseleave', () => {
-                    card.style.setProperty('--glow-x', '50%');
-                    card.style.setProperty('--glow-y', '50%');
-                });
-            });
-        }
-
-        // 初始化效果
-        document.addEventListener('DOMContentLoaded', () => {
-            createParticles();
-            setupCardHoverEffects();
-        });
     </script>
 </body>
 

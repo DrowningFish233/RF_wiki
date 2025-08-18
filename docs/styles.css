@@ -851,6 +851,60 @@ body {
     }
 }
 
+/* 新增下载按钮样式 */
+.download-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.download-button.modrinth-button {
+    background: linear-gradient(to right, #1bd96a, #0e8a4a);
+    box-shadow: 0 0 15px rgba(27, 217, 106, 0.5);
+    animation: button-pulse-modrinth 3s infinite;
+}
+
+.download-button.curseforge-button {
+    background: linear-gradient(to right, #f16436, #d84a1b);
+    box-shadow: 0 0 15px rgba(241, 100, 54, 0.5);
+    animation: button-pulse-curseforge 3s infinite;
+}
+
+.download-button.modrinth-button:hover {
+    background: linear-gradient(to right, #0e8a4a, #1bd96a);
+    box-shadow: 0 0 30px rgba(27, 217, 106, 0.8);
+}
+
+.download-button.curseforge-button:hover {
+    background: linear-gradient(to right, #d84a1b, #f16436);
+    box-shadow: 0 0 30px rgba(241, 100, 54, 0.8);
+}
+
+@keyframes button-pulse-modrinth {
+
+    0%,
+    100% {
+        box-shadow: 0 0 15px rgba(27, 217, 106, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(27, 217, 106, 0.8);
+    }
+}
+
+@keyframes button-pulse-curseforge {
+
+    0%,
+    100% {
+        box-shadow: 0 0 15px rgba(241, 100, 54, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(241, 100, 54, 0.8);
+    }
+}
+
 .download-info {
     background-color: var(--bg-darker);
     padding: 2rem;
@@ -989,6 +1043,10 @@ body {
     .feature-icon {
         margin-bottom: 1rem;
     }
+
+    .download-buttons {
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1006,66 +1064,5 @@ body {
 
     .gallery {
         grid-template-columns: 1fr;
-    }
-}
-
-/* 新增下载按钮样式 */
-.download-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 1.5rem;
-}
-
-.download-button.modrinth-button {
-    background: linear-gradient(to right, #1bd96a, #0e8a4a);
-    box-shadow: 0 0 15px rgba(27, 217, 106, 0.5);
-    animation: button-pulse-modrinth 3s infinite;
-}
-
-.download-button.curseforge-button {
-    background: linear-gradient(to right, #f16436, #d84a1b);
-    box-shadow: 0 0 15px rgba(241, 100, 54, 0.5);
-    animation: button-pulse-curseforge 3s infinite;
-}
-
-.download-button.modrinth-button:hover {
-    background: linear-gradient(to right, #0e8a4a, #1bd96a);
-    box-shadow: 0 0 30px rgba(27, 217, 106, 0.8);
-}
-
-.download-button.curseforge-button:hover {
-    background: linear-gradient(to right, #d84a1b, #f16436);
-    box-shadow: 0 0 30px rgba(241, 100, 54, 0.8);
-}
-
-@keyframes button-pulse-modrinth {
-
-    0%,
-    100% {
-        box-shadow: 0 0 15px rgba(27, 217, 106, 0.5);
-    }
-
-    50% {
-        box-shadow: 0 0 20px rgba(27, 217, 106, 0.8);
-    }
-}
-
-@keyframes button-pulse-curseforge {
-
-    0%,
-    100% {
-        box-shadow: 0 0 15px rgba(241, 100, 54, 0.5);
-    }
-
-    50% {
-        box-shadow: 0 0 20px rgba(241, 100, 54, 0.8);
-    }
-}
-
-/* 响应式调整 */
-@media (max-width: 480px) {
-    .download-buttons {
-        flex-direction: column;
     }
 }

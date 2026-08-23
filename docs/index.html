@@ -65,6 +65,11 @@
             color: var(--metal-light);
         }
 
+        .mat-ref-toolbar .page-size-select {
+            min-width: 100px;
+            cursor: pointer;
+        }
+
         /* ===== 左右滚动按钮 + 表格容器 ===== */
         .mat-ref-scroll-wrapper {
             position: relative;
@@ -122,7 +127,6 @@
             scroll-behavior: smooth;
         }
 
-        /* 滚动条美化 */
         .mat-ref-table-wrap-scroll::-webkit-scrollbar {
             height: 6px;
         }
@@ -197,8 +201,7 @@
         .mat-ref-table {
             width: 100%;
             min-width: 1200px;
-            border-collapse: separate;
-            border-spacing: 0;
+            border-collapse: collapse;
             font-size: 0.9rem;
         }
 
@@ -238,36 +241,15 @@
             white-space: nowrap;
         }
 
-        /* ===== 固定第一列（名称） ===== */
-        .mat-ref-table th:first-child,
-        .mat-ref-table td:first-child {
-            position: sticky;
-            left: 0;
-            z-index: 3;
-            background: var(--bg-darker);
-            min-width: 150px;
-            max-width: 200px;
-        }
-
-        .mat-ref-table th:first-child {
-            z-index: 4;
-            /* 表头优先级更高 */
-        }
-
-        .mat-ref-table td:first-child {
-            background: var(--bg-card);
-            border-right: 2px solid var(--metal-dark);
-        }
-
-        .mat-ref-table tbody tr:nth-child(even) td:first-child {
-            background: rgba(22, 19, 26, 0.5);
-        }
-
-        .mat-ref-table tbody tr:hover td:first-child {
+        .mat-ref-table tbody tr:hover {
             background: var(--bg-card-hover);
         }
 
-        .mat-ref-table tbody tr:nth-child(even):hover td:first-child {
+        .mat-ref-table tbody tr:nth-child(even) {
+            background: rgba(22, 19, 26, 0.5);
+        }
+
+        .mat-ref-table tbody tr:nth-child(even):hover {
             background: var(--bg-card-hover);
         }
 
@@ -432,11 +414,6 @@
             .mat-ref-table th,
             .mat-ref-table td {
                 padding: 0.4rem 0.5rem;
-            }
-            .mat-ref-table th:first-child,
-            .mat-ref-table td:first-child {
-                min-width: 110px;
-                max-width: 140px;
             }
             .mat-pagination {
                 gap: 0.3rem;
@@ -748,6 +725,14 @@
                         <select id="matCatFilter"><option value="">全部类别</option></select>
                         <select id="matSrcFilter"><option value="">全部来源</option></select>
                         <select id="matHarvestFilter"><option value="">全部采集等级</option></select>
+                        <select id="pageSizeSelect" class="page-size-select">
+                            <option value="10">10 条/页</option>
+                            <option value="25" selected>25 条/页</option>
+                            <option value="50">50 条/页</option>
+                            <option value="75">75 条/页</option>
+                            <option value="100">100 条/页</option>
+                            <option value="-1">全部渲染</option>
+                        </select>
                         <button class="btn-reset" id="matResetBtn"><i class="fas fa-undo"></i> 重置</button>
                         <span class="count-badge">当前 <b id="matCount">0</b> 条</span>
                     </div>
@@ -861,7 +846,11 @@
         let MAT_HEAD = [];
         let matSort = { col: 'name', dir: 1 };
 
-        const PAGE_SIZE = 20;
+        function getPageSize() {
+            const val = parseInt(document.getElementById('pageSizeSelect').value);
+            return val === -1 ? Infinity : val;
+        }
+
         let currentPage = 1;
         let filteredList = [];
 
@@ -922,6 +911,7 @@
             });
             hvSel.insertAdjacentHTML('beforeend', `<option value="none">无等级</option>`);
 
+            // 绑定搜索和筛选事件
             ['matSearch', 'matTypeFilter', 'matCatFilter', 'matSrcFilter', 'matHarvestFilter'].forEach(id => {
                 const el = document.getElementById(id);
                 el.addEventListener('input', () => { currentPage = 1;
@@ -929,12 +919,20 @@
                 el.addEventListener('change', () => { currentPage = 1;
                     applyFiltersAndRender(); });
             });
+
+            // 每页条数变化
+            document.getElementById('pageSizeSelect').addEventListener('change', () => {
+                currentPage = 1;
+                applyFiltersAndRender();
+            });
+
             document.getElementById('matResetBtn').addEventListener('click', () => {
                 document.getElementById('matSearch').value = '';
                 document.getElementById('matTypeFilter').value = '';
                 document.getElementById('matCatFilter').value = '';
                 document.getElementById('matSrcFilter').value = '';
                 document.getElementById('matHarvestFilter').value = '';
+                document.getElementById('pageSizeSelect').value = '25';
                 currentPage = 1;
                 applyFiltersAndRender();
             });
@@ -958,7 +956,8 @@
                     renderPage(); }
             });
             document.getElementById('pageNext').addEventListener('click', () => {
-                const total = Math.ceil(filteredList.length / PAGE_SIZE);
+                const pageSize = getPageSize();
+                const total = pageSize === Infinity ? 1 : Math.ceil(filteredList.length / pageSize);
                 if (currentPage < total) { currentPage++;
                     renderPage(); }
             });
@@ -998,7 +997,8 @@
             });
 
             document.getElementById('matCount').textContent = filteredList.length;
-            const totalPages = Math.ceil(filteredList.length / PAGE_SIZE) || 1;
+            const pageSize = getPageSize();
+            const totalPages = pageSize === Infinity ? 1 : Math.ceil(filteredList.length / pageSize);
             if (currentPage > totalPages) currentPage = totalPages;
 
             if (!document.getElementById('matHead').children.length) {
@@ -1018,13 +1018,20 @@
 
         function renderPage() {
             const total = filteredList.length;
-            const totalPages = Math.ceil(total / PAGE_SIZE) || 1;
+            const pageSize = getPageSize();
+            const totalPages = pageSize === Infinity ? 1 : Math.ceil(total / pageSize);
+
             if (currentPage < 1) currentPage = 1;
             if (currentPage > totalPages) currentPage = totalPages;
 
-            const start = (currentPage - 1) * PAGE_SIZE;
-            const end = Math.min(start + PAGE_SIZE, total);
-            const pageData = filteredList.slice(start, end);
+            let pageData;
+            if (pageSize === Infinity) {
+                pageData = filteredList;
+            } else {
+                const start = (currentPage - 1) * pageSize;
+                const end = Math.min(start + pageSize, total);
+                pageData = filteredList.slice(start, end);
+            }
 
             const tbody = document.getElementById('matBody');
             tbody.innerHTML = pageData.map(m => {
@@ -1048,39 +1055,45 @@
                 return `<tr>${cells}</tr>`;
             }).join('');
 
+            // 更新分页控件
             document.getElementById('pageCurrent').textContent = currentPage;
             document.getElementById('pageTotal').textContent = totalPages;
-            document.getElementById('pagePrev').disabled = currentPage <= 1;
-            document.getElementById('pageNext').disabled = currentPage >= totalPages;
+            document.getElementById('pagePrev').disabled = currentPage <= 1 || pageSize === Infinity;
+            document.getElementById('pageNext').disabled = currentPage >= totalPages || pageSize === Infinity;
 
             const pageNumContainer = document.getElementById('pageNumbers');
-            let pages = [];
-            if (totalPages <= 7) {
-                for (let i = 1; i <= totalPages; i++) pages.push(i);
+            if (pageSize === Infinity) {
+                pageNumContainer.innerHTML = `<span style="color:var(--text-secondary);">📄 显示全部 ${total} 条</span>`;
             } else {
-                pages.push(1);
-                let startPage = Math.max(2, currentPage - 2);
-                let endPage = Math.min(totalPages - 1, currentPage + 2);
-                if (startPage > 2) pages.push('...');
-                for (let i = startPage; i <= endPage; i++) pages.push(i);
-                if (endPage < totalPages - 1) pages.push('...');
-                pages.push(totalPages);
-            }
-
-            pageNumContainer.innerHTML = pages.map(p => {
-                if (p === '...') {
-                    return `<span style="color:var(--text-secondary);padding:0 4px;">…</span>`;
+                let pages = [];
+                if (totalPages <= 7) {
+                    for (let i = 1; i <= totalPages; i++) pages.push(i);
+                } else {
+                    pages.push(1);
+                    let startPage = Math.max(2, currentPage - 2);
+                    let endPage = Math.min(totalPages - 1, currentPage + 2);
+                    if (startPage > 2) pages.push('...');
+                    for (let i = startPage; i <= endPage; i++) pages.push(i);
+                    if (endPage < totalPages - 1) pages.push('...');
+                    pages.push(totalPages);
                 }
-                const active = p === currentPage ? 'active-page' : '';
-                return `<button class="${active}" onclick="goToPage(${p})">${p}</button>`;
-            }).join('');
+
+                pageNumContainer.innerHTML = pages.map(p => {
+                    if (p === '...') {
+                        return `<span style="color:var(--text-secondary);padding:0 4px;">…</span>`;
+                    }
+                    const active = p === currentPage ? 'active-page' : '';
+                    return `<button class="${active}" onclick="goToPage(${p})">${p}</button>`;
+                }).join('');
+            }
 
             bindTraitHover();
             setTimeout(setupScrollButtons, 50);
         }
 
         function goToPage(page) {
-            const total = Math.ceil(filteredList.length / PAGE_SIZE) || 1;
+            const pageSize = getPageSize();
+            const total = pageSize === Infinity ? 1 : Math.ceil(filteredList.length / pageSize);
             if (page < 1 || page > total) return;
             currentPage = page;
             renderPage();

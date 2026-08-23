@@ -65,6 +65,58 @@
             color: var(--metal-light);
         }
 
+        /* ===== 分页控件 ===== */
+        .mat-pagination {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem 0;
+            margin-top: 0.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mat-pagination button {
+            background: var(--bg-dark);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 0.4rem 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+            font-size: 0.85rem;
+            min-width: 36px;
+        }
+
+        .mat-pagination button:hover:not(:disabled) {
+            border-color: var(--metal-primary);
+            color: var(--metal-light);
+            background: var(--bg-card-hover);
+        }
+
+        .mat-pagination button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .mat-pagination button.active-page {
+            background: var(--metal-dark);
+            color: #fff;
+            border-color: var(--metal-primary);
+        }
+
+        .mat-pagination .page-info {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding: 0 0.5rem;
+        }
+
+        .mat-pagination .page-info b {
+            color: var(--metal-light);
+        }
+
         .mat-ref-table-wrap {
             overflow-x: auto;
             border-radius: 6px;
@@ -245,7 +297,6 @@
             }
         }
 
-        /* 重置按钮 */
         .btn-reset {
             background: var(--bg-dark);
             color: var(--text-secondary);
@@ -280,6 +331,14 @@
             .mat-ref-table th,
             .mat-ref-table td {
                 padding: 0.4rem 0.5rem;
+            }
+            .mat-pagination {
+                gap: 0.3rem;
+            }
+            .mat-pagination button {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.8rem;
+                min-width: 30px;
             }
         }
     </style>
@@ -458,7 +517,6 @@
             </div>
 
             <div class="mechanic-content">
-                <!-- 理智值系统 -->
                 <div id="sanity-system" class="mechanic-section active glowing-border">
                     <h2>理智值系统</h2>
                     <p>理智值是衡量角色精神状态的重要指标，会随着游戏中的各种事件而波动。高理智值提供增益效果，而低理智值则会导致罪孽侵蚀与部分负面效果。</p>
@@ -478,7 +536,6 @@
                     </div>
                 </div>
 
-                <!-- 七罪侵蚀 -->
                 <div id="seven-sins" class="mechanic-section glowing-border">
                     <h2>七罪侵蚀</h2>
                     <p>七罪侵蚀是整合包引入的独特机制，每种罪孽都会以不同方式影响玩家的游戏体验。</p>
@@ -514,7 +571,6 @@
                     </div>
                 </div>
 
-                <!-- 装备系统 -->
                 <div id="equipment" class="mechanic-section glowing-border">
                     <h2>自定义装备系统</h2>
                     <p>通过寂静装备，玩家可以自定义装备的属性和特殊效果。</p>
@@ -540,7 +596,6 @@
                     </div>
                 </div>
 
-                <!-- 锻造机制 -->
                 <div id="crafting" class="mechanic-section glowing-border">
                     <h2>锻造与制作系统</h2>
                     <p>整合包引入了类匠魂的材料锻造机制，取代了部分原版合成表。</p>
@@ -570,7 +625,7 @@
     <div id="matref" class="page-container">
         <div class="card glowing-border">
             <h2><i class="fas fa-table"></i> 材料速查表</h2>
-            <p style="color:var(--text-secondary);margin-bottom:1.5rem;">数据来源：游戏内 <code>/sgear mats dump</code> 与 <code>/sgear traits dump_md</code> 导出</p>
+            <p style="color:var(--text-secondary);margin-bottom:1.5rem;">数据来源：游戏内 <code>/sgear mats dump</code> 与 <code>/sgear traits dump_md</code> 导出 · 共 <b id="totalMatCount">0</b> 条材料</p>
 
             <div class="mat-ref-container" id="matRefContainer">
                 <!-- 加载状态 -->
@@ -589,7 +644,7 @@
                         <select id="matSrcFilter"><option value="">全部来源</option></select>
                         <select id="matHarvestFilter"><option value="">全部采集等级</option></select>
                         <button class="btn-reset" id="matResetBtn"><i class="fas fa-undo"></i> 重置</button>
-                        <span class="count-badge">共 <b id="matCount">0</b> 条材料</span>
+                        <span class="count-badge">当前 <b id="matCount">0</b> 条</span>
                     </div>
 
                     <!-- 表格 -->
@@ -598,6 +653,14 @@
                             <thead id="matHead"></thead>
                             <tbody id="matBody"></tbody>
                         </table>
+                    </div>
+
+                    <!-- 分页控件 -->
+                    <div class="mat-pagination" id="matPagination">
+                        <button id="pagePrev" disabled><i class="fas fa-chevron-left"></i></button>
+                        <span id="pageNumbers"></span>
+                        <button id="pageNext" disabled><i class="fas fa-chevron-right"></i></button>
+                        <span class="page-info">第 <b id="pageCurrent">1</b> / <b id="pageTotal">1</b> 页</span>
                     </div>
                 </div>
             </div>
@@ -678,14 +741,18 @@
         }
 
         // ============================================================
-        //  2. 材料速查 - 加载 data.json
+        //  2. 材料速查 - 分页加载
         // ============================================================
         let MATS = [];
-        let TRAITS = [];
         let NUMCOLS = [];
         let MAT_HEAD = [];
         let matSort = { col: 'name', dir: 1 };
         let traitTipEl = document.getElementById('traitTip');
+
+        // 分页配置
+        const PAGE_SIZE = 50;
+        let currentPage = 1;
+        let filteredList = [];
 
         function loadMatRefData() {
             const loading = document.getElementById('matLoading');
@@ -698,18 +765,19 @@
                 })
                 .then(data => {
                     MATS = data.materials || [];
-                    TRAITS = data.traits || [];
                     NUMCOLS = data.num_cols || [];
 
                     // 构建表头
-                    const headCols = ['名称', '类型', 'ID', '类别', '特性', '稀有度'].concat(NUMCOLS);
-                    MAT_HEAD = headCols;
+                    MAT_HEAD = ['名称', '类型', 'ID', '类别', '特性', '稀有度'].concat(NUMCOLS);
+
+                    // 更新总数
+                    document.getElementById('totalMatCount').textContent = MATS.length;
 
                     // 填充筛选下拉
                     populateFilters(data);
 
-                    // 渲染表格
-                    renderMatTable();
+                    // 初始渲染
+                    applyFiltersAndRender();
 
                     loading.style.display = 'none';
                     content.style.display = 'block';
@@ -726,37 +794,35 @@
         }
 
         function populateFilters(data) {
-            // 类型
             const typeSel = document.getElementById('matTypeFilter');
             (data.types || []).forEach(t => {
                 typeSel.insertAdjacentHTML('beforeend', `<option value="${esc(t)}">${esc(t)}</option>`);
             });
 
-            // 类别
             const catSel = document.getElementById('matCatFilter');
             (data.cats || []).forEach(c => {
                 catSel.insertAdjacentHTML('beforeend', `<option value="${esc(c)}">${esc(c)}</option>`);
             });
 
-            // 来源
             const srcSel = document.getElementById('matSrcFilter');
             ['silentgear', 'kubejs', 'silentgems'].forEach(s => {
                 const label = s === 'silentgear' ? '原版' : s === 'kubejs' ? 'Reverie Foundry' : "Silent's Gems";
                 srcSel.insertAdjacentHTML('beforeend', `<option value="${s}">${label}</option>`);
             });
 
-            // 采集等级
             const hvSel = document.getElementById('matHarvestFilter');
             (data.harvest_levels || []).forEach(lv => {
-                const label = lv % 1 === 0 ? String(lv) : String(lv);
-                hvSel.insertAdjacentHTML('beforeend', `<option value="${lv}">Lv ${label}</option>`);
+                hvSel.insertAdjacentHTML('beforeend', `<option value="${lv}">Lv ${lv}</option>`);
             });
             hvSel.insertAdjacentHTML('beforeend', `<option value="none">无等级</option>`);
 
-            // 事件绑定
+            // 绑定事件
             ['matSearch', 'matTypeFilter', 'matCatFilter', 'matSrcFilter', 'matHarvestFilter'].forEach(id => {
-                document.getElementById(id).addEventListener('input', renderMatTable);
-                document.getElementById(id).addEventListener('change', renderMatTable);
+                const el = document.getElementById(id);
+                el.addEventListener('input', () => { currentPage = 1;
+                    applyFiltersAndRender(); });
+                el.addEventListener('change', () => { currentPage = 1;
+                    applyFiltersAndRender(); });
             });
             document.getElementById('matResetBtn').addEventListener('click', () => {
                 document.getElementById('matSearch').value = '';
@@ -764,10 +830,11 @@
                 document.getElementById('matCatFilter').value = '';
                 document.getElementById('matSrcFilter').value = '';
                 document.getElementById('matHarvestFilter').value = '';
-                renderMatTable();
+                currentPage = 1;
+                applyFiltersAndRender();
             });
 
-            // 表头排序点击
+            // 表头排序
             document.getElementById('matHead').addEventListener('click', (e) => {
                 const th = e.target.closest('th');
                 if (!th) return;
@@ -778,18 +845,30 @@
                 document.querySelectorAll('#matHead th .sort-arrow').forEach(a => a.textContent = '');
                 const arrow = th.querySelector('.sort-arrow');
                 if (arrow) arrow.textContent = matSort.dir === 1 ? '▲' : '▼';
-                renderMatTable();
+                currentPage = 1;
+                applyFiltersAndRender();
+            });
+
+            // 分页按钮
+            document.getElementById('pagePrev').addEventListener('click', () => {
+                if (currentPage > 1) { currentPage--;
+                    renderPage(); }
+            });
+            document.getElementById('pageNext').addEventListener('click', () => {
+                const total = Math.ceil(filteredList.length / PAGE_SIZE);
+                if (currentPage < total) { currentPage++;
+                    renderPage(); }
             });
         }
 
-        function renderMatTable() {
+        function applyFiltersAndRender() {
             const q = document.getElementById('matSearch').value.trim().toLowerCase();
             const ft = document.getElementById('matTypeFilter').value;
             const fc = document.getElementById('matCatFilter').value;
             const fs = document.getElementById('matSrcFilter').value;
             const fh = document.getElementById('matHarvestFilter').value;
 
-            let list = MATS.filter(m => {
+            filteredList = MATS.filter(m => {
                 if (ft && m.type !== ft) return false;
                 if (fc && !(m.cat || '').split(',').map(x => x.trim()).includes(fc)) return false;
                 if (fs && m.id.split(':')[0] !== fs) return false;
@@ -806,7 +885,7 @@
 
             // 排序
             const { col, dir } = matSort;
-            list.sort((a, b) => {
+            filteredList.sort((a, b) => {
                 if (['name', 'id', 'type', 'cat', 'trait_raw'].includes(col)) {
                     return String(a[col] || '').localeCompare(String(b[col] || ''), 'zh') * dir;
                 }
@@ -816,23 +895,38 @@
                 return (va - vb) * dir;
             });
 
-            document.getElementById('matCount').textContent = list.length;
+            document.getElementById('matCount').textContent = filteredList.length;
+            const totalPages = Math.ceil(filteredList.length / PAGE_SIZE) || 1;
+            if (currentPage > totalPages) currentPage = totalPages;
 
-            // 构建表头
+            // 构建表头（仅首次）
             if (!document.getElementById('matHead').children.length) {
                 const headRow = document.createElement('tr');
                 MAT_HEAD.forEach((h, i) => {
                     const th = document.createElement('th');
-                    th.dataset.col = i < 6 ? ['name', 'type', 'id', 'cat', 'trait_raw', 'rarity_raw'][i] : NUMCOLS[i - 6];
+                    const colKey = i < 6 ? ['name', 'type', 'id', 'cat', 'trait_raw', 'rarity_raw'][i] : NUMCOLS[i - 6];
+                    th.dataset.col = colKey;
                     th.innerHTML = `<span class="th-inner">${h}<span class="sort-arrow"></span></span>`;
                     headRow.appendChild(th);
                 });
                 document.getElementById('matHead').appendChild(headRow);
             }
 
-            // 渲染行
+            renderPage();
+        }
+
+        function renderPage() {
+            const total = filteredList.length;
+            const totalPages = Math.ceil(total / PAGE_SIZE) || 1;
+            if (currentPage < 1) currentPage = 1;
+            if (currentPage > totalPages) currentPage = totalPages;
+
+            const start = (currentPage - 1) * PAGE_SIZE;
+            const end = Math.min(start + PAGE_SIZE, total);
+            const pageData = filteredList.slice(start, end);
+
             const tbody = document.getElementById('matBody');
-            tbody.innerHTML = list.map(m => {
+            tbody.innerHTML = pageData.map(m => {
                 let cells = `
                     <td><b>${esc(m.name)}</b></td>
                     <td>${srcPill(m.id.split(':')[0])}<span class="pill type">${esc(m.type)}</span></td>
@@ -853,8 +947,44 @@
                 return `<tr>${cells}</tr>`;
             }).join('');
 
+            // 更新分页控件
+            document.getElementById('pageCurrent').textContent = currentPage;
+            document.getElementById('pageTotal').textContent = totalPages;
+            document.getElementById('pagePrev').disabled = currentPage <= 1;
+            document.getElementById('pageNext').disabled = currentPage >= totalPages;
+
+            // 生成页码按钮（最多显示7个）
+            const pageNumContainer = document.getElementById('pageNumbers');
+            let pages = [];
+            if (totalPages <= 7) {
+                for (let i = 1; i <= totalPages; i++) pages.push(i);
+            } else {
+                pages.push(1);
+                let startPage = Math.max(2, currentPage - 2);
+                let endPage = Math.min(totalPages - 1, currentPage + 2);
+                if (startPage > 2) pages.push('...');
+                for (let i = startPage; i <= endPage; i++) pages.push(i);
+                if (endPage < totalPages - 1) pages.push('...');
+                pages.push(totalPages);
+            }
+
+            pageNumContainer.innerHTML = pages.map(p => {
+                if (p === '...') {
+                    return `<span style="color:var(--text-secondary);padding:0 4px;">…</span>`;
+                }
+                const active = p === currentPage ? 'active-page' : '';
+                return `<button class="${active}" onclick="goToPage(${p})">${p}</button>`;
+            }).join('');
+
             // 重新绑定悬停提示
             bindTraitHover();
+        }
+
+        function goToPage(page) {
+            const total = Math.ceil(filteredList.length / PAGE_SIZE) || 1;
+            if (page < 1 || page > total) return;
+            currentPage = page;
+            renderPage();
         }
 
         // ============================================================
@@ -948,9 +1078,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
             setupCardHoverEffects();
-
-            // 如果首页默认显示，且材料速查模块未被加载
-            // 材料速查将在用户点击标签时通过 showPage 触发加载
         });
     </script>
 </body>

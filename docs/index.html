@@ -197,7 +197,8 @@
         .mat-ref-table {
             width: 100%;
             min-width: 1200px;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
             font-size: 0.9rem;
         }
 
@@ -237,15 +238,36 @@
             white-space: nowrap;
         }
 
-        .mat-ref-table tbody tr:hover {
-            background: var(--bg-card-hover);
+        /* ===== 固定第一列（名称） ===== */
+        .mat-ref-table th:first-child,
+        .mat-ref-table td:first-child {
+            position: sticky;
+            left: 0;
+            z-index: 3;
+            background: var(--bg-darker);
+            min-width: 150px;
+            max-width: 200px;
         }
 
-        .mat-ref-table tbody tr:nth-child(even) {
+        .mat-ref-table th:first-child {
+            z-index: 4;
+            /* 表头优先级更高 */
+        }
+
+        .mat-ref-table td:first-child {
+            background: var(--bg-card);
+            border-right: 2px solid var(--metal-dark);
+        }
+
+        .mat-ref-table tbody tr:nth-child(even) td:first-child {
             background: rgba(22, 19, 26, 0.5);
         }
 
-        .mat-ref-table tbody tr:nth-child(even):hover {
+        .mat-ref-table tbody tr:hover td:first-child {
+            background: var(--bg-card-hover);
+        }
+
+        .mat-ref-table tbody tr:nth-child(even):hover td:first-child {
             background: var(--bg-card-hover);
         }
 
@@ -410,6 +432,11 @@
             .mat-ref-table th,
             .mat-ref-table td {
                 padding: 0.4rem 0.5rem;
+            }
+            .mat-ref-table th:first-child,
+            .mat-ref-table td:first-child {
+                min-width: 110px;
+                max-width: 140px;
             }
             .mat-pagination {
                 gap: 0.3rem;
@@ -860,7 +887,6 @@
                     content.style.display = 'block';
                     window._matRefLoaded = true;
 
-                    // 表格渲染完成后初始化滚动按钮
                     setTimeout(setupScrollButtons, 100);
                 })
                 .catch(err => {
@@ -1050,8 +1076,6 @@
             }).join('');
 
             bindTraitHover();
-
-            // 重新绑定滚动按钮（关键修复！）
             setTimeout(setupScrollButtons, 50);
         }
 
@@ -1094,7 +1118,6 @@
             const tip = document.getElementById('traitTip');
             const labelMap = { silentgear: 'Silent Gear 原版', kubejs: 'Reverie Foundry', silentgems: "Silent's Gems" };
 
-            // 移除旧监听，重新绑定（避免重复绑定）
             document.querySelectorAll('.mat-ref-table .tt').forEach(el => {
                 const newEl = el.cloneNode(true);
                 el.parentNode.replaceChild(newEl, el);
@@ -1124,7 +1147,7 @@
         }
 
         // ============================================================
-        //  5. 左右滚动按钮（修复版）
+        //  5. 左右滚动按钮
         // ============================================================
         function setupScrollButtons() {
             const wrap = document.getElementById('matTableWrap');
@@ -1133,7 +1156,6 @@
 
             if (!wrap || !btnLeft || !btnRight) return;
 
-            // 移除旧监听器，避免重复绑定
             const newLeft = btnLeft.cloneNode(true);
             const newRight = btnRight.cloneNode(true);
             btnLeft.parentNode.replaceChild(newLeft, btnLeft);

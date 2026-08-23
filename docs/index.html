@@ -65,6 +65,82 @@
             color: var(--metal-light);
         }
 
+        /* ===== 左右滚动按钮 + 表格容器 ===== */
+        .mat-ref-scroll-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .mat-ref-scroll-btn {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-darker);
+            border: 1px solid var(--border-color);
+            color: var(--metal-light);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            user-select: none;
+            z-index: 5;
+        }
+
+        .mat-ref-scroll-btn:hover:not(:disabled) {
+            background: var(--metal-dark);
+            border-color: var(--metal-primary);
+            box-shadow: 0 0 15px rgba(194, 143, 61, 0.3);
+        }
+
+        .mat-ref-scroll-btn:active:not(:disabled) {
+            transform: scale(0.92);
+        }
+
+        .mat-ref-scroll-btn:disabled {
+            opacity: 0.25;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .mat-ref-scroll-btn:disabled:hover {
+            background: var(--bg-darker);
+            border-color: var(--border-color);
+            box-shadow: none;
+        }
+
+        .mat-ref-table-wrap-scroll {
+            flex: 1;
+            overflow-x: auto;
+            overflow-y: visible;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            scroll-behavior: smooth;
+        }
+
+        /* 滚动条美化 — 更细更低调 */
+        .mat-ref-table-wrap-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .mat-ref-table-wrap-scroll::-webkit-scrollbar-track {
+            background: var(--bg-darker);
+            border-radius: 3px;
+        }
+
+        .mat-ref-table-wrap-scroll::-webkit-scrollbar-thumb {
+            background: var(--metal-dark);
+            border-radius: 3px;
+        }
+
+        .mat-ref-table-wrap-scroll::-webkit-scrollbar-thumb:hover {
+            background: var(--metal-primary);
+        }
+
         /* ===== 分页控件 ===== */
         .mat-pagination {
             display: flex;
@@ -117,12 +193,7 @@
             color: var(--metal-light);
         }
 
-        .mat-ref-table-wrap {
-            overflow-x: auto;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-        }
-
+        /* ===== 表格本身 ===== */
         .mat-ref-table {
             width: 100%;
             min-width: 1200px;
@@ -252,7 +323,7 @@
             font-size: 0.7rem;
         }
 
-        /* 特性悬停提示 */
+        /* ===== 特性悬停提示 ===== */
         .trait-tip {
             display: none;
             position: fixed;
@@ -278,7 +349,7 @@
             margin-top: 4px;
         }
 
-        /* 加载状态 */
+        /* ===== 加载状态 ===== */
         .mat-ref-loading {
             text-align: center;
             padding: 3rem;
@@ -314,7 +385,7 @@
             color: var(--metal-light);
         }
 
-        /* 响应式 */
+        /* ===== 响应式 ===== */
         @media (max-width: 768px) {
             .mat-ref-toolbar {
                 flex-direction: column;
@@ -323,6 +394,14 @@
             .mat-ref-toolbar .count-badge {
                 margin-left: 0;
                 text-align: center;
+            }
+            .mat-ref-scroll-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+            }
+            .mat-ref-scroll-wrapper {
+                gap: 0.3rem;
             }
             .mat-ref-table {
                 font-size: 0.8rem;
@@ -383,7 +462,6 @@
             <div class="intro-content">
                 <h2>遐想铸造厂</h2>
                 <p>一个以寂静装备为核心的高度魔改冒险整合包，融合泰拉瑞亚和边狱巴士元素，致力于给玩家带来高度魔改的自定义游戏体验。</p>
-
                 <div class="intro-features">
                     <div class="feature-item">
                         <h3><i class="fas fa-hammer"></i> 自定义装备</h3>
@@ -634,7 +712,7 @@
                     <p style="margin-top:1rem;">加载数据中...</p>
                 </div>
 
-                <!-- 表格内容（由 JS 动态渲染） -->
+                <!-- 表格内容 -->
                 <div id="matRefContent" style="display:none;">
                     <!-- 工具栏 -->
                     <div class="mat-ref-toolbar">
@@ -647,12 +725,20 @@
                         <span class="count-badge">当前 <b id="matCount">0</b> 条</span>
                     </div>
 
-                    <!-- 表格 -->
-                    <div class="mat-ref-table-wrap">
-                        <table class="mat-ref-table">
-                            <thead id="matHead"></thead>
-                            <tbody id="matBody"></tbody>
-                        </table>
+                    <!-- 表格 + 左右滚动按钮 -->
+                    <div class="mat-ref-scroll-wrapper">
+                        <button class="mat-ref-scroll-btn" id="scrollLeft" title="向左滚动">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="mat-ref-table-wrap-scroll" id="matTableWrap">
+                            <table class="mat-ref-table">
+                                <thead id="matHead"></thead>
+                                <tbody id="matBody"></tbody>
+                            </table>
+                        </div>
+                        <button class="mat-ref-scroll-btn" id="scrollRight" title="向右滚动">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
 
                     <!-- 分页控件 -->
@@ -747,10 +833,8 @@
         let NUMCOLS = [];
         let MAT_HEAD = [];
         let matSort = { col: 'name', dir: 1 };
-        let traitTipEl = document.getElementById('traitTip');
 
-        // 分页配置
-        const PAGE_SIZE = 50;
+        const PAGE_SIZE = 20;
         let currentPage = 1;
         let filteredList = [];
 
@@ -766,22 +850,18 @@
                 .then(data => {
                     MATS = data.materials || [];
                     NUMCOLS = data.num_cols || [];
-
-                    // 构建表头
                     MAT_HEAD = ['名称', '类型', 'ID', '类别', '特性', '稀有度'].concat(NUMCOLS);
 
-                    // 更新总数
                     document.getElementById('totalMatCount').textContent = MATS.length;
-
-                    // 填充筛选下拉
                     populateFilters(data);
-
-                    // 初始渲染
                     applyFiltersAndRender();
 
                     loading.style.display = 'none';
                     content.style.display = 'block';
                     window._matRefLoaded = true;
+
+                    // 表格渲染完成后初始化滚动按钮
+                    setTimeout(setupScrollButtons, 100);
                 })
                 .catch(err => {
                     loading.innerHTML = `
@@ -816,7 +896,6 @@
             });
             hvSel.insertAdjacentHTML('beforeend', `<option value="none">无等级</option>`);
 
-            // 绑定事件
             ['matSearch', 'matTypeFilter', 'matCatFilter', 'matSrcFilter', 'matHarvestFilter'].forEach(id => {
                 const el = document.getElementById(id);
                 el.addEventListener('input', () => { currentPage = 1;
@@ -834,7 +913,6 @@
                 applyFiltersAndRender();
             });
 
-            // 表头排序
             document.getElementById('matHead').addEventListener('click', (e) => {
                 const th = e.target.closest('th');
                 if (!th) return;
@@ -849,7 +927,6 @@
                 applyFiltersAndRender();
             });
 
-            // 分页按钮
             document.getElementById('pagePrev').addEventListener('click', () => {
                 if (currentPage > 1) { currentPage--;
                     renderPage(); }
@@ -883,7 +960,6 @@
                 return true;
             });
 
-            // 排序
             const { col, dir } = matSort;
             filteredList.sort((a, b) => {
                 if (['name', 'id', 'type', 'cat', 'trait_raw'].includes(col)) {
@@ -899,7 +975,6 @@
             const totalPages = Math.ceil(filteredList.length / PAGE_SIZE) || 1;
             if (currentPage > totalPages) currentPage = totalPages;
 
-            // 构建表头（仅首次）
             if (!document.getElementById('matHead').children.length) {
                 const headRow = document.createElement('tr');
                 MAT_HEAD.forEach((h, i) => {
@@ -947,13 +1022,11 @@
                 return `<tr>${cells}</tr>`;
             }).join('');
 
-            // 更新分页控件
             document.getElementById('pageCurrent').textContent = currentPage;
             document.getElementById('pageTotal').textContent = totalPages;
             document.getElementById('pagePrev').disabled = currentPage <= 1;
             document.getElementById('pageNext').disabled = currentPage >= totalPages;
 
-            // 生成页码按钮（最多显示7个）
             const pageNumContainer = document.getElementById('pageNumbers');
             let pages = [];
             if (totalPages <= 7) {
@@ -976,8 +1049,10 @@
                 return `<button class="${active}" onclick="goToPage(${p})">${p}</button>`;
             }).join('');
 
-            // 重新绑定悬停提示
             bindTraitHover();
+
+            // 重新渲染后更新滚动按钮状态
+            setTimeout(updateScrollButtons, 50);
         }
 
         function goToPage(page) {
@@ -1020,6 +1095,10 @@
             const labelMap = { silentgear: 'Silent Gear 原版', kubejs: 'Reverie Foundry', silentgems: "Silent's Gems" };
 
             document.querySelectorAll('.mat-ref-table .tt').forEach(el => {
+                el.replaceWith(el.cloneNode(true));
+            });
+
+            document.querySelectorAll('.mat-ref-table .tt').forEach(el => {
                 el.addEventListener('mouseenter', (e) => {
                     const lv = el.dataset.lv ? ` <span style="color:var(--metal-light);">[${esc(el.dataset.lv)}]</span>` : '';
                     const src = labelMap[el.dataset.src] || el.dataset.src;
@@ -1043,7 +1122,44 @@
         }
 
         // ============================================================
-        //  5. 粒子效果 & 卡片悬停
+        //  5. 左右滚动按钮
+        // ============================================================
+        function setupScrollButtons() {
+            const wrap = document.getElementById('matTableWrap');
+            const btnLeft = document.getElementById('scrollLeft');
+            const btnRight = document.getElementById('scrollRight');
+
+            if (!wrap || !btnLeft || !btnRight) return;
+
+            function updateButtons() {
+                const maxScroll = wrap.scrollWidth - wrap.clientWidth;
+                btnLeft.disabled = wrap.scrollLeft <= 0;
+                btnRight.disabled = wrap.scrollLeft >= maxScroll - 1;
+            }
+
+            function scrollBy(amount) {
+                const target = wrap.scrollLeft + amount;
+                wrap.scrollTo({ left: target, behavior: 'smooth' });
+                setTimeout(updateButtons, 100);
+            }
+
+            btnLeft.addEventListener('click', () => scrollBy(-300));
+            btnRight.addEventListener('click', () => scrollBy(300));
+
+            wrap.addEventListener('scroll', updateButtons);
+            window.addEventListener('resize', updateButtons);
+            setTimeout(updateButtons, 50);
+
+            // 暴露给外部用于分页后更新
+            window.updateScrollButtons = updateButtons;
+        }
+
+        function updateScrollButtons() {
+            if (window.updateScrollButtons) window.updateScrollButtons();
+        }
+
+        // ============================================================
+        //  6. 粒子效果 & 卡片悬停
         // ============================================================
         function createParticles() {
             const container = document.querySelector('.forge-background');
@@ -1073,7 +1189,7 @@
         }
 
         // ============================================================
-        //  6. 初始化
+        //  7. 初始化
         // ============================================================
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();

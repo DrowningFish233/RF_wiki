@@ -69,15 +69,15 @@
         .mat-ref-scroll-wrapper {
             position: relative;
             display: flex;
-            align-items: center;
+            align-items: stretch;
             gap: 0.6rem;
         }
 
         .mat-ref-scroll-btn {
             flex-shrink: 0;
             width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            min-height: 60px;
+            border-radius: 6px;
             background: var(--bg-darker);
             border: 1px solid var(--border-color);
             color: var(--metal-light);
@@ -122,7 +122,7 @@
             scroll-behavior: smooth;
         }
 
-        /* 滚动条美化 — 更细更低调 */
+        /* 滚动条美化 */
         .mat-ref-table-wrap-scroll::-webkit-scrollbar {
             height: 6px;
         }
@@ -397,7 +397,7 @@
             }
             .mat-ref-scroll-btn {
                 width: 32px;
-                height: 32px;
+                min-height: 44px;
                 font-size: 0.9rem;
             }
             .mat-ref-scroll-wrapper {
@@ -1051,8 +1051,8 @@
 
             bindTraitHover();
 
-            // 重新渲染后更新滚动按钮状态
-            setTimeout(updateScrollButtons, 50);
+            // 重新绑定滚动按钮（关键修复！）
+            setTimeout(setupScrollButtons, 50);
         }
 
         function goToPage(page) {
@@ -1094,8 +1094,10 @@
             const tip = document.getElementById('traitTip');
             const labelMap = { silentgear: 'Silent Gear 原版', kubejs: 'Reverie Foundry', silentgems: "Silent's Gems" };
 
+            // 移除旧监听，重新绑定（避免重复绑定）
             document.querySelectorAll('.mat-ref-table .tt').forEach(el => {
-                el.replaceWith(el.cloneNode(true));
+                const newEl = el.cloneNode(true);
+                el.parentNode.replaceChild(newEl, el);
             });
 
             document.querySelectorAll('.mat-ref-table .tt').forEach(el => {
@@ -1122,7 +1124,7 @@
         }
 
         // ============================================================
-        //  5. 左右滚动按钮
+        //  5. 左右滚动按钮（修复版）
         // ============================================================
         function setupScrollButtons() {
             const wrap = document.getElementById('matTableWrap');
@@ -1131,31 +1133,33 @@
 
             if (!wrap || !btnLeft || !btnRight) return;
 
+            // 移除旧监听器，避免重复绑定
+            const newLeft = btnLeft.cloneNode(true);
+            const newRight = btnRight.cloneNode(true);
+            btnLeft.parentNode.replaceChild(newLeft, btnLeft);
+            btnRight.parentNode.replaceChild(newRight, btnRight);
+
+            const finalLeft = document.getElementById('scrollLeft');
+            const finalRight = document.getElementById('scrollRight');
+
             function updateButtons() {
                 const maxScroll = wrap.scrollWidth - wrap.clientWidth;
-                btnLeft.disabled = wrap.scrollLeft <= 0;
-                btnRight.disabled = wrap.scrollLeft >= maxScroll - 1;
+                finalLeft.disabled = wrap.scrollLeft <= 0;
+                finalRight.disabled = wrap.scrollLeft >= maxScroll - 1;
             }
 
             function scrollBy(amount) {
                 const target = wrap.scrollLeft + amount;
                 wrap.scrollTo({ left: target, behavior: 'smooth' });
-                setTimeout(updateButtons, 100);
+                setTimeout(updateButtons, 150);
             }
 
-            btnLeft.addEventListener('click', () => scrollBy(-300));
-            btnRight.addEventListener('click', () => scrollBy(300));
+            finalLeft.addEventListener('click', () => scrollBy(-320));
+            finalRight.addEventListener('click', () => scrollBy(320));
 
             wrap.addEventListener('scroll', updateButtons);
             window.addEventListener('resize', updateButtons);
             setTimeout(updateButtons, 50);
-
-            // 暴露给外部用于分页后更新
-            window.updateScrollButtons = updateButtons;
-        }
-
-        function updateScrollButtons() {
-            if (window.updateScrollButtons) window.updateScrollButtons();
         }
 
         // ============================================================

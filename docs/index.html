@@ -11,6 +11,278 @@
     <link
         href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Noto+Serif+SC:wght@400;700&family=UnifrakturMaguntia&display=swap"
         rel="stylesheet">
+    <style>
+        /* ===== 材料速查表样式 ===== */
+        .mat-ref-container {
+            padding: 1rem 0;
+        }
+
+        .mat-ref-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--bg-darker);
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            align-items: center;
+        }
+
+        .mat-ref-toolbar input,
+        .mat-ref-toolbar select {
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 0.5rem 0.8rem;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: var(--transition);
+            min-width: 120px;
+        }
+
+        .mat-ref-toolbar input:focus,
+        .mat-ref-toolbar select:focus {
+            outline: none;
+            border-color: var(--metal-primary);
+            box-shadow: 0 0 10px rgba(194, 143, 61, 0.3);
+        }
+
+        .mat-ref-toolbar input {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .mat-ref-toolbar .count-badge {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
+        .mat-ref-toolbar .count-badge b {
+            color: var(--metal-light);
+        }
+
+        .mat-ref-table-wrap {
+            overflow-x: auto;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .mat-ref-table {
+            width: 100%;
+            min-width: 1200px;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .mat-ref-table th {
+            position: sticky;
+            top: 0;
+            background: var(--bg-darker);
+            color: var(--metal-light);
+            padding: 0.8rem 0.8rem;
+            text-align: left;
+            border-bottom: 2px solid var(--metal-dark);
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            z-index: 2;
+        }
+
+        .mat-ref-table th:hover {
+            background: #1a1420;
+        }
+
+        .mat-ref-table th .sort-arrow {
+            color: var(--metal-primary);
+            font-size: 0.7rem;
+            margin-left: 4px;
+        }
+
+        .mat-ref-table td {
+            padding: 0.6rem 0.8rem;
+            border-bottom: 1px solid rgba(58, 50, 64, 0.3);
+            vertical-align: middle;
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .mat-ref-table tbody tr:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .mat-ref-table tbody tr:nth-child(even) {
+            background: rgba(22, 19, 26, 0.5);
+        }
+
+        .mat-ref-table tbody tr:nth-child(even):hover {
+            background: var(--bg-card-hover);
+        }
+
+        .mat-ref-table .trait-cell {
+            white-space: normal;
+            line-height: 1.6;
+            min-width: 180px;
+        }
+
+        .mat-ref-table .num {
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .mat-ref-table .num.pos {
+            color: #5cb85c;
+        }
+        .mat-ref-table .num.neg {
+            color: #d9534f;
+        }
+        .mat-ref-table .num.zero {
+            color: var(--text-secondary);
+            opacity: 0.5;
+        }
+
+        .mat-ref-table .pill {
+            display: inline-block;
+            padding: 0.1rem 0.6rem;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            background: var(--bg-darker);
+            color: var(--text-secondary);
+            margin: 0.1rem 0.2rem;
+            white-space: nowrap;
+            border: 1px solid var(--border-color);
+        }
+
+        .mat-ref-table .pill.type {
+            color: var(--metal-light);
+            border-color: var(--metal-dark);
+        }
+
+        .mat-ref-table .pill.cat {
+            color: #b8a0d0;
+            border-color: #6d28d9;
+        }
+
+        .mat-ref-table .pill.src-silentgear {
+            color: #5cb85c;
+            border-color: #2d6a2d;
+        }
+        .mat-ref-table .pill.src-kubejs {
+            color: #f0ad4e;
+            border-color: #b45309;
+        }
+        .mat-ref-table .pill.src-silentgems {
+            color: #d9534f;
+            border-color: #8b1a1a;
+        }
+
+        .mat-ref-table .tt {
+            display: inline-block;
+            padding: 0 4px;
+            margin: 1px;
+            border-radius: 4px;
+            background: rgba(194, 143, 61, 0.15);
+            color: var(--metal-light);
+            cursor: help;
+            border-bottom: 1px dashed var(--metal-dark);
+            font-size: 0.85rem;
+        }
+
+        .mat-ref-table .tt .lv {
+            color: var(--metal-secondary);
+            font-size: 0.7rem;
+        }
+
+        /* 特性悬停提示 */
+        .trait-tip {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            max-width: 380px;
+            background: #1f1a24;
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--metal-dark);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.8);
+            pointer-events: none;
+        }
+
+        .trait-tip b {
+            color: var(--metal-light);
+        }
+        .trait-tip .tip-id {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            margin-top: 4px;
+        }
+
+        /* 加载状态 */
+        .mat-ref-loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+        }
+
+        .mat-ref-loading i {
+            font-size: 2rem;
+            color: var(--metal-primary);
+            animation: spin 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 重置按钮 */
+        .btn-reset {
+            background: var(--bg-dark);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+            font-size: 0.9rem;
+        }
+
+        .btn-reset:hover {
+            border-color: var(--metal-primary);
+            color: var(--metal-light);
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .mat-ref-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .mat-ref-toolbar .count-badge {
+                margin-left: 0;
+                text-align: center;
+            }
+            .mat-ref-table {
+                font-size: 0.8rem;
+                min-width: 900px;
+            }
+            .mat-ref-table th,
+            .mat-ref-table td {
+                padding: 0.4rem 0.5rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -19,6 +291,9 @@
         <div class="forge-glow"></div>
     </div>
 
+    <!-- 特性悬停提示 -->
+    <div class="trait-tip" id="traitTip"></div>
+
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="navbar-container">
@@ -26,6 +301,7 @@
                 <li class="nav-tab"><a href="#home" class="nav-link active" onclick="showPage('home')">首页</a></li>
                 <li class="nav-tab"><a href="#features" class="nav-link" onclick="showPage('features')">特色玩法</a></li>
                 <li class="nav-tab"><a href="#mechanic" class="nav-link" onclick="showPage('mechanic')">机制介绍</a></li>
+                <li class="nav-tab"><a href="#matref" class="nav-link" onclick="showPage('matref')">📦 材料速查</a></li>
                 <li class="nav-tab"><a href="#download" class="nav-link" onclick="showPage('download')">下载</a></li>
                 <li class="nav-tab"><a href="https://github.com/DrowningFish233/Reverie-Foundry" class="nav-link"
                         target="_blank">GitHub</a></li>
@@ -42,9 +318,8 @@
         </div>
     </header>
 
-    <!-- 首页 -->
+    <!-- ===== 首页 ===== -->
     <div id="home" class="page-container active">
-        <!-- 简介卡片 -->
         <div class="intro-card glowing-border">
             <div class="intro-content">
                 <h2>遐想铸造厂</h2>
@@ -71,42 +346,34 @@
             <h2>游戏截图</h2>
             <div class="gallery">
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/1481/736/new-items-png.png"
-                        alt="游戏截图1">
+                    <img src="https://media.forgecdn.net/attachments/1481/736/new-items-png.png" alt="游戏截图1">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/thumbnails/1192/729/310/172/pit2-jpg.jpg"
-                        alt="游戏截图2">
+                    <img src="https://media.forgecdn.net/attachments/thumbnails/1192/729/310/172/pit2-jpg.jpg" alt="游戏截图2">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/thumbnails/1192/730/310/172/pit3-jpg.jpg"
-                        alt="游戏截图3">
+                    <img src="https://media.forgecdn.net/attachments/thumbnails/1192/730/310/172/pit3-jpg.jpg" alt="游戏截图3">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/thumbnails/1192/734/310/172/2025-02-13_20-03-jpg.jpg"
-                        alt="游戏截图4">
+                    <img src="https://media.forgecdn.net/attachments/thumbnails/1192/734/310/172/2025-02-13_20-03-jpg.jpg" alt="游戏截图4">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/thumbnails/1192/737/310/172/2025-02-13_19-58-png.png"
-                        alt="游戏截图5">
+                    <img src="https://media.forgecdn.net/attachments/thumbnails/1192/737/310/172/2025-02-13_19-58-png.png" alt="游戏截图5">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/1481/734/2026-01-20_20-23-png.png"
-                        alt="游戏截图6">
+                    <img src="https://media.forgecdn.net/attachments/1481/734/2026-01-20_20-23-png.png" alt="游戏截图6">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/1481/731/2026-01-20_18-44-png.png"
-                        alt="游戏截图7">
+                    <img src="https://media.forgecdn.net/attachments/1481/731/2026-01-20_18-44-png.png" alt="游戏截图7">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://media.forgecdn.net/attachments/1481/732/2026-01-20_18-47-png.png"
-                        alt="游戏截图8">
+                    <img src="https://media.forgecdn.net/attachments/1481/732/2026-01-20_18-47-png.png" alt="游戏截图8">
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 特色玩法 -->
+    <!-- ===== 特色玩法 ===== -->
     <div id="features" class="page-container">
         <div class="card glowing-border">
             <h2>特色玩法</h2>
@@ -153,7 +420,7 @@
                         <ul>
                             <li><strong>腐化之地：</strong>获取高级锻造材料</li>
                             <li><strong>血肉群系：</strong>获取血肉系列材料</li>
-                            <li><strong>还有更多!</strong> </li>
+                            <li><strong>还有更多!</strong></li>
                         </ul>
                     </div>
                 </div>
@@ -175,25 +442,21 @@
         </div>
     </div>
 
-    <!-- 机制介绍 -->
+    <!-- ===== 机制介绍 ===== -->
     <div id="mechanic" class="page-container">
         <div class="mechanic-container">
-            <!-- 可扩展的侧边栏 -->
             <div class="mechanic-sidebar">
                 <div class="sidebar-card glowing-border">
                     <h3>机制导航</h3>
                     <ul class="sidebar-nav">
-                        <li><a href="#sanity-system" class="sidebar-link active"
-                                onclick="showMechanic('sanity-system')">理智值系统</a></li>
-                        <li><a href="#seven-sins" class="sidebar-link" onclick="showMechanic('seven-sins')">七罪侵蚀</a>
-                        </li>
+                        <li><a href="#sanity-system" class="sidebar-link active" onclick="showMechanic('sanity-system')">理智值系统</a></li>
+                        <li><a href="#seven-sins" class="sidebar-link" onclick="showMechanic('seven-sins')">七罪侵蚀</a></li>
                         <li><a href="#equipment" class="sidebar-link" onclick="showMechanic('equipment')">装备系统</a></li>
                         <li><a href="#crafting" class="sidebar-link" onclick="showMechanic('crafting')">锻造机制</a></li>
                     </ul>
                 </div>
             </div>
 
-            <!-- 主内容 -->
             <div class="mechanic-content">
                 <!-- 理智值系统 -->
                 <div id="sanity-system" class="mechanic-section active glowing-border">
@@ -222,13 +485,11 @@
                     <div class="mechanic-details">
                         <div class="detail-item glowing-border">
                             <h4>暴怒</h4>
-                            <p>暴怒的攻击倍率为1.2~2.0，若暴怒被攻击，会给予攻击暴怒的对象「仇恨标记」、「发光」效果,暴怒攻击带有仇恨标记的对象将移除「仇恨标记」与「发光」效果，并造成300%的伤害
-                            </p>
+                            <p>暴怒的攻击倍率为1.2~2.0，若暴怒被攻击，会给予攻击暴怒的对象「仇恨标记」、「发光」效果,暴怒攻击带有仇恨标记的对象将移除「仇恨标记」与「发光」效果，并造成300%的伤害</p>
                         </div>
                         <div class="detail-item glowing-border">
                             <h4>色欲</h4>
-                            <p>色欲攻击带有「玫瑰」的实体将提升10%的攻击力，攻击带有「染血的玫瑰>的实体将提升20%的攻击力,色欲攻击其他实体将给予「玫瑰>效果，若玫瑰达到5层，则消耗5层「玫瑰」，获得1层伤害强化,若其他实体拥有流血效果，则色欲将给予该实体1层「染血的玫瑰」若层数达到10，消耗10层「染血的玫瑰」给予色欲3层伤害强化，,并对其他实体造成1次该实体流血等级的流血伤害
-                            </p>
+                            <p>色欲攻击带有「玫瑰」的实体将提升10%的攻击力，攻击带有「染血的玫瑰>的实体将提升20%的攻击力,色欲攻击其他实体将给予「玫瑰>效果，若玫瑰达到5层，则消耗5层「玫瑰」，获得1层伤害强化,若其他实体拥有流血效果，则色欲将给予该实体1层「染血的玫瑰」若层数达到10，消耗10层「染血的玫瑰」给予色欲3层伤害强化，,并对其他实体造成1次该实体流血等级的流血伤害</p>
                         </div>
                         <div class="detail-item glowing-border">
                             <h4>懒惰</h4>
@@ -240,9 +501,7 @@
                         </div>
                         <div class="detail-item glowing-border">
                             <h4>贪婪</h4>
-                            <p>buff等级随时间缓慢提升（10秒提升1级）若被攻击则返回到1级 -增加生物掉落特殊物品的概率（不会造成额外掉落）/级5次
-                                -应用抢夺、海之眷顾等附魔时，钓到好货的概率增加（不会造成额外掉落）/级5次 -吸取经验球，掉落物的距离增加到2格/级 -增加0.35倍更改挖掘方块和杀死生物掉落的经验值/级
-                                -有15%的概率使用法术卷轴却不会被消耗/级</p>
+                            <p>buff等级随时间缓慢提升（10秒提升1级）若被攻击则返回到1级 -增加生物掉落特殊物品的概率（不会造成额外掉落）/级5次 -应用抢夺、海之眷顾等附魔时，钓到好货的概率增加（不会造成额外掉落）/级5次 -吸取经验球，掉落物的距离增加到2格/级 -增加0.35倍更改挖掘方块和杀死生物掉落的经验值/级 -有15%的概率使用法术卷轴却不会被消耗/级</p>
                         </div>
                         <div class="detail-item glowing-border">
                             <h4>暴食</h4>
@@ -273,8 +532,7 @@
                             <h4>特殊效果</h4>
                             <p>为装备添加独特的被动能力和主动技能：</p>
                             <ul>
-                                <li>持有凋零合金锭词缀效果时,玩家每20秒会获得一发虎标弹,上限8发,可使用武器技能按键消耗1枚虎标弹来推进自身,并给予自身速度2
-                                    攻击会消耗1发虎标弹,造成大额击退并额外造成20%伤害(独立乘区)</li>
+                                <li>持有凋零合金锭词缀效果时,玩家每20秒会获得一发虎标弹,上限8发,可使用武器技能按键消耗1枚虎标弹来推进自身,并给予自身速度2 攻击会消耗1发虎标弹,造成大额击退并额外造成20%伤害(独立乘区)</li>
                                 <li>受到致死伤害后，清除所有经验，并使使用者获得相当于[经验等级/10]的伤害吸收效果，持续时间为[经验等级]秒，冷却时间600秒</li>
                                 <li>降低玩家移动速度，受击目标会受到反向击退以靠近玩家</li>
                             </ul>
@@ -308,143 +566,393 @@
         </div>
     </div>
 
-   <!-- 下载 -->
-<div id="download" class="page-container">
-    <div class="download-container">
-        <div class="download-card glowing-border">
-            <h2>下载遐想铸造厂</h2>
-            <div class="download-options">
-                <div class="download-option glowing-border">
-                    <h3><i class="fas fa-download"></i> 最新版本</h3>
-                    <p>版本号: 补想维护了</p>
-                    <p>发布日期: 真的有人在意吗</p>
-                    <a href="https://www.curseforge.com/minecraft/modpacks/reverie-foundry/files/all?page=1&pageSize=20&showAlphaFiles=show" class="download-button curseforge-button" target="_blank">
-                        <i class="fas fa-download"></i> CurseForge下载
-                    </a>
-                </div>
-                <div class="download-option glowing-border">
-                    <h3><i class="fas fa-code-branch"></i> GitHub</h3>
-                    <p>获取源代码和问题追踪</p>
-                    <a href="https://github.com/DrowningFish233/Reverie-Foundry" class="download-button"
-                        target="_blank">访问GitHub</a>
-                </div>
-            </div>
-            <div class="download-info">
-                <h3><i class="fas fa-info-circle"></i> 安装说明</h3>
-                <ol>
-                    <li>下载整合包文件(.zip格式)</li>
-                    <li>在启动器中导入下载的整合包文件</li>
-                    <li>确保分配至少4GB内存给Minecraft</li>
-                    <li>启动游戏并享受冒险！</li>
-                </ol>
-                <div class="system-requirements">
-                    <h4>系统要求</h4>
-                    <p>最低配置: 4GB内存</p>
-                    <p>推荐配置: 10GB内存</p>
+    <!-- ===== 材料速查 ===== -->
+    <div id="matref" class="page-container">
+        <div class="card glowing-border">
+            <h2><i class="fas fa-table"></i> 材料速查表</h2>
+            <p style="color:var(--text-secondary);margin-bottom:1.5rem;">数据来源：游戏内 <code>/sgear mats dump</code> 与 <code>/sgear traits dump_md</code> 导出</p>
+
+            <div class="mat-ref-container" id="matRefContainer">
+                <!-- 加载状态 -->
+                <div class="mat-ref-loading" id="matLoading">
+                    <i class="fas fa-cog"></i>
+                    <p style="margin-top:1rem;">加载数据中...</p>
                 </div>
 
-                <!-- 新增的版权声明 -->
-                <div class="copyright-notice glowing-border">
-                    <h4><i class="fas fa-exclamation-triangle"></i> 版权声明</h4>
-                    <p>本整合包不会进行任何盈利性行为，且只会在以下平台提供：</p>
-                    <ul>
-                        <li>CurseForge - 官方发布平台</li>
-                        <li>GitHub - 源代码和问题追踪</li>
-                        <li>MC百科 - 主要活跃论坛</li>
-                    </ul>
-                    <p>如果你在其他地方发现了倒卖或付费下载等情况，请报告给<a href="https://github.com/DrowningFish233"
-                            target="_blank">鳕鱼</a>！</p>
+                <!-- 表格内容（由 JS 动态渲染） -->
+                <div id="matRefContent" style="display:none;">
+                    <!-- 工具栏 -->
+                    <div class="mat-ref-toolbar">
+                        <input type="text" id="matSearch" placeholder="🔍 搜索名称 / ID / 特性…">
+                        <select id="matTypeFilter"><option value="">全部类型</option></select>
+                        <select id="matCatFilter"><option value="">全部类别</option></select>
+                        <select id="matSrcFilter"><option value="">全部来源</option></select>
+                        <select id="matHarvestFilter"><option value="">全部采集等级</option></select>
+                        <button class="btn-reset" id="matResetBtn"><i class="fas fa-undo"></i> 重置</button>
+                        <span class="count-badge">共 <b id="matCount">0</b> 条材料</span>
+                    </div>
+
+                    <!-- 表格 -->
+                    <div class="mat-ref-table-wrap">
+                        <table class="mat-ref-table">
+                            <thead id="matHead"></thead>
+                            <tbody id="matBody"></tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <!-- ===== 下载 ===== -->
+    <div id="download" class="page-container">
+        <div class="download-container">
+            <div class="download-card glowing-border">
+                <h2>下载遐想铸造厂</h2>
+                <div class="download-options">
+                    <div class="download-option glowing-border">
+                        <h3><i class="fas fa-download"></i> 最新版本</h3>
+                        <p>版本号: 补想维护了</p>
+                        <p>发布日期: 真的有人在意吗</p>
+                        <a href="https://www.curseforge.com/minecraft/modpacks/reverie-foundry/files/all?page=1&pageSize=20&showAlphaFiles=show" class="download-button curseforge-button" target="_blank">
+                            <i class="fas fa-download"></i> CurseForge下载
+                        </a>
+                    </div>
+                    <div class="download-option glowing-border">
+                        <h3><i class="fas fa-code-branch"></i> GitHub</h3>
+                        <p>获取源代码和问题追踪</p>
+                        <a href="https://github.com/DrowningFish233/Reverie-Foundry" class="download-button" target="_blank">访问GitHub</a>
+                    </div>
+                </div>
+                <div class="download-info">
+                    <h3><i class="fas fa-info-circle"></i> 安装说明</h3>
+                    <ol>
+                        <li>下载整合包文件(.zip格式)</li>
+                        <li>在启动器中导入下载的整合包文件</li>
+                        <li>确保分配至少4GB内存给Minecraft</li>
+                        <li>启动游戏并享受冒险！</li>
+                    </ol>
+                    <div class="system-requirements">
+                        <h4>系统要求</h4>
+                        <p>最低配置: 4GB内存</p>
+                        <p>推荐配置: 10GB内存</p>
+                    </div>
+
+                    <div class="copyright-notice glowing-border">
+                        <h4><i class="fas fa-exclamation-triangle"></i> 版权声明</h4>
+                        <p>本整合包不会进行任何盈利性行为，且只会在以下平台提供：</p>
+                        <ul>
+                            <li>CurseForge - 官方发布平台</li>
+                            <li>GitHub - 源代码和问题追踪</li>
+                            <li>MC百科 - 主要活跃论坛</li>
+                        </ul>
+                        <p>如果你在其他地方发现了倒卖或付费下载等情况，请报告给<a href="https://github.com/DrowningFish233" target="_blank">鳕鱼</a>！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
+        // ============================================================
+        //  1. 页面切换
+        // ============================================================
         function showPage(pageId) {
-            // 隐藏所有页面
-            document.querySelectorAll('.page-container').forEach(page => {
-                page.classList.remove('active');
-            });
-
-            // 显示选中的页面
+            document.querySelectorAll('.page-container').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-
-            // 更新导航栏活动状态
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href') === `#${pageId}`) {
-                    link.classList.add('active');
-                }
+                if (link.getAttribute('href') === '#' + pageId) link.classList.add('active');
             });
-
-            // 如果是机制介绍页面，默认显示第一个机制
-            if (pageId === 'mechanic') {
-                showMechanic('sanity-system');
-            }
+            if (pageId === 'mechanic') showMechanic('sanity-system');
+            if (pageId === 'matref' && !window._matRefLoaded) loadMatRefData();
         }
 
         function showMechanic(sectionId) {
-            // 隐藏所有机制部分
-            document.querySelectorAll('.mechanic-section').forEach(section => {
-                section.classList.remove('active');
-            });
-
-            // 显示选中的部分
+            document.querySelectorAll('.mechanic-section').forEach(s => s.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
-
-            // 更新侧边栏活动状态
             document.querySelectorAll('.sidebar-link').forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('active');
-                }
+                if (link.getAttribute('href') === '#' + sectionId) link.classList.add('active');
             });
         }
 
-        // 粒子效果
+        // ============================================================
+        //  2. 材料速查 - 加载 data.json
+        // ============================================================
+        let MATS = [];
+        let TRAITS = [];
+        let NUMCOLS = [];
+        let MAT_HEAD = [];
+        let matSort = { col: 'name', dir: 1 };
+        let traitTipEl = document.getElementById('traitTip');
+
+        function loadMatRefData() {
+            const loading = document.getElementById('matLoading');
+            const content = document.getElementById('matRefContent');
+
+            fetch('/RF_wiki/data.json')
+                .then(res => {
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    return res.json();
+                })
+                .then(data => {
+                    MATS = data.materials || [];
+                    TRAITS = data.traits || [];
+                    NUMCOLS = data.num_cols || [];
+
+                    // 构建表头
+                    const headCols = ['名称', '类型', 'ID', '类别', '特性', '稀有度'].concat(NUMCOLS);
+                    MAT_HEAD = headCols;
+
+                    // 填充筛选下拉
+                    populateFilters(data);
+
+                    // 渲染表格
+                    renderMatTable();
+
+                    loading.style.display = 'none';
+                    content.style.display = 'block';
+                    window._matRefLoaded = true;
+                })
+                .catch(err => {
+                    loading.innerHTML = `
+                        <i class="fas fa-exclamation-triangle" style="color:var(--sanity-danger);font-size:2rem;"></i>
+                        <p style="margin-top:1rem;color:var(--sanity-danger);">加载数据失败：${err.message}</p>
+                        <p style="color:var(--text-secondary);font-size:0.9rem;">请确保 data.json 文件存在于 /RF_wiki/ 目录下</p>
+                    `;
+                    console.error('材料数据加载失败:', err);
+                });
+        }
+
+        function populateFilters(data) {
+            // 类型
+            const typeSel = document.getElementById('matTypeFilter');
+            (data.types || []).forEach(t => {
+                typeSel.insertAdjacentHTML('beforeend', `<option value="${esc(t)}">${esc(t)}</option>`);
+            });
+
+            // 类别
+            const catSel = document.getElementById('matCatFilter');
+            (data.cats || []).forEach(c => {
+                catSel.insertAdjacentHTML('beforeend', `<option value="${esc(c)}">${esc(c)}</option>`);
+            });
+
+            // 来源
+            const srcSel = document.getElementById('matSrcFilter');
+            ['silentgear', 'kubejs', 'silentgems'].forEach(s => {
+                const label = s === 'silentgear' ? '原版' : s === 'kubejs' ? 'Reverie Foundry' : "Silent's Gems";
+                srcSel.insertAdjacentHTML('beforeend', `<option value="${s}">${label}</option>`);
+            });
+
+            // 采集等级
+            const hvSel = document.getElementById('matHarvestFilter');
+            (data.harvest_levels || []).forEach(lv => {
+                const label = lv % 1 === 0 ? String(lv) : String(lv);
+                hvSel.insertAdjacentHTML('beforeend', `<option value="${lv}">Lv ${label}</option>`);
+            });
+            hvSel.insertAdjacentHTML('beforeend', `<option value="none">无等级</option>`);
+
+            // 事件绑定
+            ['matSearch', 'matTypeFilter', 'matCatFilter', 'matSrcFilter', 'matHarvestFilter'].forEach(id => {
+                document.getElementById(id).addEventListener('input', renderMatTable);
+                document.getElementById(id).addEventListener('change', renderMatTable);
+            });
+            document.getElementById('matResetBtn').addEventListener('click', () => {
+                document.getElementById('matSearch').value = '';
+                document.getElementById('matTypeFilter').value = '';
+                document.getElementById('matCatFilter').value = '';
+                document.getElementById('matSrcFilter').value = '';
+                document.getElementById('matHarvestFilter').value = '';
+                renderMatTable();
+            });
+
+            // 表头排序点击
+            document.getElementById('matHead').addEventListener('click', (e) => {
+                const th = e.target.closest('th');
+                if (!th) return;
+                const col = th.dataset.col;
+                if (matSort.col === col) matSort.dir *= -1;
+                else { matSort.col = col;
+                    matSort.dir = 1; }
+                document.querySelectorAll('#matHead th .sort-arrow').forEach(a => a.textContent = '');
+                const arrow = th.querySelector('.sort-arrow');
+                if (arrow) arrow.textContent = matSort.dir === 1 ? '▲' : '▼';
+                renderMatTable();
+            });
+        }
+
+        function renderMatTable() {
+            const q = document.getElementById('matSearch').value.trim().toLowerCase();
+            const ft = document.getElementById('matTypeFilter').value;
+            const fc = document.getElementById('matCatFilter').value;
+            const fs = document.getElementById('matSrcFilter').value;
+            const fh = document.getElementById('matHarvestFilter').value;
+
+            let list = MATS.filter(m => {
+                if (ft && m.type !== ft) return false;
+                if (fc && !(m.cat || '').split(',').map(x => x.trim()).includes(fc)) return false;
+                if (fs && m.id.split(':')[0] !== fs) return false;
+                if (fh !== '') {
+                    if (fh === 'none') { if (m.harvest != null) return false; } else if (m.harvest == null || m.harvest !== parseFloat(fh)) return false;
+                }
+                if (q) {
+                    const traitTxt = (m.traits_info || []).map(t => t.name).join(' ');
+                    const hay = (m.name + ' ' + m.id + ' ' + m.trait_raw + ' ' + traitTxt + ' ' + (m.cat || '')).toLowerCase();
+                    if (!hay.includes(q)) return false;
+                }
+                return true;
+            });
+
+            // 排序
+            const { col, dir } = matSort;
+            list.sort((a, b) => {
+                if (['name', 'id', 'type', 'cat', 'trait_raw'].includes(col)) {
+                    return String(a[col] || '').localeCompare(String(b[col] || ''), 'zh') * dir;
+                }
+                if (col === 'rarity_raw') return (a.rarity - b.rarity) * dir;
+                const va = a.nums && a.nums[col] != null ? a.nums[col] : -Infinity;
+                const vb = b.nums && b.nums[col] != null ? b.nums[col] : -Infinity;
+                return (va - vb) * dir;
+            });
+
+            document.getElementById('matCount').textContent = list.length;
+
+            // 构建表头
+            if (!document.getElementById('matHead').children.length) {
+                const headRow = document.createElement('tr');
+                MAT_HEAD.forEach((h, i) => {
+                    const th = document.createElement('th');
+                    th.dataset.col = i < 6 ? ['name', 'type', 'id', 'cat', 'trait_raw', 'rarity_raw'][i] : NUMCOLS[i - 6];
+                    th.innerHTML = `<span class="th-inner">${h}<span class="sort-arrow"></span></span>`;
+                    headRow.appendChild(th);
+                });
+                document.getElementById('matHead').appendChild(headRow);
+            }
+
+            // 渲染行
+            const tbody = document.getElementById('matBody');
+            tbody.innerHTML = list.map(m => {
+                let cells = `
+                    <td><b>${esc(m.name)}</b></td>
+                    <td>${srcPill(m.id.split(':')[0])}<span class="pill type">${esc(m.type)}</span></td>
+                    <td style="color:var(--text-secondary);font-size:0.85rem;">${esc(m.id)}</td>
+                    <td>${(m.cat||'').split(',').filter(Boolean).map(c => `<span class="pill cat">${esc(c.trim())}</span>`).join('')}</td>
+                    <td class="trait-cell">${traitSpans(m)}</td>
+                    <td>${esc(m.rarity_raw)}</td>
+                `;
+                NUMCOLS.forEach((c, i) => {
+                    const v = m.raw && m.raw[c] !== undefined ? m.raw[c] : '';
+                    const n = m.nums && m.nums[c] != null ? m.nums[c] : null;
+                    let cls = 'num';
+                    if (n === null || n === undefined || isNaN(n)) cls += ' zero';
+                    else if (n > 0) cls += ' pos';
+                    else if (n < 0) cls += ' neg';
+                    cells += `<td class="${cls}">${esc(v)}</td>`;
+                });
+                return `<tr>${cells}</tr>`;
+            }).join('');
+
+            // 重新绑定悬停提示
+            bindTraitHover();
+        }
+
+        // ============================================================
+        //  3. 辅助函数
+        // ============================================================
+        function esc(s) {
+            if (s == null) return '';
+            return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' } [c] || c));
+        }
+
+        function srcPill(ns) {
+            const cls = ns === 'silentgear' ? 'src-silentgear' : ns === 'kubejs' ? 'src-kubejs' :
+                ns === 'silentgems' ? 'src-silentgems' : 'src-other';
+            const label = { silentgear: '原版', kubejs: 'Reverie Foundry', silentgems: "Silent's Gems" } [ns] || ns;
+            return `<span class="pill ${cls}">${label}</span>`;
+        }
+
+        function traitSpans(m) {
+            if (!m.traits_info || !m.traits_info.length) return '';
+            return m.traits_info.map(t => {
+                const lv = t.level ? ` <span class="lv">${esc(t.level)}</span>` : '';
+                const hasDesc = !!t.desc;
+                const cls = hasDesc ? 'tt' : '';
+                return `<span class="${cls}" data-tip="${hasDesc ? esc(t.desc) : ''}" data-id="${esc(t.id)}" data-name="${esc(t.name)}" data-lv="${esc(t.level)}" data-src="${esc(t.id.split(':')[0])}">${esc(t.name)}${lv}</span>`;
+            }).join(' ');
+        }
+
+        // ============================================================
+        //  4. 特性悬停提示
+        // ============================================================
+        function bindTraitHover() {
+            const tip = document.getElementById('traitTip');
+            const labelMap = { silentgear: 'Silent Gear 原版', kubejs: 'Reverie Foundry', silentgems: "Silent's Gems" };
+
+            document.querySelectorAll('.mat-ref-table .tt').forEach(el => {
+                el.addEventListener('mouseenter', (e) => {
+                    const lv = el.dataset.lv ? ` <span style="color:var(--metal-light);">[${esc(el.dataset.lv)}]</span>` : '';
+                    const src = labelMap[el.dataset.src] || el.dataset.src;
+                    tip.innerHTML = `<b>${esc(el.dataset.name)}</b>${lv}<br>${esc(el.dataset.tip)}<div class="tip-id">ID: ${esc(el.dataset.id)} · 来源: ${esc(src)}</div>`;
+                    tip.style.display = 'block';
+                    positionTip(e);
+                });
+                el.addEventListener('mousemove', positionTip);
+                el.addEventListener('mouseleave', () => { tip.style.display = 'none'; });
+            });
+        }
+
+        function positionTip(e) {
+            const tip = document.getElementById('traitTip');
+            let x = e.clientX + 14,
+                y = e.clientY + 14;
+            if (x + 380 > window.innerWidth) x = e.clientX - 380;
+            if (y + 120 > window.innerHeight) y = e.clientY - 120;
+            tip.style.left = x + 'px';
+            tip.style.top = y + 'px';
+        }
+
+        // ============================================================
+        //  5. 粒子效果 & 卡片悬停
+        // ============================================================
         function createParticles() {
             const container = document.querySelector('.forge-background');
             for (let i = 0; i < 15; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'metal-particle';
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                particle.style.animationDelay = `${Math.random() * 5}s`;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 5 + 's';
                 container.appendChild(particle);
             }
         }
 
-        // 金属卡片悬停效果
         function setupCardHoverEffects() {
-            const cards = document.querySelectorAll('.card, .intro-card, .detail-item, .download-option, .sidebar-card, .mechanic-section');
-            cards.forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    card.style.setProperty('--glow-x', `${x}px`);
-                    card.style.setProperty('--glow-y', `${y}px`);
+            document.querySelectorAll('.card, .intro-card, .detail-item, .download-option, .sidebar-card, .mechanic-section')
+                .forEach(card => {
+                    card.addEventListener('mousemove', (e) => {
+                        const rect = card.getBoundingClientRect();
+                        card.style.setProperty('--glow-x', (e.clientX - rect.left) + 'px');
+                        card.style.setProperty('--glow-y', (e.clientY - rect.top) + 'px');
+                    });
+                    card.addEventListener('mouseleave', () => {
+                        card.style.setProperty('--glow-x', '50%');
+                        card.style.setProperty('--glow-y', '50%');
+                    });
                 });
-
-                card.addEventListener('mouseleave', () => {
-                    card.style.setProperty('--glow-x', '50%');
-                    card.style.setProperty('--glow-y', '50%');
-                });
-            });
         }
 
-        // 初始化效果
+        // ============================================================
+        //  6. 初始化
+        // ============================================================
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
             setupCardHoverEffects();
+
+            // 如果首页默认显示，且材料速查模块未被加载
+            // 材料速查将在用户点击标签时通过 showPage 触发加载
         });
     </script>
 </body>
 
-
 </html>
-
-
-
-
